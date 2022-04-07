@@ -7,7 +7,7 @@ public class MainMenuScript : MonoBehaviour
 {
    public void PlayButton()
     {
-        SceneManager.LoadScene("LevelSelect");
+        SceneManager.LoadScene(1);
     }
 
     public void ExitButton()
