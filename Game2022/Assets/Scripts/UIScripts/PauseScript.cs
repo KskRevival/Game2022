@@ -19,30 +19,21 @@ public class PauseScript: MonoBehaviour
 
     public void OnGUI()
     {
-        if (isPaused == true)
+        if (!isPaused) return;
+        Cursor.visible = true;
+        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 150f, 150f, 45f), "Продолжить"))
         {
-            Cursor.visible = true;
-            if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 150f, 150f, 45f), "Продолжить"))
-            {
-                isPaused = false;
-                timer = 0;
-                Cursor.visible = false;
-            }
-            if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 100f, 150f, 45f), "Сохранить"))
-            {
-
-            }
-            if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 50f, 150f, 45f), "Загрузить"))
-            {
-
-            }
-            if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2), 150f, 45f), "В Меню"))
-            {
-                isPaused = false;
-                timer = 0;
-                SceneManager.LoadScene(0);
-
-            }
+            isPaused = false;
+            timer = 0;
+            Cursor.visible = false;
+        }
+        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 100f, 150f, 45f), "Сохранить")){}
+        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 50f, 150f, 45f), "Загрузить")){}
+        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2), 150f, 45f), "В Меню"))
+        {
+            isPaused = false;
+            timer = 0;
+            SceneManager.LoadScene(0);
         }
     }
 }
