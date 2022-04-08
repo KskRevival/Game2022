@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class PlayerMovementScript : MonoBehaviour
 {
-    public float speed = 5f;
+    public float Speed;
+    public float RunSpeed = 5f;
+    public float NormalSpeed = 3.5f;
+    private float stamina = 1f;
+    private float staminaDepleteTime = 5f;
+    private float staminaRegenTime = 10f;
+    public bool canRun = true;
+    public bool isRunning = false;
     Vector3 movement;
 
     void Update()
@@ -13,7 +20,35 @@ public class PlayerMovementScript : MonoBehaviour
 
         movement = new Vector3(moveHorizontal, moveVertical, 0f);
 
-        movement = movement * speed * Time.deltaTime;
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0f && canRun)
+        {
+            
+            isRunning = true;
+            Speed = RunSpeed;
+            Debug.Log(stamina);
+            stamina -= Time.deltaTime / staminaDepleteTime;
+            if (stamina < 0f)
+            {
+                Debug.Log("STOP");
+                canRun = false;
+                stamina = 0f;
+            }
+        }
+        else
+        {
+            isRunning = false;
+            Speed = NormalSpeed;
+            Debug.Log(stamina);
+            if (stamina < 1f)
+                stamina += Time.deltaTime / staminaRegenTime;
+            else
+            {
+                canRun = true;
+                stamina = 1f;
+            }
+        }
+
+        movement = movement * Speed * Time.deltaTime;
 
         transform.position += movement;
     }
