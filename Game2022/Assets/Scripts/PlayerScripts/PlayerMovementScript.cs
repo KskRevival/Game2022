@@ -7,8 +7,8 @@ public class PlayerMovementScript : MonoBehaviour
     public float RunSpeed = 5f;
     public float NormalSpeed = 3.5f;
     private float stamina = 1f;
-    private float staminaDepleteTime = 5f;
-    private float staminaRegenTime = 10f;
+    private float staminaDepleteTime = 10f;
+    private float staminaRegenTime = 15f;
     public bool canRun = true;
     public bool isRunning = false;
     Vector3 movement;
@@ -20,7 +20,7 @@ public class PlayerMovementScript : MonoBehaviour
 
         movement = new Vector3(moveHorizontal, moveVertical, 0f);
 
-        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0f && canRun)
+        if (Input.GetKey(KeyCode.LeftShift) && movement != new Vector3(0f, 0f, 0f) && stamina > 0f && canRun)
         {
             
             isRunning = true;

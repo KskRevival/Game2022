@@ -7,7 +7,7 @@ public class MainMenuScript : MonoBehaviour
 {
    public void PlayButton()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("Game");
     }
 
     public void ExitButton()

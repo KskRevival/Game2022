@@ -11,6 +11,12 @@ public class BackButton : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    public void Retry()
+    {
+        Debug.Log("Return to Game");
+        SceneManager.LoadScene("Game");
+    }
+
     public void ToMenu()
     {
         Debug.Log("Return to menu");
