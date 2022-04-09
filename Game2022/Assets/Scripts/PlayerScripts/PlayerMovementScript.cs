@@ -11,18 +11,22 @@ public class PlayerMovementScript : MonoBehaviour
     private float staminaRegenTime = 15f;
     public bool canRun = true;
     public bool isRunning = false;
-    Vector3 movement;
+    Vector2 movement;
+    public Rigidbody2D rb;
 
     void Update()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
-        movement = new Vector3(moveHorizontal, moveVertical, 0f);
+        movement = new Vector2(moveHorizontal, moveVertical);
+    }
 
-        if (Input.GetKey(KeyCode.LeftShift) && movement != new Vector3(0f, 0f, 0f) && stamina > 0f && canRun)
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && movement != Vector2.zero && stamina > 0f && canRun)
         {
-            
+
             isRunning = true;
             Speed = RunSpeed;
             Debug.Log(stamina);
@@ -48,8 +52,6 @@ public class PlayerMovementScript : MonoBehaviour
             }
         }
 
-        movement = movement * Speed * Time.deltaTime;
-
-        transform.position += movement;
+        rb.MovePosition(rb.position + movement * Speed * Time.fixedDeltaTime);
     }
 }
