@@ -13,6 +13,7 @@ public class ExitScript : MonoBehaviour
 
     public static void ToMenu()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
 
