@@ -52,6 +52,6 @@ public class PlayerMovementScript : MonoBehaviour
             }
         }
 
-        rb.MovePosition(rb.position + movement * Speed * Time.fixedDeltaTime);
+        rb?.MovePosition(rb.position + movement * Speed * Time.fixedDeltaTime);
     }
 }
