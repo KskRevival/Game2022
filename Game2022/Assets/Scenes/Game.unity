@@ -390,6 +390,7 @@ GameObject:
   - component: {fileID: 415194351}
   - component: {fileID: 415194350}
   - component: {fileID: 415194357}
+  - component: {fileID: 415194358}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -452,7 +453,7 @@ MonoBehaviour:
   NormalSpeed: 3.5
   canRun: 1
   isRunning: 0
-  animator: {fileID: 415194357}
+  rb: {fileID: 0}
 --- !u!1839735485 &415194353
 Tilemap:
   m_ObjectHideFlags: 0
@@ -596,6 +597,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &415194358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 415194349}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c8bc046ab0b594691426034ade01a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 0
+  RunSpeed: 5
+  NormalSpeed: 3.5
+  canRun: 1
+  isRunning: 0
+  rb: {fileID: 415194354}
 --- !u!1 &648477187
 GameObject:
   m_ObjectHideFlags: 0
