@@ -9,8 +9,6 @@ public class Items : MonoBehaviour
 
 	public Sprite[] sprites = new Sprite[8];
 
-	public Item[] items = new Item[8];
-
 	public bool IsInventoryFull() => hasItems.TakeWhile(isSlotHasItem => isSlotHasItem).Count() == hasItems.Length;
 
 	public int GetFirstEmptySlot() => hasItems.TakeWhile(isSlotHasItem => isSlotHasItem).Count();
@@ -22,3 +20,5 @@ public class Items : MonoBehaviour
 		sprites[index] = gameObject.GetComponent<SpriteRenderer>().sprite;
 	}
 }
+
+

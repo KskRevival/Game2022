@@ -7,28 +7,28 @@ public class Inventory : MonoBehaviour
 
 	private Canvas canvas;
 
-	public GameObject player;
+    public GameObject player;
 
-	private Items items;
+    private Items items;
 
-	public Transform inventorySlots;
+    public Transform inventorySlots;
 
-	private Slot[] slots;
+    private Slot[] slots;
 
-	void Start()
+    void Start()
 	{
 		canvas = GetComponent<Canvas>();
 		canvas.enabled = false;
-		items = player.GetComponent<Items>();
-		slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
-	}
+        items = player.GetComponent<Items>();
+        slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
+    }
 
 	void Update()
 	{
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			UpdateUI(); //Обновление интерфейса
-			canvas.enabled = !canvas.enabled;
+            UpdateUI(); //Обновление интерфейса
+            canvas.enabled = !canvas.enabled;
 		}
 	}
 
@@ -36,9 +36,7 @@ public class Inventory : MonoBehaviour
 	{
 		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
 		{
-			bool active = items.hasItems[i];
-
-			slots[i].UpdateSlot(items.items[i]);
+			if(items.hasItems[i]) slots[i].UpdateSlot(items.sprites[i]);
 		}
 	}
 }

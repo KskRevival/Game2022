@@ -9,13 +9,8 @@ public class Slot : MonoBehaviour
 
 	public Image icon; //Иконка, куда будет прикрепляться спрайт
 
-	public Item item;
-
-	public void UpdateSlot(Item newItem) //Обновление слота
+	public void UpdateSlot(Sprite sprite) //Обновление слота
 	{
-		sprite = newItem.GetComponent<SpriteRenderer>().sprite;
-		item = newItem;
 		icon.sprite = sprite;
-		item = newItem;
 	}
 }
