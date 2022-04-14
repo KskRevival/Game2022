@@ -9,8 +9,17 @@ public class Slot : MonoBehaviour
 
 	public Image icon; //Иконка, куда будет прикрепляться спрайт
 
-	public void UpdateSlot(Sprite sprite) //Обновление слота
+	public void UpdateSlot(Sprite sprite, bool isEmpty) //Обновление слота
 	{
-		icon.sprite = sprite;
+		if (!isEmpty)
+		{
+			icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1f);
+			icon.sprite = sprite;
+		}
+        else
+        {
+			icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 0f);
+			icon.sprite = null;
+		}
 	}
 }
