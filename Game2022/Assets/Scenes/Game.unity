@@ -892,7 +892,6 @@ GameObject:
   - component: {fileID: 415194355}
   - component: {fileID: 415194354}
   - component: {fileID: 415194353}
-  - component: {fileID: 415194352}
   - component: {fileID: 415194351}
   - component: {fileID: 415194350}
   - component: {fileID: 415194357}
@@ -942,24 +941,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36ec8d7bd066760468d0d97387307d3d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &415194352
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 415194349}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c8bc046ab0b594691426034ade01a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 0
-  RunSpeed: 7
-  NormalSpeed: 3.5
-  canRun: 1
-  isRunning: 0
-  rb: {fileID: 0}
 --- !u!1839735485 &415194353
 Tilemap:
   m_ObjectHideFlags: 0
@@ -1121,6 +1102,7 @@ MonoBehaviour:
   canRun: 1
   isRunning: 0
   rb: {fileID: 415194354}
+  animator: {fileID: 415194357}
 --- !u!1 &648477187
 GameObject:
   m_ObjectHideFlags: 0
@@ -5859,10 +5841,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423687366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027ccb5442021db438b831e8a9db124e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4b4e36b2b2d4e4cab4c0fa202f2aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 415194356}
+  dampTime: 0.15
+  target: {fileID: 415194356}
+  camera: {fileID: 1423687368}
 --- !u!1 &1558472300
 GameObject:
   m_ObjectHideFlags: 0
