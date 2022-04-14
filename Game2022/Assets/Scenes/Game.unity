@@ -1102,6 +1102,7 @@ MonoBehaviour:
   canRun: 1
   isRunning: 0
   rb: {fileID: 415194354}
+  animator: {fileID: 415194357}
 --- !u!1 &648477187
 GameObject:
   m_ObjectHideFlags: 0
