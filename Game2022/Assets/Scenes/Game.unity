@@ -5840,10 +5840,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1423687366}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 027ccb5442021db438b831e8a9db124e, type: 3}
+  m_Script: {fileID: 11500000, guid: 4e4b4e36b2b2d4e4cab4c0fa202f2aa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 415194356}
+  dampTime: 0.15
+  target: {fileID: 415194356}
+  camera: {fileID: 1423687368}
 --- !u!1 &1558472300
 GameObject:
   m_ObjectHideFlags: 0
