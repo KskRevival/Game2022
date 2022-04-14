@@ -56,7 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
                 stamina = 1f;
             }
         }
-
-        rb?.MovePosition(rb.position + movement * Speed * Time.fixedDeltaTime);
+        var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
+        rb?.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
     }
 }
