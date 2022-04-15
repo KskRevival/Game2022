@@ -11,12 +11,24 @@ public class ExitScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
+    public static void ToGame()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Game");
+    }
+
+    public static void Death()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("DeathScene");
+    }
+
     public static void ToMenu()
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
-
+    
     public static void Exit()
     {
         Debug.Log("Exit");

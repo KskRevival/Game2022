@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class DamageOnCollision : MonoBehaviour
+public class EnterFightOnCollision: MonoBehaviour
 {
-    private const int DamageByMonster = 25;
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(DamageByMonster);
+            Debug.Log("Fight is active");
+            SceneManager.LoadScene("FightScene");
         }
     }
 }

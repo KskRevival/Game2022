@@ -13,6 +13,7 @@ public class PlayerMovementScript : MonoBehaviour
     public bool isRunning = false;
     Vector2 movement;
     public Rigidbody2D rb;
+    public Animator animator;
 
     void Update()
     {
@@ -20,6 +21,10 @@ public class PlayerMovementScript : MonoBehaviour
         float moveVertical = Input.GetAxisRaw("Vertical");
 
         movement = new Vector2(moveHorizontal, moveVertical);
+
+        animator.SetFloat("Horizontal", moveHorizontal);
+        animator.SetFloat("Vertical", moveVertical);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
     }
 
     private void FixedUpdate()
@@ -51,7 +56,12 @@ public class PlayerMovementScript : MonoBehaviour
                 stamina = 1f;
             }
         }
+        var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
+        rb.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
+    }
 
-        rb.MovePosition(rb.position + movement * Speed * Time.fixedDeltaTime);
+    public void MoveTo(Vector2 pos)
+    {
+        rb.MovePosition(pos);
     }
 }
