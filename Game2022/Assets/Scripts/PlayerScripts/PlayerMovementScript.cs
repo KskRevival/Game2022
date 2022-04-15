@@ -57,6 +57,11 @@ public class PlayerMovementScript : MonoBehaviour
             }
         }
         var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
-        rb?.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
+        rb.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
+    }
+
+    public void MoveTo(Vector2 pos)
+    {
+        rb.MovePosition(pos);
     }
 }
