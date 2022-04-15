@@ -21,7 +21,6 @@ public class PlayerHealth : MonoBehaviour
         {
             Health = 0;
             Debug.Log("You're dead");
-            //OnPlayerDeath?.Invoke();
             SceneManager.LoadScene("DeathScene");
         }
     }
