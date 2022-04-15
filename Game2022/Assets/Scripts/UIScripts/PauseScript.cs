@@ -4,36 +4,49 @@ using UnityEngine.SceneManagement;
 
 public class PauseScript: MonoBehaviour
 {
-    public float timer;
-    public bool isPaused;
+    public static bool isPaused;
+    public GameObject pauseMenuUI;
 
     void Update()
     {
-        Time.timeScale = timer;
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            isPaused = !isPaused;
+            Debug.Log("Escape");
+            if (isPaused) Resume();
+            else Pause();
         }
-        timer = isPaused? 0 : 1f;
     }
 
-    public void OnGUI()
+    public void Resume()
     {
-        if (!isPaused) return;
-        Cursor.visible = true;
-        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 150f, 150f, 45f), "Продолжить"))
-        {
-            isPaused = false;
-            timer = 0;
-            Cursor.visible = false;
-        }
-        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 100f, 150f, 45f), "Сохранить")){}
-        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2) - 50f, 150f, 45f), "Загрузить")){}
-        if (GUI.Button(new Rect((float)(Screen.width / 2), (float)(Screen.height / 2), 150f, 45f), "В Меню"))
-        {
-            isPaused = false;
-            timer = 0;
-            SceneManager.LoadScene(0);
-        }
+        isPaused = false;
+        Time.timeScale = 1f;
+        pauseMenuUI.SetActive(isPaused);
+    }
+    public void Pause()
+    {
+        isPaused = true;
+        Time.timeScale = 0f;
+        pauseMenuUI.SetActive(isPaused);
+    }
+
+    public void Save()
+    {
+        //make it later
+    }
+
+    public void Load()
+    {
+        //make it later
+    }
+
+    public void ToMenu()
+    {
+        ExitScript.ToMenu();
+    }
+
+    public void Exit()
+    {
+        ExitScript.Exit();
     }
 }

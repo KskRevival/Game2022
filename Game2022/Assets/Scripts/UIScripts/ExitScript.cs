@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class BackButton : MonoBehaviour
-{
-   public void OnClick()
+public class ExitScript : MonoBehaviour
+{ 
+    public static void Back()
     {
         Debug.Log("BackButton pushed");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
 
-    public void Retry()
+    public static void ToMenu()
     {
-        Debug.Log("Return to Game");
-        SceneManager.LoadScene("Game");
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(0);
     }
 
-    public void ToMenu()
+    public static void Exit()
     {
-        Debug.Log("Return to menu");
-        SceneManager.LoadScene(0);
+        Debug.Log("Exit");
+        Application.Quit();
     }
 }

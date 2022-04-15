@@ -11,25 +11,34 @@ public class PlayerMovementScript : MonoBehaviour
     private float staminaRegenTime = 15f;
     public bool canRun = true;
     public bool isRunning = false;
-    Vector3 movement;
+    Vector2 movement;
+    public Rigidbody2D rb;
+    public Animator animator;
 
     void Update()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
-        movement = new Vector3(moveHorizontal, moveVertical, 0f);
+        movement = new Vector2(moveHorizontal, moveVertical);
 
-        if (Input.GetKey(KeyCode.LeftShift) && movement != new Vector3(0f, 0f, 0f) && stamina > 0f && canRun)
+        animator.SetFloat("Horizontal", moveHorizontal);
+        animator.SetFloat("Vertical", moveVertical);
+        animator.SetFloat("Speed", movement.sqrMagnitude);
+    }
+
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) && movement != Vector2.zero && stamina > 0f && canRun)
         {
-            
+
             isRunning = true;
             Speed = RunSpeed;
-            Debug.Log(stamina);
+            //Debug.Log(stamina);
             stamina -= Time.deltaTime / staminaDepleteTime;
             if (stamina < 0f)
             {
-                Debug.Log("STOP");
+                //Debug.Log("STOP");
                 canRun = false;
                 stamina = 0f;
             }
@@ -38,7 +47,7 @@ public class PlayerMovementScript : MonoBehaviour
         {
             isRunning = false;
             Speed = NormalSpeed;
-            Debug.Log(stamina);
+            //Debug.Log(stamina);
             if (stamina < 1f)
                 stamina += Time.deltaTime / staminaRegenTime;
             else
@@ -47,9 +56,7 @@ public class PlayerMovementScript : MonoBehaviour
                 stamina = 1f;
             }
         }
-
-        movement = movement * Speed * Time.deltaTime;
-
-        transform.position += movement;
+        var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
+        rb?.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
     }
 }
