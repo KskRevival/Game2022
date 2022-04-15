@@ -32,12 +32,12 @@ public class PauseScript: MonoBehaviour
 
     public void Save()
     {
-        //make it later
+        SaveAndLoad.SaveGame();
     }
 
     public void Load()
     {
-        //make it later
+        SaveAndLoad.LoadGame();
     }
 
     public void ToMenu()
