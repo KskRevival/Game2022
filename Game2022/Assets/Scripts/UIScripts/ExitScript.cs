@@ -17,6 +17,12 @@ public class ExitScript : MonoBehaviour
         SceneManager.LoadScene("Game");
     }
 
+    public static void Death()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("DeathScene");
+    }
+
     public static void ToMenu()
     {
         Time.timeScale = 1f;

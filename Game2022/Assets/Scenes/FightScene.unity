@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 792081700}
   - component: {fileID: 792081699}
   m_Layer: 5
-  m_Name: DeathMenu
+  m_Name: FightMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 792081699}
         m_TargetAssemblyTypeName: ExitScript, Assembly-CSharp
-        m_MethodName: ToMenu
+        m_MethodName: Death
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
