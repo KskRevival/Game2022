@@ -31,7 +31,7 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && movement != Vector2.zero && stamina > 0f && canRun)
         {
-
+            animator.speed = 2f;
             isRunning = true;
             Speed = RunSpeed;
             //Debug.Log(stamina);
@@ -45,6 +45,7 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else
         {
+            animator.speed = 1f;
             isRunning = false;
             Speed = NormalSpeed;
             //Debug.Log(stamina);
