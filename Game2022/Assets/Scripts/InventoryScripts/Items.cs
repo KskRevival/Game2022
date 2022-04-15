@@ -7,7 +7,7 @@ public class Items : MonoBehaviour
 {
 	public bool[] hasItems = new bool[8];
 
-	public Sprite[] sprites = new Sprite[8];
+	public GameObject[] items = new GameObject[8];
 
 	public bool IsInventoryFull() => hasItems.TakeWhile(isSlotHasItem => isSlotHasItem).Count() == hasItems.Length;
 
@@ -16,8 +16,8 @@ public class Items : MonoBehaviour
 	public void AddItem(GameObject gameObject)
 	{
 		var index = GetFirstEmptySlot();
+		items[index] = gameObject;
 		hasItems[index] = true;
-		sprites[index] = gameObject.GetComponent<SpriteRenderer>().sprite;
 	}
 }
 

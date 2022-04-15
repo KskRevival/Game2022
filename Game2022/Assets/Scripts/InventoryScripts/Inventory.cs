@@ -37,7 +37,7 @@ public class Inventory : MonoBehaviour
 	{
 		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
 		{
-			slots[i].UpdateSlot(items.sprites[i], !items.hasItems[i]);
+			slots[i].UpdateSlot(items.items[i], !items.hasItems[i]);
 		}
 	}
 }
