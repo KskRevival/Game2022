@@ -15,6 +15,7 @@ public class SaveAndLoad : MonoBehaviour
         SaveData data = new SaveData(player);
         data.position[0] = player.transform.position.x;
         data.position[1] = player.transform.position.y;
+        data.position[2] = player.transform.position.z;
         bf.Serialize(file, data);
         file.Close();
         Debug.Log("Game data saved!");
@@ -28,7 +29,7 @@ public class SaveAndLoad : MonoBehaviour
             FileStream file = File.Open(Application.persistentDataPath + "/MySaveData.dat", FileMode.Open);
             SaveData data = (SaveData)bf.Deserialize(file);
             file.Close();
-            GameObject.Find("player").transform.position = new Vector2(data.position[0], data.position[1]);
+            GameObject.Find("Player").transform.position = new Vector3(data.position[0], data.position[1], data.position[2]);
             Debug.Log("Game data loaded!");
         }
         else
