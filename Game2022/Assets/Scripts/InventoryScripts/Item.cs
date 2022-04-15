@@ -6,7 +6,7 @@ public class Item : MonoBehaviour
 { 	
 	void OnTriggerEnter2D(Collider2D obj)
 	{
-		if (obj.transform.tag == "Player")
+		if (obj.transform.CompareTag("Player"))
 		{
 			var items = obj.GetComponent<Items>();
 			if (!items.IsInventoryFull())
