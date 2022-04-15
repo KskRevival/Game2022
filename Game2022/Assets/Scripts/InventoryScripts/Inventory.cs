@@ -4,27 +4,41 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-    public bool[] isFull;
-    public GameObject[] slots;
-    public GameObject inventory;
-    private bool inventoryOn;
 
-    private void Start()
-    {
-        //inventoryOn = false;
+	private Canvas canvas;
+
+    public GameObject player;
+
+    private Items items;
+
+    public Transform inventorySlots;
+
+    private Slot[] slots;
+
+    void Start()
+	{
+		canvas = GetComponent<Canvas>();
+		canvas.enabled = false;
+        items = player.GetComponent<Items>();
+        slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
 
-    public void Chest()
-    {
-        //if (inventoryOn == false)
-        //{
-        //    inventoryOn = true;
-        //    inventory.SetActive(true);
-        //}
-        //else if (inventoryOn == true)
-        //{
-        //    inventoryOn = false;
-        //    inventory.SetActive(false);
-        //}
-    }
+	void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Tab))
+		{
+			Time.timeScale = !canvas.enabled ? 0f : 1f;
+            UpdateUI(); //Обновление интерфейса
+            canvas.enabled = !canvas.enabled;
+		}
+	}
+
+	void UpdateUI()
+	{
+		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
+		{
+			slots[i].UpdateSlot(items.sprites[i], !items.hasItems[i]);
+		}
+	}
 }
+
