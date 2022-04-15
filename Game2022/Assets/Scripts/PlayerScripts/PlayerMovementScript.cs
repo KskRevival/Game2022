@@ -10,7 +10,6 @@ public class PlayerMovementScript : MonoBehaviour
     private float staminaDepleteTime = 10f;
     private float staminaRegenTime = 15f;
     public bool canRun = true;
-    public bool isRunning = false;
     Vector2 movement;
     public Rigidbody2D rb;
     public Animator animator;
@@ -31,8 +30,6 @@ public class PlayerMovementScript : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift) && movement != Vector2.zero && stamina > 0f && canRun)
         {
-
-            isRunning = true;
             Speed = RunSpeed;
             //Debug.Log(stamina);
             stamina -= Time.deltaTime / staminaDepleteTime;
@@ -45,7 +42,6 @@ public class PlayerMovementScript : MonoBehaviour
         }
         else
         {
-            isRunning = false;
             Speed = NormalSpeed;
             //Debug.Log(stamina);
             if (stamina < 1f)

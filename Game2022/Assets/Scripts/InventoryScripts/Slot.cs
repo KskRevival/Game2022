@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-	public Sprite sprite; //Спрайт брони для этого слота
+	public Sprite sprite;
 
 	public Image icon; //Иконка, куда будет прикрепляться спрайт
 
@@ -14,12 +14,9 @@ public class Slot : MonoBehaviour
 	public void UpdateSlot(GameObject gameObjectToSlot, bool isEmpty) //Обновление слота
 	{
 		if (!isEmpty)
-		{
-			gameObject = gameObjectToSlot;
-			sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
-			icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1f);
-			icon.sprite = sprite;
-		}
+        {
+            NewMethod(gameObjectToSlot);
+        }
         else
         {
 			gameObject = null;
@@ -28,4 +25,12 @@ public class Slot : MonoBehaviour
 			icon.sprite = null;
 		}
 	}
+
+    private void NewMethod(GameObject gameObjectToSlot)
+    {
+        gameObject = gameObjectToSlot;
+        sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        icon.color = new Color(icon.color.r, icon.color.g, icon.color.b, 1f);
+        icon.sprite = sprite;
+    }
 }

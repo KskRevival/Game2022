@@ -6,12 +6,11 @@ public class Item : MonoBehaviour
 {
 	public GameObject item;
 
-	void OnTriggerEnter2D(Collider2D obj)
+	void OnTriggerEnter2D(Collider2D collidedObject)
 	{
-		if (obj.transform.tag == "Player")
+		if (collidedObject.transform.tag == "Player")
 		{
-
-			var items = obj.GetComponent<Items>();
+			var items = collidedObject.GetComponent<Items>();
 			if (!items.IsInventoryFull())
 			{
 				items.AddItem(item);

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
-	public bool[] hasItems = new bool[8];
+	public bool[] hasItems = new bool[8]; // 
 
 	public GameObject[] items = new GameObject[8];
 

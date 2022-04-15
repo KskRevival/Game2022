@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
-
 	private Canvas canvas;
 
     public GameObject player;
