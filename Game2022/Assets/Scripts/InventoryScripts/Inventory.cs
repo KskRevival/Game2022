@@ -27,6 +27,7 @@ public class Inventory : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
+			Time.timeScale = !canvas.enabled ? 0f : 1f;
             UpdateUI(); //Обновление интерфейса
             canvas.enabled = !canvas.enabled;
 		}
