@@ -1,41 +1,42 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class Stamina : MonoBehaviour
+namespace PlayerScripts
 {
-    private const float staminaDepleteTime = 10f;
-    private const float staminaRegenTime = 15f;
-    public float stamina;
-    public float maxStamina;
-    private bool canRun;
-
-    public Stamina(float maxStamina)
+    public class Stamina : MonoBehaviour
     {
-        this.maxStamina = maxStamina;
-    }
+        private const float StaminaDepleteTime = 10f;
+        private const float StaminaRegenTime = 15f;
+        public float stamina;
+        public float maxStamina;
+        public bool canRun = true;
 
-    public bool IsStaminaAvailable(Vector2 movement)
-    {
-        return movement != Vector2.zero && stamina > 0f;
-    }
-
-    public void DrainStamina()
-    {
-        stamina -= Time.deltaTime / staminaDepleteTime;
-        if (!(stamina < 0f)) return;
-        canRun = false;
-        stamina = 0f;
-    }
-
-    public void RechargeStamina()
-    {
-        if (stamina < 1f)
-            stamina += Time.deltaTime / staminaRegenTime;
-        else
+        public Stamina(float maxStamina)
         {
-            canRun = true;
-            stamina = 1f;
+            this.maxStamina = maxStamina;
+        }
+
+        public bool IsStaminaAvailable(Vector2 movement)
+        {
+            return movement != Vector2.zero && canRun;
+        }
+
+        public void DrainStamina()
+        {
+            stamina -= Time.deltaTime / StaminaDepleteTime;
+            if (stamina > 0f) return;
+            canRun = false;
+            stamina = 0f;
+        }
+
+        public void RechargeStamina()
+        {
+            if (stamina < maxStamina)
+                stamina += Time.deltaTime / StaminaRegenTime;
+            else
+            {
+                canRun = true;
+                stamina = maxStamina;
+            }
         }
     }
 }
