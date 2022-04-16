@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using PlayerScripts;
 using UnityEngine;
 
 public class DamageOnCollision : MonoBehaviour
@@ -9,7 +10,7 @@ public class DamageOnCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().TakeDamage(DamageByMonster);
+            Player.TakeDamage(DamageByMonster);
         }
     }
 }
