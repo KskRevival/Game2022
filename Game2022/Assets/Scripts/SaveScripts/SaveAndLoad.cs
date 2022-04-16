@@ -1,30 +1,30 @@
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using PlayerScripts;
 using UnityEngine;
 
 namespace SaveScripts
 {
-    public class SaveAndLoad : MonoBehaviour
+    public static class SaveAndLoad
     {
         public static void SaveGame()
         {
-            var player = GameObject.Find("Player");
             var bf = new BinaryFormatter();
             using (var fs = File.Create(Application.persistentDataPath + "/MySaveData.dat"))
             {
-                var data = new SaveData(player);
+                var data = new SaveData(Player.player);
                 bf.Serialize(fs, data);
             }
 
             Debug.Log("Game data saved!");
         }
 
-        public static void LoadGame()
+        public static SaveData LoadGame()
         {
             if (!File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
             {
                 Debug.LogError("There is no save data!");
-                return;
+                return null;
             }
             
             var bf = new BinaryFormatter();
@@ -34,10 +34,8 @@ namespace SaveScripts
                 data = (SaveData) bf.Deserialize(file);
                 file.Close();
             }
-
-            GameObject.Find("Player").transform.position =
-                new Vector3(data.position[0], data.position[1], data.position[2]);
             Debug.Log("Game data loaded!");
+            return data;
         }
     }
 }
