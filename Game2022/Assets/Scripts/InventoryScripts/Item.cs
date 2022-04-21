@@ -3,15 +3,17 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Item : MonoBehaviour
-{ 	
-	void OnTriggerEnter2D(Collider2D obj)
+{
+	public GameObject itemInInventory;
+
+	void OnTriggerEnter2D(Collider2D collidedObject)
 	{
-		if (obj.transform.CompareTag("Player"))
+		if (collidedObject.transform.tag == "Player")
 		{
-			var items = obj.GetComponent<Items>();
+			var items = collidedObject.GetComponent<PlayerInventory>();
 			if (!items.IsInventoryFull())
 			{
-				items.AddItem(gameObject);
+				items.AddItem(itemInInventory);
 				Destroy(gameObject);
 			}
 		}
