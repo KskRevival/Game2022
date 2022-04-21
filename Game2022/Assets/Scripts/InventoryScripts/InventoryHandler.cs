@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class InventoryHandler : MonoBehaviour
 {
-	private Canvas canvas;
+	public GameObject InventoryPanel;
+	private bool isInventoryActive;
 
     public GameObject player;
 
@@ -18,8 +19,8 @@ public class InventoryHandler : MonoBehaviour
 
 	void Start()
 	{
-		canvas = GetComponent<Canvas>();
-		canvas.enabled = false;
+		isInventoryActive = false;
+		InventoryPanel.SetActive(isInventoryActive);
         items = player.GetComponent<PlayerInventory>();
         slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
@@ -28,8 +29,9 @@ public class InventoryHandler : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
-			Time.timeScale = !canvas.enabled ? 0f : 1f;
-            canvas.enabled = !canvas.enabled;
+			isInventoryActive = !isInventoryActive;
+			Time.timeScale = isInventoryActive ? 0f : 1f;
+			InventoryPanel.SetActive(isInventoryActive);
 		}
 		UpdateUI();
 	}
