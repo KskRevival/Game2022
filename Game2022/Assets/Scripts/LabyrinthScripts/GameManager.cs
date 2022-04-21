@@ -1,18 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace LabyrinthScripts
 {
-    // Start is called before the first frame update
-    void Start()
+    public class GameManager : MonoBehaviour
     {
+        public static GameManager instance = null;
         
-    }
+        public BoardManager boardManager;
+        public int level = 3;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        void Awake()
+        {
+            if (instance == null) instance = this;
+            else if(instance != this) Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
+            boardManager = GetComponent<BoardManager>();
+            InitGame();
+        }
+
+        void InitGame()
+        {
+            boardManager.SetupScene(level);
+        }
     }
 }
