@@ -2,11 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1facf42-7140-4169-a177-fdb21e3360f8" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/Doors.cs" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/Doors.cs.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/GenerationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GenerationScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/RoomBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/RoomBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

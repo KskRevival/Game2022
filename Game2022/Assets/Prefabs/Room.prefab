@@ -1768,12 +1768,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2c1fa6487e6d364db58dd9430c5002b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  doors:
-  - {fileID: 1416261296121715451}
-  - {fileID: 1416261296968123869}
-  - {fileID: 1416261295673202494}
-  - {fileID: 1416261297312930473}
-  testClosed: 01010000
+  walls: []
+  doors: []
 --- !u!1 &1416261296843908604
 GameObject:
   m_ObjectHideFlags: 0
