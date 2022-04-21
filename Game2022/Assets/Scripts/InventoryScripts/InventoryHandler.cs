@@ -2,24 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Inventory : MonoBehaviour
+public class InventoryHandler : MonoBehaviour
 {
-
 	private Canvas canvas;
 
     public GameObject player;
 
-    private Items items;
+    private PlayerInventory items;
 
     public Transform inventorySlots;
 
     private Slot[] slots;
 
-    void Start()
+	public static GameObject draggedItem = null;
+
+	void Start()
 	{
 		canvas = GetComponent<Canvas>();
 		canvas.enabled = false;
-        items = player.GetComponent<Items>();
+        items = player.GetComponent<PlayerInventory>();
         slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
 
@@ -28,16 +29,16 @@ public class Inventory : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Tab))
 		{
 			Time.timeScale = !canvas.enabled ? 0f : 1f;
-            UpdateUI(); //Обновление интерфейса
             canvas.enabled = !canvas.enabled;
 		}
+		UpdateUI();
 	}
 
 	void UpdateUI()
 	{
 		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
 		{
-			slots[i].UpdateSlot(items.sprites[i], !items.hasItems[i]);
+			slots[i].UpdateSlot(items.items[i], !items.hasItem[i]);
 		}
 	}
 }

@@ -34,11 +34,11 @@ public class PlayerMovementScript : MonoBehaviour
             animator.speed = 2f;
             isRunning = true;
             Speed = RunSpeed;
-            //Debug.Log(stamina);
+            // Debug.Log(stamina);
             stamina -= Time.deltaTime / staminaDepleteTime;
             if (stamina < 0f)
             {
-                //Debug.Log("STOP");
+                // Debug.Log("STOP");
                 canRun = false;
                 stamina = 0f;
             }
@@ -48,7 +48,7 @@ public class PlayerMovementScript : MonoBehaviour
             animator.speed = 1f;
             isRunning = false;
             Speed = NormalSpeed;
-            //Debug.Log(stamina);
+            // Debug.Log(stamina);
             if (stamina < 1f)
                 stamina += Time.deltaTime / staminaRegenTime;
             else
