@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="c1facf42-7140-4169-a177-fdb21e3360f8" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Fight Scripts/FightResults.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Fight Scripts/FightResults.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
