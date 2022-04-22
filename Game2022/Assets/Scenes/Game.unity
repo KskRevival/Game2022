@@ -4077,7 +4077,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   delay: 0.1
-  fullText: ffffffff
+  fullText: 
+  TextObject: {fileID: 706293892}
 --- !u!224 &730250715 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 334304286382020130, guid: f97f0f6d54b16954e8a23fe258764997, type: 3}
