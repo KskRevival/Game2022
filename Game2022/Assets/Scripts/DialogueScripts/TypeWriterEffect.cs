@@ -6,13 +6,14 @@ using UnityEngine.UI;
 
 public class TypeWriterEffect : MonoBehaviour
 {
-    public float delay = 0.1f;
+    public float delay = 0.001f;
     public string fullText;
     private string currentText = "";
-    public GameObject TextObject;
+    public TextMeshProUGUI dialogueText;
 
-    private void Start()
+    public void StartTyping(string text)
     {
+        fullText = text;
         StartCoroutine(ShowText());
     }
 
@@ -22,7 +23,7 @@ public class TypeWriterEffect : MonoBehaviour
         {
             currentText = fullText.Substring(0, i);
             Debug.Log(currentText);
-            TextObject.GetComponent<TextMeshProUGUI>().text = currentText;
+            dialogueText.text = currentText;
             yield return new WaitForSeconds(delay);
         }
     }

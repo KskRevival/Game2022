@@ -4076,9 +4076,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1a35bf2bed24d41b5a44b580601b3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  delay: 0.1
+  delay: 0.05
   fullText: 
-  TextObject: {fileID: 706293892}
+  dialogueText: {fileID: 706293894}
 --- !u!224 &730250715 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 334304286382020130, guid: f97f0f6d54b16954e8a23fe258764997, type: 3}
