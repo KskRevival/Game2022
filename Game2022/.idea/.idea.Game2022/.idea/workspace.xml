@@ -2,12 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c1facf42-7140-4169-a177-fdb21e3360f8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Game2022/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab.meta" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Room.prefab.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/GenerationScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/GenerationScene.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/DungeonGenerator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/DungeonGenerator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/RoomBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/LabyrinthScripts/RoomBehaviour.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +70,7 @@
       <workItem from="1650085419281" duration="966000" />
       <workItem from="1650089843762" duration="2246000" />
       <workItem from="1650104760855" duration="3222000" />
-      <workItem from="1650593911490" duration="3360000" />
+      <workItem from="1650593911490" duration="3555000" />
     </task>
     <servers />
   </component>

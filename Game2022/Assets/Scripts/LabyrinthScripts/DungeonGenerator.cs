@@ -10,7 +10,7 @@ public class DungeonGenerator : MonoBehaviour
     {
         //можно заоптимизировать потом через 0b
         public bool visited;
-        public bool[] status = {true, true, true, true};
+        public readonly bool[] status = Enumerable.Repeat(true, 4).ToArray();
     }
 
     public int columns;
