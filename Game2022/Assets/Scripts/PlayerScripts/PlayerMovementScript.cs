@@ -25,6 +25,11 @@ namespace PlayerScripts
 
         void Update()
         {
+            if (DialogueManager.GetInstance().dialogueIsPlaying)
+            {
+                return;
+            }
+
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
