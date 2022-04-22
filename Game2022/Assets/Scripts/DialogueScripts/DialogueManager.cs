@@ -87,7 +87,7 @@ public class DialogueManager : MonoBehaviour
         if (currentStory.canContinue)
         {
             // set text for the current dialogue line
-            dialogueText.text = currentStory.Continue();
+            dialogueText.GetComponent<TypeWriterEffect>().fullText = currentStory.Continue();
             // display choices, if any, for this dialogue line
             DisplayChoices();
         }
