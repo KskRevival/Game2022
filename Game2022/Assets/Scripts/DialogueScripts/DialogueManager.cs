@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Ink.Runtime;
+using UnityEngine.EventSystems;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -56,7 +57,9 @@ public class DialogueManager : MonoBehaviour
         }
 
         // handle continuing to the next line in the dialogue when submit is pressed
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) 
+            && !TypeWriterEffect.isCurrentlyTyping
+            && currentStory.currentChoices.Count == 0)
         {
             ContinueStory();
         }
@@ -131,5 +134,22 @@ public class DialogueManager : MonoBehaviour
         {
             choices[i].gameObject.SetActive(false);
         }
+
+        StartCoroutine(SelectFirstChoice());
+    }
+
+    private IEnumerator SelectFirstChoice()
+    {
+        // Event System requires we clear it first, then wait
+        // for at Least one frame before we set the current selected object
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.SetSelectedGameObject(choices[0].gameObject);
+    }
+
+    public void MakeChoice(int choiceIndex)
+    {
+        currentStory.ChooseChoiceIndex(choiceIndex);
+        ContinueStory();
     }
 }

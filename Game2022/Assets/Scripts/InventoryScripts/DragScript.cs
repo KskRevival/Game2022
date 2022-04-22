@@ -22,6 +22,11 @@ public class DragScript : MonoBehaviour
             SetIconAlpha(0f);
             icon.sprite = null;
         }
+
+        /*
+        SetIconAlpha(draggedItem == null ? 0f : 1f);
+        icon.sprite = draggedItem?.GetComponent<SpriteRenderer>()?.sprite;
+        */
     }
 
     private void FollowCursor()
