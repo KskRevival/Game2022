@@ -62,14 +62,13 @@ public class DungeonGenerator : MonoBehaviour
             {
                 if (path.Count == 0) break;
                 currCell = path.Pop();
+                continue;
             }
-            else
-            {
-                path.Push(currCell);
-                var newCell = neighbours[Random.Range(0, neighbours.Count)];
-                UpdateNeighbours(currCell, newCell);
-                currCell = newCell;
-            }
+
+            path.Push(currCell);
+            var newCell = neighbours[Random.Range(0, neighbours.Count)];
+            UpdateNeighbours(currCell, newCell);
+            currCell = newCell;
         }
     }
 

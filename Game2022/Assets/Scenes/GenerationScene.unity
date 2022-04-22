@@ -152,8 +152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95b96cedb3dadb8428cf239c63074c71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 8
-  rows: 8
+  columns: 20
+  rows: 20
   startPos: 0
   room: {fileID: 1170906356432216999, guid: 61bbde8c18037724fb2be51fa755bdc7, type: 3}
   offset: {x: 5.87, y: 5.87}
