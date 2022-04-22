@@ -19,7 +19,7 @@ namespace PlayerScripts
 
         private void Start()
         {
-            player = Player.player;
+            player = GameObject.Find("Player");
             stamina = player.AddComponent<Stamina>();
         }
 

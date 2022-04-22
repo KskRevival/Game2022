@@ -41,8 +41,11 @@ public class PauseScript: MonoBehaviour
         var data = SaveAndLoad.LoadGame();
         GameObject.Find("Player").transform.position =
             new Vector3(data.position[0], data.position[1], data.position[2]);
+        
         Player.MaxHealth = data.maxHealth;
         Player.Health = data.health;
+        Debug.Log(Player.Health);
+        Player.healthBar.SetHealth(data.health);
 
     }
 

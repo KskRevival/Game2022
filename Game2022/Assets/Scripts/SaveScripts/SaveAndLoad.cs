@@ -12,7 +12,7 @@ namespace SaveScripts
             var bf = new BinaryFormatter();
             using (var fs = File.Create(Application.persistentDataPath + "/MySaveData.dat"))
             {
-                var data = new SaveData(Player.player);
+                var data = new SaveData(GameObject.Find("Player"));
                 bf.Serialize(fs, data);
             }
 
