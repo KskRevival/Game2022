@@ -6,8 +6,8 @@ namespace PlayerScripts
     {
         private const float StaminaDepleteTime = 10f;
         private const float StaminaRegenTime = 15f;
-        public static float stamina;
-        public static float maxStamina;
+        public static float stamina = 1f;
+        public static float maxStamina = 1f;
         public static bool canRun = true;
 
         public static bool IsStaminaAvailable(Vector2 movement)
