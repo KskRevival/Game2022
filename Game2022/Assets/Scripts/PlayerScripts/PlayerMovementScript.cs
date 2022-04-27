@@ -25,14 +25,11 @@ namespace PlayerScripts
 
         void Update()
         {
-<<<<<<< Updated upstream
-=======
             // if (DialogueManager.GetInstance().dialogueIsPlaying)
             // {
             //     return;
             // }
 
->>>>>>> Stashed changes
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
