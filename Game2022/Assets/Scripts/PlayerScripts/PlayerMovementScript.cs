@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace PlayerScripts
@@ -6,7 +7,6 @@ namespace PlayerScripts
     {
         private static GameObject player;
         public float speed;
-        private Stamina stamina;
         private Vector2 movement;
         public Rigidbody2D rb;
         public Animator animator;
@@ -20,11 +20,19 @@ namespace PlayerScripts
         private void Start()
         {
             player = Player.player;
-            stamina = player.AddComponent<Stamina>();
+            Stamina.maxStamina = 1f;
         }
 
         void Update()
         {
+<<<<<<< Updated upstream
+=======
+            // if (DialogueManager.GetInstance().dialogueIsPlaying)
+            // {
+            //     return;
+            // }
+
+>>>>>>> Stashed changes
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
@@ -37,17 +45,17 @@ namespace PlayerScripts
 
         private void FixedUpdate()
         {
-            if (Input.GetKey(KeyCode.LeftShift) && stamina.IsStaminaAvailable(movement))
+            if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(movement))
             {
                 animator.speed = 2f;
                 speed = RunSpeed;
-                stamina.DrainStamina();
+                Stamina.DrainStamina();
             }
             else
             {
                 animator.speed = 1f;
                 speed = NormalSpeed;
-                stamina.RechargeStamina();
+                Stamina.RechargeStamina();
             }
             var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
             rb.MovePosition(rb.position + movement * (speed * Time.fixedDeltaTime * speedMultiplier));

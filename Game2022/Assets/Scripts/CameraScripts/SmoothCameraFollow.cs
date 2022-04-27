@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using System.Collections;
+using PlayerScripts;
 
 public class SmoothCameraFollow : MonoBehaviour
 {
@@ -9,7 +11,11 @@ public class SmoothCameraFollow : MonoBehaviour
     public Transform target;
     public Camera camera;
 
-    // Update is called once per frame
+    public void Start()
+    {
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+    }
+
     void Update()
     {
         if (target)
