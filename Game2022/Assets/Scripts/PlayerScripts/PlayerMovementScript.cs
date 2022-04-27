@@ -1,67 +1,61 @@
-using UnityEditor;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovementScript : MonoBehaviour
+namespace PlayerScripts
 {
-    public float Speed;
-    public float RunSpeed = 5f;
-    public float NormalSpeed = 3.5f;
-    private float stamina = 1f;
-    private float staminaDepleteTime = 10f;
-    private float staminaRegenTime = 15f;
-    public bool canRun = true;
-    public bool isRunning = false;
-    Vector2 movement;
-    public Rigidbody2D rb;
-    public Animator animator;
-
-    void Update()
+    public class PlayerMovementScript : MonoBehaviour
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        private static GameObject player;
+        public float speed;
+        private Vector2 movement;
+        public Rigidbody2D rb;
+        public Animator animator;
+    
+        private const float RunSpeed = 5f;
+        private const float NormalSpeed = 3.5f;
+        private static readonly int Horizontal = Animator.StringToHash("Horizontal");
+        private static readonly int Vertical = Animator.StringToHash("Vertical");
+        private static readonly int Speed = Animator.StringToHash("Speed");
 
-        movement = new Vector2(moveHorizontal, moveVertical);
-
-        animator.SetFloat("Horizontal", moveHorizontal);
-        animator.SetFloat("Vertical", moveVertical);
-        animator.SetFloat("Speed", movement.sqrMagnitude);
-    }
-
-    private void FixedUpdate()
-    {
-        if (Input.GetKey(KeyCode.LeftShift) && movement != Vector2.zero && stamina > 0f && canRun)
+        private void Start()
         {
-
-            isRunning = true;
-            Speed = RunSpeed;
-            //Debug.Log(stamina);
-            stamina -= Time.deltaTime / staminaDepleteTime;
-            if (stamina < 0f)
-            {
-                //Debug.Log("STOP");
-                canRun = false;
-                stamina = 0f;
-            }
+            player = Player.player;
+            Stamina.maxStamina = 1f;
         }
-        else
+
+        void Update()
         {
-            isRunning = false;
-            Speed = NormalSpeed;
-            //Debug.Log(stamina);
-            if (stamina < 1f)
-                stamina += Time.deltaTime / staminaRegenTime;
+            // if (DialogueManager.GetInstance().dialogueIsPlaying)
+            // {
+            //     return;
+            // }
+
+            var moveHorizontal = Input.GetAxisRaw("Horizontal");
+            var moveVertical = Input.GetAxisRaw("Vertical");
+
+            movement = new Vector2(moveHorizontal, moveVertical);
+
+            animator.SetFloat(Horizontal, moveHorizontal);
+            animator.SetFloat(Vertical, moveVertical);
+            animator.SetFloat(Speed, movement.sqrMagnitude);
+        }
+
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(movement))
+            {
+                animator.speed = 2f;
+                speed = RunSpeed;
+                Stamina.DrainStamina();
+            }
             else
             {
-                canRun = true;
-                stamina = 1f;
+                animator.speed = 1f;
+                speed = NormalSpeed;
+                Stamina.RechargeStamina();
             }
+            var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
+            rb.MovePosition(rb.position + movement * (speed * Time.fixedDeltaTime * speedMultiplier));
         }
-        var speedMultiplier = movement.x != 0 && movement.y != 0 ? 0.75f : 1f;
-        rb.MovePosition(rb.position + Speed * Time.fixedDeltaTime * movement * speedMultiplier);
-    }
-
-    public void MoveTo(Vector2 pos)
-    {
-        rb.MovePosition(pos);
     }
 }
