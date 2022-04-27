@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using Unity.Mathematics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class DungeonGenerator : MonoBehaviour
 {
+    public const int wallCount = 4;
     public class Cell
     {
         //можно заоптимизировать потом через 0b
         public bool visited;
-        public readonly bool[] status = Enumerable.Repeat(true, 4).ToArray();
+        public readonly bool[] status = Enumerable.Repeat(true, wallCount).ToArray();
     }
 
     public int columns;
@@ -19,6 +22,7 @@ public class DungeonGenerator : MonoBehaviour
 
     private Cell[] board;
     public GameObject room;
+    public GameObject player;
     public Vector2 offset;
 
 
@@ -27,6 +31,16 @@ public class DungeonGenerator : MonoBehaviour
         CreateBoard();
         MazeGenerator();
         GenerateDungeon();
+        SpawnPlayer();
+    }
+
+    void SpawnPlayer()
+    {
+        Instantiate(
+            player,
+            new Vector2(0.5f * offset.x, -0.5f * offset.y),
+            quaternion.identity,
+            transform);
     }
 
     void GenerateDungeon()
@@ -52,9 +66,8 @@ public class DungeonGenerator : MonoBehaviour
         var currCell = startPos;
         var path = new Stack<int>();
 
-        while (true)
+        while (currCell != board.Length - 1)
         {
-            if (currCell == board.Length - 1) break;
             board[currCell].visited = true;
             var neighbours = CheckNeighbours(currCell);
 

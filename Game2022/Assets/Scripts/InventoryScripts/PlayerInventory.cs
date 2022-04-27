@@ -22,9 +22,7 @@ public class PlayerInventory : MonoBehaviour
 
 	public void DragAndDropItem(int slotIndex)
     {
-		var itemToSlot = InventoryHandler.draggedItem;
-		InventoryHandler.draggedItem = items[slotIndex];
-		items[slotIndex] = itemToSlot;
+	    //(InventoryHandler.draggedItem, items[slotIndex]) = (items[slotIndex], InventoryHandler.draggedItem);
 		hasItem[slotIndex] = items[slotIndex] != null;
 	}
 }

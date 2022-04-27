@@ -2,25 +2,20 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class Stamina : MonoBehaviour
+    public static class Stamina
     {
         private const float StaminaDepleteTime = 10f;
         private const float StaminaRegenTime = 15f;
-        public float stamina;
-        public float maxStamina;
-        public bool canRun = true;
+        public static float stamina;
+        public static float maxStamina;
+        public static bool canRun = true;
 
-        public Stamina(float maxStamina)
-        {
-            this.maxStamina = maxStamina;
-        }
-
-        public bool IsStaminaAvailable(Vector2 movement)
+        public static bool IsStaminaAvailable(Vector2 movement)
         {
             return movement != Vector2.zero && canRun;
         }
 
-        public void DrainStamina()
+        public static void DrainStamina()
         {
             stamina -= Time.deltaTime / StaminaDepleteTime;
             if (stamina > 0f) return;
@@ -28,7 +23,7 @@ namespace PlayerScripts
             stamina = 0f;
         }
 
-        public void RechargeStamina()
+        public static void RechargeStamina()
         {
             if (stamina < maxStamina)
                 stamina += Time.deltaTime / StaminaRegenTime;
