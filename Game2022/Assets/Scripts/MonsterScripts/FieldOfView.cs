@@ -40,15 +40,17 @@ public class FieldOfView : MonoBehaviour
         if (rangeChecks.Length != 0)
         {
             var target = rangeChecks[0].transform;
-            var directionToTarget = (target.position - transform.position).normalized;
-
-            if (Vector3.Angle(transform.up, directionToTarget) < angle / 2)
-            {
-                var distanceToTarget = Vector3.Distance(transform.position, target.position);
-
-                canSeePlayer = !Physics2D.Raycast(transform.position, directionToTarget, distanceToTarget, obstructionMask);
-            }
-            else canSeePlayer = false;
+            var position = transform.position;
+            var directionToTarget = (target.position - position).normalized;
+            var distanceToTarget = Vector3.Distance(position, target.position);
+            canSeePlayer = 
+                Vector3.Angle(transform.up, directionToTarget) < angle / 2
+                &&
+                !Physics2D.Raycast(
+                    position,
+                    directionToTarget, 
+                    distanceToTarget, 
+                    obstructionMask);
         }
         canSeePlayer = rangeChecks.Length != 0 && canSeePlayer;
     }
