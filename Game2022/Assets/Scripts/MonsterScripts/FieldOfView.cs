@@ -12,6 +12,7 @@ public class FieldOfView : MonoBehaviour
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
+    public float rotationAngle = 0;
 
     public bool canSeePlayer;
 
@@ -46,10 +47,12 @@ public class FieldOfView : MonoBehaviour
         }
 
         canSeePlayer = rangeChecks.Length != 0 && canSeePlayer;
+
+        if (canSeePlayer) GetComponent<EnemyMovement>().UpdatePlayerLocation(playerRef.transform.position);
     }
 
     private bool InView(Vector3 directionToTarget)
-        => Vector3.Angle(transform.up, directionToTarget) < angle / 2;
+        => Vector3.Angle(GetComponent<EnemyMovement>().enemyDirection.normalized, directionToTarget) < angle / 2;
 
     private bool CanSee(Vector3 position, Vector3 directionToTarget, float distanceToTarget)
         => !Physics2D.Raycast(
