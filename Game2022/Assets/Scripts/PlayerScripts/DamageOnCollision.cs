@@ -10,7 +10,9 @@ public class DamageOnCollision : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Player.TakeDamage(DamageByMonster);
+            GameObject.Find("Player").GetComponent<Player>().TakeDamage(DamageByMonster);
+            Debug.Log("In");
         }
+        Debug.Log("Out");
     }
 }

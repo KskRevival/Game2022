@@ -8,7 +8,8 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
-        public int health, maxHealth;
+        public int health;
+        public float maxHealth;
         public float[] position;
 
         public SaveData(GameObject player)
@@ -18,11 +19,10 @@ namespace SaveScripts
             position[0] = position1.x;
             position[1] = position1.y;
             position[2] = position1.z;
-            
-            if (Player.healthBar == null || Player.healthBar.slider == null) return;
-            Debug.Log(health);
-            health = (int) Player.healthBar.slider.value;
-            maxHealth = (int) Player.healthBar.slider.maxValue;
+
+            if (HealthBar.slider == null) return;
+            health = (int) HealthBar.slider.value;
+            maxHealth = (int) HealthBar.slider.maxValue;
         }
     }
 }

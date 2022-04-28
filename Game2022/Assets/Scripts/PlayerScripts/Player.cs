@@ -7,22 +7,16 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public GameObject player;
+        public int MaxHealth = 100;
+        public int Health;
 
-        public static int MaxHealth = 100;
-        public static int Health;
-
-        public static HealthBar healthBar;
 
         void Awake()
         {
-            healthBar = player.AddComponent<HealthBar>();
-            player = GameObject.Find("Player");
             Health = MaxHealth;
-            healthBar.SetMaxHealth(MaxHealth);
+            HealthBar.SetMaxHealth(MaxHealth);
         }
-
-
+        
         void Update()
         {
             if (Input.GetKeyDown(KeyCode.Space))
@@ -31,10 +25,11 @@ namespace PlayerScripts
             }
         }
 
-        public static void TakeDamage(int amount)
+        public void TakeDamage(int amount)
         {
+            Debug.Log("TD");
             Health -= amount;
-            healthBar.SetHealth(Health);
+            HealthBar.SetHealth(Health);
             if (Health > 0) return;
             Health = 0;
             Debug.Log("You're dead");

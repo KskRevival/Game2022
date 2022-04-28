@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using SaveScripts;
@@ -6,23 +7,17 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-    public Slider slider;
-    public Gradient gradient;
-
-    public HealthBar(int health)
+    public static Slider slider;
+    
+    public static void SetHealth(int health)
     {
-        SetMaxHealth(health);
-        SetHealth(health);
-    }
-
-    public void SetHealth(int health)
-    {
+        Debug.Log("SH");
         if (slider == null) return;
-        Debug.Log("Ilya loh");
+        Debug.Log("HP Changed");
         slider.value = health;
     }
 
-    public void SetMaxHealth(int health)
+    public static void SetMaxHealth(int health)
     {
         if (slider == null) return;
         slider.maxValue = health;
