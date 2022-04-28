@@ -6,8 +6,7 @@ using UnityEngine;
 public class FieldOfView : MonoBehaviour
 {
     public float radius;
-    [Range(0, 360)]
-    public float angle;
+    [Range(0, 360)] public float angle;
 
     public GameObject playerRef;
 
@@ -43,15 +42,19 @@ public class FieldOfView : MonoBehaviour
             var position = transform.position;
             var directionToTarget = (target.position - position).normalized;
             var distanceToTarget = Vector3.Distance(position, target.position);
-            canSeePlayer = 
-                Vector3.Angle(transform.up, directionToTarget) < angle / 2
-                &&
-                !Physics2D.Raycast(
-                    position,
-                    directionToTarget, 
-                    distanceToTarget, 
-                    obstructionMask);
+            canSeePlayer = InView(directionToTarget) && CanSee(position, directionToTarget, distanceToTarget);
         }
+
         canSeePlayer = rangeChecks.Length != 0 && canSeePlayer;
     }
+
+    private bool InView(Vector3 directionToTarget)
+        => Vector3.Angle(transform.up, directionToTarget) < angle / 2;
+
+    private bool CanSee(Vector3 position, Vector3 directionToTarget, float distanceToTarget)
+        => !Physics2D.Raycast(
+            position,
+            directionToTarget,
+            distanceToTarget,
+            obstructionMask);
 }
