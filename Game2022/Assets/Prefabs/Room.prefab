@@ -801,6 +801,7 @@ GameObject:
   - component: {fileID: 1170906356432216998}
   - component: {fileID: 5736035637469797644}
   - component: {fileID: 1805975796332331764}
+  - component: {fileID: 5847145713429794841}
   m_Layer: 0
   m_Name: Room
   m_TagString: Untagged
@@ -854,6 +855,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9337eb915486e5a41916a49f1dfd95dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  data: {fileID: 5847145713429794841}
+--- !u!114 &5847145713429794841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1170906356432216999}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9375ebf8bd942a1bbed93692cd6bc22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Food:
+  - {fileID: 3274161749672404682, guid: b65d79592865ec94bb9b79f1131f904e, type: 3}
+  - {fileID: 7001779068950407432, guid: 60f756f45319de94cbe94f0d9fbbedf0, type: 3}
+  Weapons:
+  - {fileID: 7904577363975443827, guid: 7ac48b3966da2604197ca792d25366ea, type: 3}
+  - {fileID: 8099610830076861145, guid: 0c3ad5ec74b66bd4a9f678a789553f1c, type: 3}
+  - {fileID: 6962407594466149117, guid: 3ac1168827b95854aa91f5577d1caec1, type: 3}
+  - {fileID: 949362136288769588, guid: a92e2a5ca5a4c80479895e8dd808747c, type: 3}
+  - {fileID: 949362136288769588, guid: a92e2a5ca5a4c80479895e8dd808747c, type: 3}
+  Monsters:
+  - {fileID: 2562134793287347517, guid: 0427eff6da8c2b842a551fec94a0c519, type: 3}
+  - {fileID: 2562134793287347517, guid: 0427eff6da8c2b842a551fec94a0c519, type: 3}
+  - {fileID: 2562134793287347517, guid: 0427eff6da8c2b842a551fec94a0c519, type: 3}
 --- !u!1 &1170906356701594054
 GameObject:
   m_ObjectHideFlags: 0

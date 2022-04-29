@@ -1,8 +1,9 @@
 ﻿using UnityEngine;
+using static UnityEngine.Resources;
 
 namespace RoomGeneration
 {
-    public static class GenerationData
+    public class GenerationData : MonoBehaviour
     {
         private static readonly int[] SpawnChances =
         {
@@ -12,10 +13,9 @@ namespace RoomGeneration
             8   //monster
         };
 
-        private static GameObject[] Food =
+        public GameObject[] Food =
         {
-            Resources.Load("Assets/Prefabs/Loot/mayonnaise_64 1.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Loot/redbull_64 1.prefab") as GameObject
+            
         };
         private static readonly int[] FoodChances =
         {
@@ -23,13 +23,9 @@ namespace RoomGeneration
             50  //water
         };
 
-        private static GameObject[] Weapons =
+        public GameObject[] Weapons =
         {
-            Resources.Load("Assets/Prefabs/Loot/crowbar_64 1.prefab") as GameObject, 
-            Resources.Load("Assets/Prefabs/Loot/gun_64 1.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Loot/rifle_64 1.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Loot/pump_shotgun_64 1.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Loot/redbull_64 1.prefab") as GameObject
+            
         };
         private static readonly int[] WeaponChances =
         {
@@ -40,11 +36,9 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-        private static GameObject[] Monsters =
+        public GameObject[] Monsters =
         {
-            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject,
-            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject
+            
         };
         private static readonly int[] MonsterChances =
         {
@@ -61,12 +55,18 @@ namespace RoomGeneration
             MonsterChances
         };
 
-        public static GameObject[][] Objects =
+        public GameObject[][] Objects;
+
+        public GenerationData()
         {
-            null,
-            Food,
-            Weapons,
-            Monsters
-        };
+            Objects = new[] 
+            {
+                null,
+                Food,
+                Weapons,
+                Monsters
+            };
+        }
+        
     }
 }

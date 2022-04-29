@@ -36,11 +36,12 @@ public class DungeonGenerator : MonoBehaviour
 
     void SpawnPlayer()
     {
+        var position = transform.position;
         Instantiate(
             player,
-            new Vector2(0.5f * offset.x, -0.5f * offset.y),
-            quaternion.identity,
-            transform);
+            new Vector2(0.5f * position.x, -0.5f * position.y),
+            Quaternion.identity,
+            parent: transform);
     }
 
     void GenerateDungeon()
