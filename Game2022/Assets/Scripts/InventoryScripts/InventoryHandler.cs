@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class InventoryHandler : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class InventoryHandler : MonoBehaviour
 
     public GameObject player;
 
-    private PlayerInventory items;
+    private PlayerInventory playerInventory;
 
     public Transform inventorySlots;
 
@@ -21,7 +22,7 @@ public class InventoryHandler : MonoBehaviour
 	{
 		isInventoryActive = false;
 		InventoryPanel.SetActive(isInventoryActive);
-        items = player.GetComponent<PlayerInventory>();
+        playerInventory = player.GetComponent<PlayerInventory>();
         slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
 
@@ -39,9 +40,7 @@ public class InventoryHandler : MonoBehaviour
 	void UpdateUI()
 	{
 		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
-		{
-			slots[i].UpdateSlot(items.items[i], !items.hasItem[i]);
-		}
+			slots[i].UpdateSlot(playerInventory.items[i]);
 	}
 }
 

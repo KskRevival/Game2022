@@ -5,15 +5,14 @@ using UnityEngine.UI;
 
 public class Slot : MonoBehaviour
 {
-	public Image icon; //Иконка, куда будет прикрепляться спрайт
+    public Image icon; //Иконка, куда будет прикрепляться спрайт
 
-	public GameObject gameObject;
+    public GameObject gameObject;
 
-	public void UpdateSlot(GameObject gameObjectToSlot, bool isEmpty) //Обновление слота
-	{
-        if (!isEmpty) PlaceGameObjectToSlot(gameObjectToSlot);
+    public void UpdateSlot(GameObject gameObjectToSlot) //Обновление слота
+    {
+        if (gameObjectToSlot != null) PlaceGameObjectToSlot(gameObjectToSlot);
         else RemoveGameObjectFromSlot();
-
     }
 
     private void PlaceGameObjectToSlot(GameObject gameObjectToSlot)
