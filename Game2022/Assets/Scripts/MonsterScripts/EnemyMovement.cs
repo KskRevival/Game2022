@@ -22,10 +22,11 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        UpdatePlayerLocation();
         if (isChasingPlayer) 
         {
             enemyDirection = monsterTargetLocation - transform.position;
-            if (!isPlayerLost && !GetComponent<FieldOfView>().canSeePlayer) GetLastSeenPlayerLocation();
+            if (!isPlayerLost && !GetComponent<FieldOfView>().canSeePlayer) GetLastSeenPlayerArea();
         }
         angle = Mathf.Atan2(enemyDirection.y, enemyDirection.x);
         enemyDirection.Normalize();
@@ -33,28 +34,29 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isChasingPlayer && !IsMonsterReachedLastPlayerLocation())
+        if (isChasingPlayer = isChasingPlayer && !IsMonsterReachedLastPlayerLocation())
             MoveEnemy();
-        else isChasingPlayer = false;
     }
 
-    void MoveEnemy()
-    {
+    void MoveEnemy() =>
         monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
-    }
 
-    public void UpdatePlayerLocation(Vector3 playerLocation)
+    private void UpdatePlayerLocation()
     {
-        isChasingPlayer = true;
-        isPlayerLost = false;
-        monsterTargetLocation = playerLocation;
+        var playerLocation = GetComponent<FieldOfView>().GetPlayerPositionInVision();
+        if (playerLocation != default)
+        {
+            isPlayerLost = false;
+            isChasingPlayer = true;
+            monsterTargetLocation = playerLocation;
+        }
     }
 
-    private void GetLastSeenPlayerLocation()
+    private void GetLastSeenPlayerArea()
     {
         isPlayerLost = true;
         monsterTargetLocation += enemyDirection.normalized / 2;
     }
 
-    private bool IsMonsterReachedLastPlayerLocation() => (transform.position - monsterTargetLocation).sqrMagnitude < 0.1;
+    private bool IsMonsterReachedLastPlayerLocation() => (transform.position - monsterTargetLocation).sqrMagnitude < 0.01;
 }

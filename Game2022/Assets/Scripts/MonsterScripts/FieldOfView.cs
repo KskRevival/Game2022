@@ -47,8 +47,6 @@ public class FieldOfView : MonoBehaviour
         }
 
         canSeePlayer = rangeChecks.Length != 0 && canSeePlayer;
-
-        if (canSeePlayer) GetComponent<EnemyMovement>().UpdatePlayerLocation(playerRef.transform.position);
     }
 
     private bool InView(Vector3 directionToTarget)
@@ -60,4 +58,6 @@ public class FieldOfView : MonoBehaviour
             directionToTarget,
             distanceToTarget,
             obstructionMask);
+
+    public Vector3 GetPlayerPositionInVision() => canSeePlayer ? playerRef.transform.position : default;
 }
