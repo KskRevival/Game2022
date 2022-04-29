@@ -25,15 +25,17 @@ public class RoomGenerator : MonoBehaviour
     GameObject GetItem()
     {
         var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Item);
-        return type == Spawnable.Empty 
-            ? null 
+        return type == Spawnable.Empty
+            ? null
             : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
     }
 
     int GetIndex(int gen, Spawnable spawnable)
     {
         var index = 0;
-        while (GenerationData.Chances[(int) spawnable][index] < gen)
+        Debug.Log(spawnable);
+        while (index < (int) Spawnable.Size
+               && GenerationData.Chances[(int) spawnable][index] < gen)
         {
             index++;
             gen -= GenerationData.Chances[(int) spawnable][index];

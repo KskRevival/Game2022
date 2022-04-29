@@ -12,14 +12,25 @@ namespace RoomGeneration
             8   //monster
         };
 
-        private static GameObject[] Food;
+        private static GameObject[] Food =
+        {
+            Resources.Load("Assets/Prefabs/Loot/mayonnaise_64 1.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Loot/redbull_64 1.prefab") as GameObject
+        };
         private static readonly int[] FoodChances =
         {
             50, //food
             50  //water
         };
 
-        private static GameObject[] Weapons;
+        private static GameObject[] Weapons =
+        {
+            Resources.Load("Assets/Prefabs/Loot/crowbar_64 1.prefab") as GameObject, 
+            Resources.Load("Assets/Prefabs/Loot/gun_64 1.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Loot/rifle_64 1.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Loot/pump_shotgun_64 1.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Loot/redbull_64 1.prefab") as GameObject
+        };
         private static readonly int[] WeaponChances =
         {
             60, //meelee
@@ -29,7 +40,12 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-        private static GameObject[] Monsters;
+        private static GameObject[] Monsters =
+        {
+            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject,
+            Resources.Load("Assets/Prefabs/Enemy.prefab") as GameObject
+        };
         private static readonly int[] MonsterChances =
         {
             50, //same lvl
