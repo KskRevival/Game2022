@@ -6,26 +6,25 @@ public class EnemyMovement : MonoBehaviour
 {
     private bool isChasingPlayer;
     public bool isPlayerLost;
-    public Vector3 lastSeenPlayerLocation;
+    public Vector3 monsterTargetLocation;
     public Vector3 enemyDirection;
     public Rigidbody2D monsterRigidbody;
-    public float moveSpeed = 10f;
+    public float moveSpeed;
     public float angle;
 
     // Start is called before the first frame update
     void Start()
     {
-        lastSeenPlayerLocation = transform.position;
+        monsterTargetLocation = transform.position;
         monsterRigidbody = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(lastSeenPlayerLocation);
         if (isChasingPlayer) 
         {
-            enemyDirection = lastSeenPlayerLocation - transform.position;
+            enemyDirection = monsterTargetLocation - transform.position;
             if (!isPlayerLost && !GetComponent<FieldOfView>().canSeePlayer) GetLastSeenPlayerLocation();
         }
         angle = Mathf.Atan2(enemyDirection.y, enemyDirection.x);
@@ -34,26 +33,28 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isChasingPlayer && !(transform.position == lastSeenPlayerLocation))
+        if (isChasingPlayer && !IsMonsterReachedLastPlayerLocation())
             MoveEnemy();
         else isChasingPlayer = false;
     }
 
     void MoveEnemy()
     {
-        monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.deltaTime));
+        monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
     }
 
     public void UpdatePlayerLocation(Vector3 playerLocation)
     {
         isChasingPlayer = true;
         isPlayerLost = false;
-        lastSeenPlayerLocation = playerLocation;
+        monsterTargetLocation = playerLocation;
     }
 
-    public void GetLastSeenPlayerLocation()
+    private void GetLastSeenPlayerLocation()
     {
         isPlayerLost = true;
-        lastSeenPlayerLocation = enemyDirection + enemyDirection.normalized / 2;
+        monsterTargetLocation += enemyDirection.normalized / 2;
     }
+
+    private bool IsMonsterReachedLastPlayerLocation() => (transform.position - monsterTargetLocation).sqrMagnitude < 0.1;
 }

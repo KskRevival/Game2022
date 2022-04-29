@@ -473,7 +473,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102650146}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.15, z: 0}
+  m_LocalPosition: {x: 0, y: 0.19, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1667338243}
@@ -8643,7 +8643,7 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667338239}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -8661,7 +8661,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 0.25, y: 0.12}
-  m_EdgeRadius: 0.1
+  m_EdgeRadius: 0
 --- !u!212 &1667338242
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -8721,7 +8721,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667338239}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.721, y: -1.89, z: 0}
+  m_LocalPosition: {x: -9.44, y: -2.02, z: 0}
   m_LocalScale: {x: 3.612619, y: 3.612619, z: 3.612619}
   m_Children:
   - {fileID: 2084240618}
@@ -8768,7 +8768,7 @@ MonoBehaviour:
   lastSeenPlayerLocation: {x: 0, y: 0, z: 0}
   enemyDirection: {x: 1, y: 0, z: 0}
   monsterRigidbody: {fileID: 0}
-  moveSpeed: 4.5
+  moveSpeed: 5.5
   angle: 0
 --- !u!50 &1667338246
 Rigidbody2D:
@@ -8798,7 +8798,7 @@ CapsuleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1667338239}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -10318,7 +10318,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084240617}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0.15, z: 0}
+  m_LocalPosition: {x: 0.02, y: 0.19, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1667338243}

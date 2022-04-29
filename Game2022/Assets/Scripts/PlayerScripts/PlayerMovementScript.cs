@@ -11,7 +11,7 @@ namespace PlayerScripts
         public Rigidbody2D rb;
         public Animator animator;
 
-        private const float RunSpeed = 5f;
+        private const float RunSpeed = 6f;
         private const float NormalSpeed = 3.5f;
         private static readonly int Horizontal = Animator.StringToHash("Horizontal");
         private static readonly int Vertical = Animator.StringToHash("Vertical");
