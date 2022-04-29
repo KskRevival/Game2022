@@ -5,8 +5,8 @@ using System.Linq;
 
 public class InventoryHandler : MonoBehaviour
 {
-	public GameObject InventoryPanel;
-	private bool isInventoryActive;
+    public GameObject InventoryPanel;
+    private bool isInventoryActive;
 
     public GameObject player;
 
@@ -16,31 +16,27 @@ public class InventoryHandler : MonoBehaviour
 
     private Slot[] slots;
 
-	public static GameObject draggedItem = null;
+    public static GameObject draggedItem = null;
 
-	void Start()
-	{
-		isInventoryActive = false;
-		InventoryPanel.SetActive(isInventoryActive);
+    void Start()
+    {
+        InventoryPanel.SetActive(isInventoryActive);
         playerInventory = player.GetComponent<PlayerInventory>();
         slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
 
-	void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.Tab))
-		{
-			isInventoryActive = !isInventoryActive;
-			Time.timeScale = isInventoryActive ? 0f : 1f;
-			InventoryPanel.SetActive(isInventoryActive);
-		}
-		UpdateUI();
-	}
+    void Update()
+    {
+        UpdateUI();
+        if (!Input.GetKeyDown(KeyCode.Tab)) return;
+        isInventoryActive = !isInventoryActive;
+        Time.timeScale = isInventoryActive ? 0f : 1f;
+        InventoryPanel.SetActive(isInventoryActive);
+    }
 
-	void UpdateUI()
-	{
-		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
-			slots[i].UpdateSlot(playerInventory.items[i]);
-	}
+    void UpdateUI()
+    {
+        for (var i = 0; i < slots.Length; i++) //Проверка всех предметов
+            slots[i].UpdateSlot(playerInventory.items[i]);
+    }
 }
-

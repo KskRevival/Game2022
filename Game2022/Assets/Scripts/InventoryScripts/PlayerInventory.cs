@@ -9,7 +9,7 @@ public class PlayerInventory : MonoBehaviour
 
 	public bool IsInventoryFull() => GetFirstEmptySlot() == items.Length;
 
-	public int GetFirstEmptySlot() => items.TakeWhile(item => item != null).Count();
+	private int GetFirstEmptySlot() => items.TakeWhile(item => item != null).Count();
 
 	public void AddItem(GameObject gameObject)
 	{
@@ -19,10 +19,8 @@ public class PlayerInventory : MonoBehaviour
 
 	public void DragAndDropItem(int slotIndex)
     {
-		GameObject itemToSlot = InventoryHandler.draggedItem;
-		InventoryHandler.draggedItem = items[slotIndex];
-		items[slotIndex] = itemToSlot;
-	}
+		(InventoryHandler.draggedItem, items[slotIndex]) = (items[slotIndex], InventoryHandler.draggedItem);
+    }
 }
 
 

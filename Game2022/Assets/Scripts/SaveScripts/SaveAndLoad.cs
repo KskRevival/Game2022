@@ -7,6 +7,7 @@ namespace SaveScripts
 {
     public static class SaveAndLoad
     {
+        static readonly string path = Application.persistentDataPath + "/player.xml";
         public static void SaveGame()
         {
             var bf = new BinaryFormatter();
@@ -15,9 +16,24 @@ namespace SaveScripts
                 var data = new SaveData(Player.player);
                 bf.Serialize(fs, data);
             }
-
+        
             Debug.Log("Game data saved!");
         }
+
+        // public static void SaveGame()
+        // {
+        //     File.Create(path);
+        //     var data = new SaveData(GameObject.Find("Player"));
+        //     XmlSaves.Save(data, path);
+        // }
+
+        // public static SaveData LoadGame()
+        // {
+        //     if (File.Exists(path)) return XmlSaves.Load(path);
+        //     Debug.LogError("There is no save data!");
+        //     return null;
+        //
+        // }
 
         public static SaveData LoadGame()
         {
