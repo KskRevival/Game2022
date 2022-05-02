@@ -23,6 +23,8 @@ public class PlayerInventory : MonoBehaviour
 		InventoryHandler.draggedItem = items[slotIndex];
 		items[slotIndex] = itemToSlot;
 	}
+
+	public bool HasItemInIndex(int index) => !(items[index] is null);
 }
 
 
