@@ -19,12 +19,17 @@ public class PlayerInventory : MonoBehaviour
 
 	public void DragAndDropItem(int slotIndex)
     {
-		GameObject itemToSlot = InventoryHandler.draggedItem;
-		InventoryHandler.draggedItem = items[slotIndex];
+		var equippedSlots = GetComponent<PlayerEquipment>().GetEquippedSlotsIndexes();
+		var itemToSlot = DraggedItem.Item;
+
+		DraggedItem.Item = items[slotIndex];
+		DraggedItem.IsDraggingeEuippedItem = equippedSlots.Contains(slotIndex);
+		DraggedItem.SourceSlotIndex = slotIndex;
+
 		items[slotIndex] = itemToSlot;
 	}
 
-	public bool HasItemInIndex(int index) => !(items[index] is null);
+	public bool HasItemInIndex(int index) => !(items[index] == null);
 }
 
 

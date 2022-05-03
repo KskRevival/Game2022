@@ -22,6 +22,8 @@ public static class EquipItem
         var armorComponent = playerInventory.items[slotIndex].GetComponent<ArmorScript>();
         var healerComponent = playerInventory.items[slotIndex].GetComponent<HealerScript>();
 
-        if (!(weaponComponent is null)) player.GetComponent<PlayerEquipment>().Weapon = playerInventory.items[slotIndex];
+        if (!(weaponComponent is null)) 
+            player.GetComponent<PlayerEquipment>().Weapon 
+                = new EquipmentItem(playerInventory.items[slotIndex], slotIndex);
     }
 }

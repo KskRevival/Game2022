@@ -3,6 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
+public static class DraggedItem
+{
+	public static GameObject Item = null;
+	public static bool IsDraggingeEuippedItem;
+	public static int SourceSlotIndex;
+}
+
 public class InventoryHandler : MonoBehaviour
 {
 	public GameObject InventoryPanel;
@@ -12,18 +19,16 @@ public class InventoryHandler : MonoBehaviour
 
     private PlayerInventory playerInventory;
 
-    public Transform inventorySlots;
+    public Transform InventorySlots;
 
-    private Slot[] slots;
-
-	public static GameObject draggedItem = null;
+    private Slot[] Slots;
 
 	void Start()
 	{
 		isInventoryActive = false;
 		InventoryPanel.SetActive(isInventoryActive);
         playerInventory = player.GetComponent<PlayerInventory>();
-        slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
+        Slots = InventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
     }
 
 	void Update()
@@ -32,6 +37,9 @@ public class InventoryHandler : MonoBehaviour
 		{
 			isInventoryActive = !isInventoryActive;
 			Time.timeScale = isInventoryActive ? 0f : 1f;
+
+			if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
+
 			InventoryPanel.SetActive(isInventoryActive);
 		}
 		UpdateUI();
@@ -39,8 +47,19 @@ public class InventoryHandler : MonoBehaviour
 
 	void UpdateUI()
 	{
-		for (int i = 0; i < slots.Length; i++) //Проверка всех предметов
-			slots[i].UpdateSlot(playerInventory.items[i]);
+		for (int i = 0; i < Slots.Length; i++) //Проверка всех предметов
+			Slots[i].UpdateSlot(playerInventory.items[i]);
+	}
+
+	void ReturnDraggedItem()
+    {
+		Debug.Log(DraggedItem.SourceSlotIndex);
+		if (playerInventory.HasItemInIndex(DraggedItem.SourceSlotIndex)) 
+			playerInventory.AddItem(DraggedItem.Item);
+
+		else playerInventory.DragAndDropItem(DraggedItem.SourceSlotIndex);
+
+		DraggedItem.Item = null;
 	}
 }
 
