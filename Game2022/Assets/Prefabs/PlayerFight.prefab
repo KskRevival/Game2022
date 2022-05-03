@@ -131,8 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f422c2c63e9ac342b9cc367f19be137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Stepan
+  unitName: Buha
   unitLevel: 1
   damage: 2
+  defenceStack: 3
+  minimalDefence: 0
+  defence: 0
   maxHealth: 10
   health: 10
