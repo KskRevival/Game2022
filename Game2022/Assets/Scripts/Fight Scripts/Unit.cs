@@ -10,6 +10,7 @@ public class Unit : MonoBehaviour
 
     public int damage;
 
+    public int defenceStack;
     public int minimalDefence;
     public int defence;
 
