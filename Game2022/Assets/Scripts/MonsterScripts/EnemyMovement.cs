@@ -11,12 +11,14 @@ public class EnemyMovement : MonoBehaviour
     public Rigidbody2D monsterRigidbody;
     public float moveSpeed;
     public float angle;
+    private FieldOfView monsterFieldOfView;
 
     // Start is called before the first frame update
     void Start()
     {
         monsterTargetLocation = transform.position;
         monsterRigidbody = GetComponent<Rigidbody2D>();
+        monsterFieldOfView = GetComponent<FieldOfView>();
     }
 
     // Update is called once per frame
@@ -43,7 +45,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdatePlayerLocation()
     {
-        var playerLocation = GetComponent<FieldOfView>().GetPlayerPositionInVision();
+        var playerLocation = monsterFieldOfView.GetPlayerPositionInVision();
         if (playerLocation != default)
         {
             isPlayerLost = false;

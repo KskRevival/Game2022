@@ -12,7 +12,6 @@ public class FieldOfView : MonoBehaviour
 
     public LayerMask targetMask;
     public LayerMask obstructionMask;
-    public float rotationAngle = 0;
 
     public bool canSeePlayer;
 
