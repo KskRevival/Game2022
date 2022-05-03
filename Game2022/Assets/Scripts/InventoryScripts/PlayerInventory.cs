@@ -23,10 +23,13 @@ public class PlayerInventory : MonoBehaviour
 		var itemToSlot = DraggedItem.Item;
 
 		DraggedItem.Item = items[slotIndex];
-		DraggedItem.IsDraggingeEuippedItem = equippedSlots.Contains(slotIndex);
-		DraggedItem.SourceSlotIndex = slotIndex;
 
 		items[slotIndex] = itemToSlot;
+		if (DraggedItem.IsDraggingeEuippedItem)
+			GetComponent<PlayerEquipment>().ReequipItem(items[slotIndex], slotIndex);
+
+		DraggedItem.IsDraggingeEuippedItem = equippedSlots.Contains(slotIndex);
+		DraggedItem.SourceSlotIndex = slotIndex;
 	}
 
 	public bool HasItemInIndex(int index) => !(items[index] == null);

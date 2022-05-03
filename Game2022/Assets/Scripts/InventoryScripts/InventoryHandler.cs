@@ -47,8 +47,16 @@ public class InventoryHandler : MonoBehaviour
 
 	void UpdateUI()
 	{
-		for (int i = 0; i < Slots.Length; i++) //Проверка всех предметов
+		var equippedSlotsIndexes = player.GetComponent<PlayerEquipment>().GetEquippedSlotsIndexes();
+		for (int i = 0; i < Slots.Length; i++)
+		{
 			Slots[i].UpdateSlot(playerInventory.items[i]);
+
+			if (equippedSlotsIndexes.Contains(i) 
+				&& playerInventory.HasItemInIndex(i)) 
+				Slots[i].SetSlotAsEquipped();
+			else Slots[i].SetSlotAsUnequipped();
+		}
 	}
 
 	void ReturnDraggedItem()

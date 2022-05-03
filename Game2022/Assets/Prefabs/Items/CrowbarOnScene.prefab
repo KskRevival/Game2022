@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7554374690154843173}
   - component: {fileID: -5894895330426354438}
   - component: {fileID: 4496160727517941585}
+  - component: {fileID: 733258142915110164}
   m_Layer: 0
   m_Name: CrowbarOnScene
   m_TagString: Untagged
@@ -96,3 +97,29 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInInventory: {fileID: 5949647548542900752, guid: 5a2454b566b85ba48b46720e935751b0, type: 3}
+--- !u!61 &733258142915110164
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 513140299160247007}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0

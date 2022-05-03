@@ -19,6 +19,6 @@ public class ButtonClick : MonoBehaviour, IPointerClickHandler
             Player.GetComponent<PlayerInventory>().DragAndDropItem(SlotIndex);
 
         if (eventData.button == PointerEventData.InputButton.Right)
-            EquipItem.UseOrEquipFromSlot(SlotIndex);
+            UseItem.UseFromSlot(SlotIndex);
     }
 }

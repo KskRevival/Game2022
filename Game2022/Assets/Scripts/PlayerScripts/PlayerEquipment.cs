@@ -20,6 +20,8 @@ public class PlayerEquipment : MonoBehaviour
 
     public int GetDamage() => Weapon.Item.GetComponent<WeaponScript>().Damage;
 
+    private bool IsWeapon(GameObject item) => item.GetComponent<WeaponScript>() != null;
+
     public List<int> GetEquippedSlotsIndexes()
     {
         var indexesArray = new List<int>();
@@ -30,8 +32,9 @@ public class PlayerEquipment : MonoBehaviour
         return indexesArray;
     }
 
-    public void ReequipBySlot()
+    public void ReequipItem(GameObject item, int slotIndex)
     {
-        
+        if (IsWeapon(item)) Weapon.SlotIndex = slotIndex;
+        else Armor.SlotIndex = slotIndex;
     }
 }
