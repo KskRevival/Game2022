@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 265757057}
   - component: {fileID: 265757058}
+  - component: {fileID: 265757059}
   - component: {fileID: 265757056}
   m_Layer: 0
   m_Name: Generator
@@ -150,15 +151,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 265757055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b96cedb3dadb8428cf239c63074c71, type: 3}
+  m_Script: {fileID: 11500000, guid: 0793d584133d4177a4819d4ee76d1456, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  columns: 20
-  rows: 20
+  columns: 10
+  rows: 10
   startPos: 0
   room: {fileID: 1170906356432216999, guid: 61bbde8c18037724fb2be51fa755bdc7, type: 3}
   player: {fileID: 1668770886433599875, guid: 0bbe5fd1eb7cb7b45acba1b029d4dd01, type: 3}
-  offset: {x: 5.87, y: 5.87}
 --- !u!4 &265757057
 Transform:
   m_ObjectHideFlags: 0
@@ -185,8 +185,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff084afb5659e14882f7adfa8f2797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dungeonGenerator: {fileID: 265757056}
+  data: {fileID: 265757056}
+  dungeonGenerator: {fileID: 265757059}
   level: 3
+--- !u!114 &265757059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 265757055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95b96cedb3dadb8428cf239c63074c71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: 5.85, y: 5.85}
 --- !u!1 &1413319021
 GameObject:
   m_ObjectHideFlags: 0
