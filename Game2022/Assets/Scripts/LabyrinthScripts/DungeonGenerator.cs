@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using PlayerScripts;
 using UnityEngine;
 using static LabyrinthScripts.DungeonData;
 using Random = UnityEngine.Random;
@@ -19,14 +20,14 @@ namespace LabyrinthScripts
             CreateBoard();
             MazeGenerator();
             GenerateDungeon();
-            SpawnPlayer();
         }
 
-        void SpawnPlayer()
+        public GameObject SpawnPlayer()
         {
             var position = transform.position;
-            Instantiate(
-                data.player,
+            return Instantiate(
+                //data.player,
+                GameManager.GameObjectResources("Player"),
                 new Vector2(0.5f * position.x, -0.5f * position.y),
                 Quaternion.identity,
                 parent: transform);

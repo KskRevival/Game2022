@@ -1,3 +1,4 @@
+using PlayerScripts;
 using UnityEngine;
 
 namespace LabyrinthScripts
@@ -5,6 +6,8 @@ namespace LabyrinthScripts
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        
+        public Player player;
         
         public DungeonData data;
         public DungeonGenerator dungeonGenerator;
@@ -15,13 +18,27 @@ namespace LabyrinthScripts
             if (Instance == null) Instance = this;
             else if(Instance != this) Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
-            dungeonGenerator = GetComponent<DungeonGenerator>();
             InitGame();
+        }
+
+        public static GameObject CreatePlayer(bool forSave)
+        {
+            return forSave
+                ? Instantiate(GameObjectResources("Player"))
+                : Instance.dungeonGenerator.SpawnPlayer();
+        }
+
+        public static void DestroyPlayer()
+        {
+            Destroy(Instance.player);
         }
 
         void InitGame()
         {
+            dungeonGenerator = GetComponent<DungeonGenerator>();
             dungeonGenerator.Generate(data);
+            player = gameObject.AddComponent<Player>();
+            Player.player = dungeonGenerator.SpawnPlayer();
         }
 
         public static GameObject GameObjectResources(string path)

@@ -1,9 +1,9 @@
-﻿using UnityEngine;
-using static UnityEngine.Resources;
+﻿using LabyrinthScripts;
+using UnityEngine;
 
 namespace RoomGeneration
 {
-    public class GenerationData : MonoBehaviour
+    public static class GenerationData
     {
         private static readonly int[] SpawnChances =
         {
@@ -13,8 +13,10 @@ namespace RoomGeneration
             8   //monster
         };
 
-        public GameObject[] Food =
+        private static GameObject[] Food =
         {
+            GameManager.GameObjectResources("Loot/mayo"),
+            GameManager.GameObjectResources("Loot/redbull")
             
         };
         private static readonly int[] FoodChances =
@@ -23,9 +25,13 @@ namespace RoomGeneration
             50  //water
         };
 
-        public GameObject[] Weapons =
+        private static GameObject[] Weapons =
         {
-            
+            GameManager.GameObjectResources("Loot/crowbar"),
+            GameManager.GameObjectResources("Loot/pistol"),
+            GameManager.GameObjectResources("Loot/rifle"),
+            GameManager.GameObjectResources("Loot/shotgun"),
+            GameManager.GameObjectResources("Loot/shotgun")
         };
         private static readonly int[] WeaponChances =
         {
@@ -36,15 +42,14 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-        public GameObject[] Monsters =
+        private static GameObject[] Monsters =
         {
+            GameManager.GameObjectResources("Monster")
             
         };
         private static readonly int[] MonsterChances =
         {
-            50, //same lvl
-            25, //lower lvl
-            25  //higher lvl
+            100
         };
 
         public static int[][] Chances =
@@ -55,18 +60,12 @@ namespace RoomGeneration
             MonsterChances
         };
 
-        public GameObject[][] Objects;
-
-        public GenerationData()
+        public static GameObject[][] Objects = 
         {
-            Objects = new[] 
-            {
-                null,
-                Food,
-                Weapons,
-                Monsters
-            };
-        }
-        
+            null,
+            Food,
+            Weapons,
+            Monsters
+        };
     }
 }
