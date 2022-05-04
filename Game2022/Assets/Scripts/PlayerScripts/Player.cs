@@ -5,13 +5,12 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public static readonly GameObject player = GameObject.Find("Player");
-        public static float Health, MaxHealth;
+        public static GameObject player;
+        public static float Health = 20, MaxHealth = 20;
 
-        public Player(float maxHealth)
+        public Player(GameObject p)
         {
-            MaxHealth = maxHealth;
-            Health = maxHealth;
+            player = p;
         }
     
         public static void TakeDamage(float amount)
