@@ -1,44 +1,48 @@
-using System.Collections;
-using System.Collections.Generic;
-using RoomGeneration;
 using UnityEngine;
 
-public class RoomGenerator : MonoBehaviour
+namespace RoomGeneration
 {
-    private const int CellCount = 16;
-    private const int Side = 4;
-
-    void Start()
+    public class RoomGenerator : MonoBehaviour
     {
-        var item = GetItem();
-        if (item == null) return;
-        var pos = Random.Range(0, 16);
-        var position = transform.position;
-        Instantiate(
-            GetItem(),
-            new Vector2(
-                position.x + pos / Side,
-                position.y + pos % Side),
-            Quaternion.identity);
-    }
+        private const int CellCount = 16;
+        private const int Side = 4;
 
-    GameObject GetItem()
-    {
-        var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Item);
-        return type == Spawnable.Empty 
-            ? null 
-            : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
-    }
-
-    int GetIndex(int gen, Spawnable spawnable)
-    {
-        var index = 0;
-        while (GenerationData.Chances[(int) spawnable][index] < gen)
+        void Start()
         {
-            index++;
-            gen -= GenerationData.Chances[(int) spawnable][index];
+            var item = GetItem();
+            if (item == null) return;
+            Debug.Log("Ne null");
+            var pos = Random.Range(0, 16);
+            var position = transform.position;
+            var loot = Instantiate(
+                item,
+                new Vector2(
+                    position.x + pos / Side,
+                    position.y + pos % Side),
+                Quaternion.identity,
+                parent: transform);
+            Debug.Log(loot);
         }
 
-        return index;
+        GameObject GetItem()
+        {
+            var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
+            if (type != Spawnable.Empty) Debug.Log(GenerationData.Objects.Length);
+            return type == Spawnable.Empty
+                ? null
+                : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
+        }
+
+        int GetIndex(int gen, Spawnable spawnable)
+        {
+            var index = 0;
+            while (index < GenerationData.Chances[(int) spawnable].Length
+                   && GenerationData.Chances[(int) spawnable][index] < gen)
+            {
+                gen -= GenerationData.Chances[(int) spawnable][index++];
+            }
+            //Debug.Log(index);
+            return index;
+        }
     }
 }

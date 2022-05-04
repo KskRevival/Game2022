@@ -2,8 +2,7 @@
 {
     enum Spawnable
     {
-        Empty = 0,
-        Item = 0,
+        Empty,
         Food,
         Weapon,
         Monster,
