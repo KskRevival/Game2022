@@ -1,21 +1,19 @@
-using System.Collections;
-using System.Collections.Generic;
+using LabyrinthScripts;
 using UnityEngine;
 
-public class Item : MonoBehaviour
+namespace InventoryScripts
 {
-	public GameObject itemInInventory;
-
-	void OnTriggerEnter2D(Collider2D collidedObject)
+	public class Item : MonoBehaviour
 	{
-		if (collidedObject.transform.tag == "Player")
+		public GameObject itemInInventory;
+
+		void OnTriggerEnter2D(Collider2D collidedObject)
 		{
-			var items = collidedObject.GetComponent<PlayerInventory>();
-			if (!items.IsInventoryFull())
-			{
-				items.AddItem(itemInInventory);
-				Destroy(gameObject);
-			}
+			if (!collidedObject.transform.CompareTag("Player")) return;
+			var player = GameManager.Instance.player;
+			if (player.IsInventoryFull()) return;
+			player.AddItem(itemInInventory);
+			Destroy(gameObject);
 		}
 	}
 }

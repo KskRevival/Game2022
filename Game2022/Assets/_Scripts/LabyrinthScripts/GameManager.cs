@@ -30,7 +30,7 @@ namespace LabyrinthScripts
 
         public static void DestroyPlayer()
         {
-            Destroy(Instance.player);
+            Destroy(GameObject.FindWithTag("Player"));
         }
 
         void InitGame()

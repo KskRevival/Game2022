@@ -1,73 +1,81 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using System.Linq;
+using LabyrinthScripts;
+using PlayerScripts;
+using UnityEngine;
 
-public static class DraggedItem
+namespace InventoryScripts
 {
-	public static GameObject Item = null;
-	public static bool IsDraggingeEuippedItem;
-	public static int SourceSlotIndex;
-}
-
-public class InventoryHandler : MonoBehaviour
-{
-	public GameObject InventoryPanel;
-	private bool isInventoryActive;
-
-    public GameObject player;
-
-    private PlayerInventory playerInventory;
-
-    public Transform InventorySlots;
-
-    private Slot[] Slots;
-
-	void Start()
+	public static class DraggedItem
 	{
-		isInventoryActive = false;
-		InventoryPanel.SetActive(isInventoryActive);
-        playerInventory = player.GetComponent<PlayerInventory>();
-        Slots = InventorySlots.GetComponentsInChildren<Slot>(); //Получение всех ячеек
-    }
+		public static GameObject Item;
+		public static bool IsDraggingEquippedItem;
+		public static int SourceSlotIndex;
+	}
 
-	void Update()
+	public class InventoryHandler : MonoBehaviour
 	{
-		if (Input.GetKeyDown(KeyCode.Tab))
+		public GameObject inventoryPanel;
+		private bool isInventoryActive;
+
+		public Player player;
+
+		public Transform inventorySlots;
+
+		private Slot[] slots;
+
+		void Awake()
 		{
-			isInventoryActive = !isInventoryActive;
-			Time.timeScale = isInventoryActive ? 0f : 1f;
-
-			if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
-
-			InventoryPanel.SetActive(isInventoryActive);
+			inventoryPanel.SetActive(isInventoryActive);
+			slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех яичек
+			// player = GameManager.Instance.player;
 		}
-		UpdateUI();
-	}
 
-	void UpdateUI()
-	{
-		var equippedSlotsIndexes = player.GetComponent<PlayerEquipment>().GetEquippedSlotsIndexes();
-		for (int i = 0; i < Slots.Length; i++)
+		void Update()
 		{
-			Slots[i].UpdateSlot(playerInventory.items[i]);
+			if (player != null)
+			{
+				Debug.Log("penis");
+				if (Input.GetKeyDown(KeyCode.Tab))
+				{
+					isInventoryActive = !isInventoryActive;
+					Time.timeScale = isInventoryActive ? 0f : 1f;
 
-			if (equippedSlotsIndexes.Contains(i) 
-				&& playerInventory.HasItemInIndex(i)) 
-				Slots[i].SetSlotAsEquipped();
-			else Slots[i].SetSlotAsUnequipped();
+					if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
+
+					inventoryPanel.SetActive(isInventoryActive);
+				}
+				UpdateUI();
+			}
+			else
+				player = GameManager.Instance.player;
+			
 		}
-	}
 
-	void ReturnDraggedItem()
-    {
-		Debug.Log(DraggedItem.SourceSlotIndex);
-		if (playerInventory.HasItemInIndex(DraggedItem.SourceSlotIndex)) 
-			playerInventory.AddItem(DraggedItem.Item);
+		void UpdateUI()
+		{
+			var equippedSlotsIndexes = player.GetEquippedSlotsIndexes();
+			for (int i = 0; i < slots.Length; i++)
+			{
+				slots[i].UpdateSlot(player.id.items[i]);
 
-		else playerInventory.DragAndDropItem(DraggedItem.SourceSlotIndex);
+				if (equippedSlotsIndexes.Contains(i) 
+				    && player.HasItemInIndex(i)) 
+					slots[i].SetSlotAsEquipped();
+				else slots[i].SetSlotAsUnequipped();
+			}
+		}
 
-		DraggedItem.Item = null;
+		void ReturnDraggedItem()
+		{
+			Debug.Log(DraggedItem.SourceSlotIndex);
+			if (player.HasItemInIndex(DraggedItem.SourceSlotIndex)) 
+				player.AddItem(DraggedItem.Item);
+
+			else player.DragAndDropItem(DraggedItem.SourceSlotIndex);
+
+			// DraggedItem.Item = null;
+		}
 	}
 }
-

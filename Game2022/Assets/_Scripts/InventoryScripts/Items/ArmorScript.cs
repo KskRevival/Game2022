@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using InventoryScripts.Items;
 using UnityEngine;
 
-public class ArmorScript : MonoBehaviour
+public class ArmorScript : EquippedItem
 {
     // Start is called before the first frame update
     void Start()

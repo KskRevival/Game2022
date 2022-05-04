@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using InventoryScripts;
+using LabyrinthScripts;
+using PlayerScripts;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Events;
 
 public class ButtonClick : MonoBehaviour, IPointerClickHandler
 {
-    public GameObject Player;
-
+    public Player player;
+    
     public int SlotIndex;
 
     public UnityEvent leftClick;
@@ -15,10 +18,15 @@ public class ButtonClick : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left)
-            Player.GetComponent<PlayerInventory>().DragAndDropItem(SlotIndex);
-
-        if (eventData.button == PointerEventData.InputButton.Right)
-            UseItem.UseFromSlot(SlotIndex);
+        if (player == null) player = GameManager.Instance.player;
+        switch (eventData.button)
+        {
+            case PointerEventData.InputButton.Left:
+                player.DragAndDropItem(SlotIndex);
+                break;
+            case PointerEventData.InputButton.Right:
+                UseItem.UseFromSlot(SlotIndex);
+                break;
+        }
     }
 }

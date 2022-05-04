@@ -17,7 +17,7 @@ namespace SaveScripts
 
         public static SaveData LoadGame()
         {
-            return new SaveData(GameObject.Find("Player"));
+            return new SaveData();
         }
     }
 }

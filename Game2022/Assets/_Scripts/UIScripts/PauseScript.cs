@@ -42,7 +42,7 @@ public class PauseScript: MonoBehaviour
         var player = GameObject.Find("Player");
         player.transform.position =
             new Vector3(data.position[0], data.position[1], data.position[2]);
-        player.GetComponent<PlayerInventory>().items = data.inventory;
+        //player.id.items = data.inventory;
     }
 
     public void ToMenu()

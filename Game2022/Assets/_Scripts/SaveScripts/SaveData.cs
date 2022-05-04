@@ -1,5 +1,6 @@
 using System;
 using System.Xml.Serialization;
+using LabyrinthScripts;
 using PlayerScripts;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
+        public Player player;
         public float health;
         public float maxHealth;
 
@@ -16,12 +18,11 @@ namespace SaveScripts
 
         public GameObject[] inventory;
         
-        public SaveData(GameObject player)
+        public SaveData()
         {
+            player = GameManager.Instance.player;
             position = player.transform.position;
-            
-
-            inventory = player.GetComponent<PlayerInventory>().items;
+            inventory = player.id.items;
         }
     }
 }

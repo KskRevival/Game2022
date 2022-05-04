@@ -1,32 +1,34 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using LabyrinthScripts;
+using PlayerScripts;
 
-public static class UseItem
+namespace InventoryScripts
 {
-    public static Transform player = GameObject.FindWithTag("Player").transform;
-    public static PlayerInventory playerInventory = player.GetComponent<PlayerInventory>();
-
-    public static void UseFromSlot(int slotIndex)
+    public static class UseItem
     {
-        if (!playerInventory.HasItemInIndex(slotIndex)) return;
+        public static Player player;
 
-        var weaponComponent = playerInventory.items[slotIndex].GetComponent<WeaponScript>();
-        var armorComponent = playerInventory.items[slotIndex].GetComponent<ArmorScript>();
-        var healerComponent = playerInventory.items[slotIndex].GetComponent<HealerScript>();
+        public static void UseFromSlot(int slotIndex)
+        {
+            if (player == null) player = GameManager.Instance.player;
+            if (!player.HasItemInIndex(slotIndex)) return;
 
-        if (!(weaponComponent == null)) 
-            player.GetComponent<PlayerEquipment>().Weapon 
-                = player.GetComponent<PlayerEquipment>().Weapon == null 
-                || player.GetComponent<PlayerEquipment>().Weapon.SlotIndex != slotIndex
-                ? new EquipmentItem(playerInventory.items[slotIndex], slotIndex)
-                : null;
+            var weaponComponent = player.id.items[slotIndex].GetComponent<WeaponScript>();
+            var armorComponent = player.id.items[slotIndex].GetComponent<ArmorScript>();
+            var healerComponent = player.id.items[slotIndex].GetComponent<HealerScript>();
 
-        if (!(armorComponent == null))
-            player.GetComponent<PlayerEquipment>().Armor
-                = player.GetComponent<PlayerEquipment>().Armor == null
-                || player.GetComponent<PlayerEquipment>().Armor.SlotIndex != slotIndex
-                ? new EquipmentItem(playerInventory.items[slotIndex], slotIndex)
-                : null;
+            if (!(weaponComponent == null)) 
+                player.id.Weapon 
+                    = player.id.Weapon == null 
+                      || player.id.Weapon.SlotIndex != slotIndex
+                        ? new EquipmentItem(player.id.items[slotIndex], slotIndex)
+                        : null;
+
+            if (!(armorComponent == null))
+                player.id.Armor
+                    = player.id.Armor == null
+                      || player.id.Armor.SlotIndex != slotIndex
+                        ? new EquipmentItem(player.id.items[slotIndex], slotIndex)
+                        : null;
+        }
     }
 }

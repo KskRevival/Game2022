@@ -1,4 +1,7 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using InventoryScripts;
 using LabyrinthScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -7,10 +10,9 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        //Movement
         public MovementData md;
+        public InventoryData id;
 
-        //HP
         public float health = 20;
         public float maxHealth = 20;
 
@@ -51,6 +53,51 @@ namespace PlayerScripts
             health = 0;
             Debug.Log("You're dead");
             SceneManager.LoadScene("DeathScene");
+        }
+        
+        //Inventory Scripts
+        public bool IsInventoryFull() => GetFirstEmptySlot() == id.items.Length;
+
+        public int GetFirstEmptySlot() => id.items.TakeWhile(item => item != null).Count();
+
+        public void AddItem(GameObject gameObject)
+        {
+            var index = GetFirstEmptySlot();
+            id.items[index] = gameObject;
+        }
+
+        public void DragAndDropItem(int slotIndex)
+        {
+            var equippedSlots = GetEquippedSlotsIndexes();
+            (DraggedItem.Item, id.items[slotIndex]) = (id.items[slotIndex], DraggedItem.Item);
+
+            if (DraggedItem.IsDraggingEquippedItem)
+                ReequipItem(id.items[slotIndex], slotIndex);
+
+            DraggedItem.IsDraggingEquippedItem = equippedSlots.Contains(slotIndex);
+            DraggedItem.SourceSlotIndex = slotIndex;
+        }
+
+        public bool HasItemInIndex(int index) => id.items[index] != null;
+        
+        public int GetDamage() => id.Weapon.Item.GetComponent<WeaponScript>().Damage;
+
+        private bool IsWeapon(GameObject item) => item.GetComponent<WeaponScript>() != null;
+
+        public List<int> GetEquippedSlotsIndexes()
+        {
+            var indexesArray = new List<int>();
+
+            if (id.Weapon != null) indexesArray.Add(id.Weapon.SlotIndex);
+            if (id.Armor != null) indexesArray.Add(id.Armor.SlotIndex);
+
+            return indexesArray;
+        }
+
+        public void ReequipItem(GameObject item, int slotIndex)
+        {
+            if (IsWeapon(item)) id.Weapon.SlotIndex = slotIndex;
+            else id.Armor.SlotIndex = slotIndex;
         }
     }
 }
