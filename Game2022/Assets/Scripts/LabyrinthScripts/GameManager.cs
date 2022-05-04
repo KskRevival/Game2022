@@ -38,7 +38,7 @@ namespace LabyrinthScripts
             dungeonGenerator = GetComponent<DungeonGenerator>();
             dungeonGenerator.Generate(data);
             player = gameObject.AddComponent<Player>();
-            Player.player = dungeonGenerator.SpawnPlayer();
+            Player.Instance = dungeonGenerator.SpawnPlayer();
         }
 
         public static GameObject GameObjectResources(string path)

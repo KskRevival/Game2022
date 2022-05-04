@@ -5,19 +5,31 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public static GameObject player;
-        public static float Health = 20, MaxHealth = 20;
+        public static Player Instance;
+
+        public GameObject player;
+        public float health = 20;
+        public float maxHealth = 20;
+
+        public Player() { }
 
         public Player(GameObject p)
         {
-            player = p;
+            if (Instance == null) Instance = this;
+            else if(Instance != this) Destroy(gameObject);
+            Instance.player = p;
+        }
+
+        public Player(int health, int MaxHealth)
+        {
+            
         }
     
-        public static void TakeDamage(float amount)
+        public void TakeDamage(float amount)
         {
-            Health -= amount;
-            if (Health > 0) return;
-            Health = 0;
+            health -= amount;
+            if (health > 0) return;
+            health = 0;
             Debug.Log("You're dead");
             SceneManager.LoadScene("DeathScene");
         }
