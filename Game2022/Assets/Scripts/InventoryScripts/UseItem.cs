@@ -9,7 +9,6 @@ public static class UseItem
 
     public static void UseFromSlot(int slotIndex)
     {
-        Debug.Log(playerInventory);
         if (!playerInventory.HasItemInIndex(slotIndex)) return;
 
         var weaponComponent = playerInventory.items[slotIndex].GetComponent<WeaponScript>();

@@ -20,8 +20,6 @@ namespace SaveScripts
         {
             position = player.transform.position;
             
-            health = Player.health;
-            maxHealth = Player.maxHealth;
 
             inventory = player.GetComponent<PlayerInventory>().items;
         }

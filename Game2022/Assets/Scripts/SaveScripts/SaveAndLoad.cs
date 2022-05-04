@@ -12,12 +12,12 @@ namespace SaveScripts
 
         public static void SaveGame()
         {
-            GameManager.Instance.player   
+            
         }
 
         public static SaveData LoadGame()
         {
-            
+            return new SaveData(GameObject.Find("Player"));
         }
     }
 }

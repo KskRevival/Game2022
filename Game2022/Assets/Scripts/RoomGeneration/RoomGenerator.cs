@@ -11,8 +11,7 @@ namespace RoomGeneration
         {
             var item = GetItem();
             if (item == null) return;
-            Debug.Log("Ne null");
-            var pos = Random.Range(0, 16);
+            var pos = Random.Range(0, CellCount);
             var position = transform.position;
             var loot = Instantiate(
                 item,
@@ -21,13 +20,11 @@ namespace RoomGeneration
                     position.y + pos % Side),
                 Quaternion.identity,
                 parent: transform);
-            Debug.Log(loot);
         }
 
         GameObject GetItem()
         {
             var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
-            if (type != Spawnable.Empty) Debug.Log(GenerationData.Objects.Length);
             return type == Spawnable.Empty
                 ? null
                 : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];

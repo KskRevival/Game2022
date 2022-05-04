@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 1668770886433599903}
   - component: {fileID: 1668770886433599872}
   - component: {fileID: 1668770886433599899}
-  - component: {fileID: 1668770886433599896}
-  - component: {fileID: 1668770886433599902}
+  - component: {fileID: 4468423849931301240}
+  - component: {fileID: 6474372335979062105}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -192,7 +192,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1668770886433599896
+--- !u!114 &4468423849931301240
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -201,31 +201,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 1668770886433599875}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c8bc046ab0b594691426034ade01a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3af3230b2eaae1b4186ef21501824c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 3.5
+  md: {fileID: 6474372335979062105}
+  health: 20
+  maxHealth: 20
+--- !u!114 &6474372335979062105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1668770886433599875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 28fff4ba617441219301f613e42e1b89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  movement: {x: 0, y: 0}
   rb: {fileID: 1668770886433599900}
   animator: {fileID: 1668770886433599899}
---- !u!114 &1668770886433599902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668770886433599875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a9cefb5b936c65e4692cfad026b47231, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hasItem: 0000000000000000
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}

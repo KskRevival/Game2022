@@ -1,3 +1,5 @@
+using System;
+using LabyrinthScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,26 +7,43 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public static Player Instance;
+        //Movement
+        public MovementData md;
 
-        public GameObject player;
+        //HP
         public float health = 20;
         public float maxHealth = 20;
 
-        public Player() { }
-
-        public Player(GameObject p)
+        void Update()
         {
-            if (Instance == null) Instance = this;
-            else if(Instance != this) Destroy(gameObject);
-            Instance.player = p;
+            var moveHorizontal = Input.GetAxisRaw("Horizontal");
+            var moveVertical = Input.GetAxisRaw("Vertical");
+
+            md.movement = new Vector2(moveHorizontal, moveVertical);
+
+            md.animator.SetFloat(MovementData.Horizontal, moveHorizontal);
+            md.animator.SetFloat(MovementData.Vertical, moveVertical);
+            md.animator.SetFloat(MovementData.Speed, md.movement.sqrMagnitude);
+        }
+        
+        private void FixedUpdate()
+        {
+            if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(md.movement))
+            {
+                md.animator.speed = 2f;
+                md.speed = MovementData.RunSpeed;
+                Stamina.DrainStamina();
+            }
+            else
+            {
+                md.animator.speed = 1f;
+                md.speed = MovementData.NormalSpeed;
+                Stamina.RechargeStamina();
+            }
+            var speedMultiplier = md.movement.x != 0 && md.movement.y != 0 ? 0.75f : 1f;
+            md.rb.MovePosition(md.rb.position + md.movement * (md.speed * Time.fixedDeltaTime * speedMultiplier));
         }
 
-        public Player(int health, int MaxHealth)
-        {
-            
-        }
-    
         public void TakeDamage(float amount)
         {
             health -= amount;
