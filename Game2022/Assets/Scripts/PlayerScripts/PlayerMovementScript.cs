@@ -19,7 +19,7 @@ namespace PlayerScripts
 
         private void Start()
         {
-            player = Player.player;
+            player = Player.Instance;
             Stamina.maxStamina = 1f;
         }
 

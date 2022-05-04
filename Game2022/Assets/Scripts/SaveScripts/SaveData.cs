@@ -9,28 +9,19 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
-        //[XmlElement("health")]
         public float health;
-        //[XmlElement("maxHealth")]
         public float maxHealth;
 
-        //[XmlArray("Position"), XmlArrayItem("coordinate")]
-        public float[] position;
+        public Vector3 position;
 
-        //[XmlArray("Inventory"), XmlArrayItem("Item")]
-        [NonSerialized]
         public GameObject[] inventory;
         
         public SaveData(GameObject player)
         {
-            position = new float[3];
-            var position1 = player.transform.position;
-            position[0] = position1.x;
-            position[1] = position1.y;
-            position[2] = position1.z;
+            position = player.transform.position;
             
-            health = Player.Health;
-            maxHealth = Player.MaxHealth;
+            health = Player.health;
+            maxHealth = Player.maxHealth;
 
             inventory = player.GetComponent<PlayerInventory>().items;
         }
