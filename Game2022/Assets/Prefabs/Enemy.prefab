@@ -51,7 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Monster
   unitLevel: 1
-  damage: 1
+  damage: 3
+  minimalDefence: 0
+  defence: 0
   maxHealth: 10
   health: 10
 --- !u!1 &2562134794873241640

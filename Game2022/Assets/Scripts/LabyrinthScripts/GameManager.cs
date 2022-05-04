@@ -6,7 +6,7 @@ namespace LabyrinthScripts
     {
         public static GameManager instance = null;
         
-        public BoardManager boardManager;
+        public DungeonGenerator dungeonGenerator;
         public int level = 3;
 
         void Awake()
@@ -14,13 +14,17 @@ namespace LabyrinthScripts
             if (instance == null) instance = this;
             else if(instance != this) Destroy(gameObject);
             DontDestroyOnLoad(gameObject);
-            boardManager = GetComponent<BoardManager>();
+            dungeonGenerator = GetComponent<DungeonGenerator>();
             InitGame();
         }
 
         void InitGame()
         {
-            boardManager.SetupScene(level);
+        }
+
+        public static GameObject GameObjectResources(string path)
+        {
+            return Resources.Load<GameObject>(path);
         }
     }
 }
