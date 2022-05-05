@@ -34,18 +34,18 @@ public class FieldOfView : MonoBehaviour
 
     private void FeildOfViewCheck()
     {
-        var rangeChecks = Physics2D.OverlapCircleAll(transform.position, radius, targetMask);
+        var rangeChecksForPlayer = GetRangeChecks(targetMask);
 
-        if (rangeChecks.Length != 0)
+        if (rangeChecksForPlayer.Length != 0)
         {
-            var target = rangeChecks[0].transform;
+            var target = rangeChecksForPlayer[0].transform;
             var position = transform.position;
             var directionToTarget = (target.position - position).normalized;
             var distanceToTarget = Vector3.Distance(position, target.position);
             canSeePlayer = InView(directionToTarget) && CanSee(position, directionToTarget, distanceToTarget);
         }
 
-        canSeePlayer = rangeChecks.Length != 0 && canSeePlayer;
+        canSeePlayer = rangeChecksForPlayer.Length != 0 && canSeePlayer;
     }
 
     private bool InView(Vector3 directionToTarget)
@@ -59,4 +59,7 @@ public class FieldOfView : MonoBehaviour
             obstructionMask);
 
     public Vector3 GetPlayerPositionInVision() => canSeePlayer ? playerRef.transform.position : default;
+
+    public Collider2D[] GetRangeChecks(LayerMask layerMask) 
+        => Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
 }

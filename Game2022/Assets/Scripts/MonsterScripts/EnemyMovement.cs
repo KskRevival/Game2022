@@ -1,15 +1,21 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private bool isChasingPlayer;
+    public bool isChasingPlayer;
     public bool isPlayerLost;
+
     public Vector3 monsterTargetLocation;
     public Vector3 enemyDirection;
     public Rigidbody2D monsterRigidbody;
-    public float moveSpeed;
+
+    private float moveSpeed;
+    public float standardSpeed;
+    public float chaseSpeed;
+
     public float angle;
     private FieldOfView monsterFieldOfView;
 
@@ -24,10 +30,12 @@ public class EnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        SetMovingSpeed();
+
         UpdatePlayerLocation();
-        if (isChasingPlayer) 
+        if (isChasingPlayer)
         {
-            enemyDirection = monsterTargetLocation - transform.position;
+            enemyDirection = GetMovePosition(monsterTargetLocation);
             if (!isPlayerLost && !GetComponent<FieldOfView>().canSeePlayer) GetLastSeenPlayerArea();
         }
         angle = Mathf.Atan2(enemyDirection.y, enemyDirection.x);
@@ -36,12 +44,17 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (isChasingPlayer = isChasingPlayer && !IsMonsterReachedLastPlayerLocation())
+        if (isChasingPlayer && !IsMonsterReachedLastPlayerLocation())
             MoveEnemy();
+
+        if (IsMonsterReachedLastPlayerLocation())
+            isChasingPlayer = false;
     }
 
-    void MoveEnemy() =>
+    public void MoveEnemy() =>
         monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
+
+    public Vector3 GetMovePosition(Vector3 target) => target - transform.position;
 
     private void UpdatePlayerLocation()
     {
@@ -61,4 +74,6 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private bool IsMonsterReachedLastPlayerLocation() => (transform.position - monsterTargetLocation).sqrMagnitude < 0.01;
+
+    private void SetMovingSpeed() => moveSpeed = isChasingPlayer ? chaseSpeed : standardSpeed;
 }
