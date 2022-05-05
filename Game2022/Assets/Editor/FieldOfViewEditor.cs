@@ -12,7 +12,6 @@ public class FieldOfViewEditor : Editor
         Handles.color = Color.white;
         Handles.DrawWireArc(fov.transform.position, Vector3.forward, Vector3.up, 360, fov.radius);
         var rotationAngle = fov.transform.GetComponent<EnemyMovement>().angle;
-        Debug.Log(rotationAngle);
 
         var viewAngleRight = DirectionFromAngle(fov.transform.eulerAngles.y, -fov.angle / 2);
         var viewAngleLeft = DirectionFromAngle(fov.transform.eulerAngles.y, fov.angle / 2);

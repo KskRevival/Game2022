@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -60,6 +61,10 @@ public class FieldOfView : MonoBehaviour
 
     public Vector3 GetPlayerPositionInVision() => canSeePlayer ? playerRef.transform.position : default;
 
-    public Collider2D[] GetRangeChecks(LayerMask layerMask) 
-        => Physics2D.OverlapCircleAll(transform.position, radius, layerMask);
+    public Transform[] GetRangeChecks(LayerMask layerMask)
+        => Physics2D.OverlapCircleAll(transform.position, radius, layerMask)
+        .Select(collider => collider.transform)
+        .Where(target => InView((target.position - transform.position).normalized)
+        && CanSee(target.position, (target.position - transform.position).normalized, Vector3.Distance(transform.position, target.position)))
+        .ToArray();
 }

@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
     public Vector3 enemyDirection;
     public Rigidbody2D monsterRigidbody;
 
-    private float moveSpeed;
+    public float moveSpeed;
     public float standardSpeed;
     public float chaseSpeed;
 
@@ -51,8 +51,10 @@ public class EnemyMovement : MonoBehaviour
             isChasingPlayer = false;
     }
 
-    public void MoveEnemy() =>
+    public void MoveEnemy()
+    {
         monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
+    }
 
     public Vector3 GetMovePosition(Vector3 target) => target - transform.position;
 
