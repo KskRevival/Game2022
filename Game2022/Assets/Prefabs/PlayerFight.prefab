@@ -137,5 +137,5 @@ MonoBehaviour:
   defenceStack: 3
   minimalDefence: 0
   defence: 0
-  maxHealth: 10
-  health: 10
+  maxHealth: 100
+  health: 100

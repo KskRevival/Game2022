@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8648964926525288156}
   - component: {fileID: 2585913247986422587}
+  - component: {fileID: 1907472028589920356}
   m_Layer: 0
   m_Name: pump_shotgun_64
   m_TagString: Untagged
@@ -82,3 +83,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1907472028589920356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949362136288769588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9335681f8e4b38542a1bd886338d425a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 7

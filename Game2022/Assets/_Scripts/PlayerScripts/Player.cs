@@ -16,6 +16,12 @@ namespace PlayerScripts
         public float health = 20;
         public float maxHealth = 20;
 
+        public void Init()
+        {
+            md = gameObject.GetComponent<MovementData>();
+            id = gameObject.GetComponent<InventoryData>();
+        }
+
         void Update()
         {
             var moveHorizontal = Input.GetAxisRaw("Horizontal");

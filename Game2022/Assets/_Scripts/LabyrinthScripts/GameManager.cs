@@ -11,7 +11,7 @@ namespace LabyrinthScripts
         
         public DungeonData data;
         public DungeonGenerator dungeonGenerator;
-        public int level = 3;
+        public int level;
 
         void Awake()
         {
@@ -40,9 +40,9 @@ namespace LabyrinthScripts
             SpawnPlayer();
         }
 
-        public GameObject SpawnPlayer()
+        public void SpawnPlayer()
         {
-            return dungeonGenerator.SpawnPlayer();
+            player = dungeonGenerator.SpawnPlayer().GetComponent<Player>();
         }
         
         public static GameObject GameObjectResources(string path)
