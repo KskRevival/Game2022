@@ -10,7 +10,7 @@ public class FightResults : MonoBehaviour
 {
     public void FightWin()
     {
-        TransitionScript.ToGame();
+        TransitionScript.ToLevelSelect();
         //while (!SceneManager.sceneLoaded)
         //{
         //    Thread.Sleep(100);

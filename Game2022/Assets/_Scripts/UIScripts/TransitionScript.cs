@@ -16,10 +16,10 @@ namespace UIScripts
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
 
-        public static void ToGame()
+        public static void ToLevelSelect()
         {
             Time.timeScale = 1f;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene(1);
         }
 
         public static void Death()
