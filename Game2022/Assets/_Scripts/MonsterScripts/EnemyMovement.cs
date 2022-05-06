@@ -4,8 +4,8 @@ namespace MonsterScripts
 {
     public class EnemyMovement : MonoBehaviour
     {
-        public Vector3 monsterTargetLocation;
-        public Vector3 enemyDirection;
+        public Vector2 monsterTargetLocation;
+        public Vector2 enemyDirection;
         public Rigidbody2D monsterRigidbody;
 
         public float moveSpeed;
