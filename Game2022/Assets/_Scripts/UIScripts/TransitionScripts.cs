@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 namespace UIScripts
 {
-    public static class TransitionScript
+    public class TransitionScript : MonoBehaviour
     {
         public static void Next()
         {
