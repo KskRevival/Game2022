@@ -1,14 +1,17 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using LabyrinthScripts;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static BattleState;
 
 public class BattleSystem : MonoBehaviour
 {
     public BattleState state;
-    
+
     public GameObject player;
     public GameObject enemy;
 
@@ -21,6 +24,7 @@ public class BattleSystem : MonoBehaviour
     public TextMeshProUGUI dialogText;
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
+
     void Start()
     {
         state = BattleState.Start;
@@ -33,12 +37,12 @@ public class BattleSystem : MonoBehaviour
         enemyUnit = Instantiate(enemy, enemyBattleStation).GetComponent<Unit>();
 
         dialogText.text = $@"A wild {enemyUnit.unitName} approaches...";
-        
+
         playerHUD.SetHUD(playerUnit);
         enemyHUD.SetHUD(enemyUnit);
 
         yield return new WaitForSeconds(2f);
-        
+
         state = BattleState.PlayerTurn;
         PlayerTurn();
     }
@@ -64,17 +68,16 @@ public class BattleSystem : MonoBehaviour
 
         if (dead)
         {
-            state = BattleState.Won;
+            state = Won;
             EndBattle();
         }
         else
         {
             state = BattleState.EnemyTurn;
-            StartCoroutine(EnemyTurn()); 
+            StartCoroutine(EnemyTurn());
         }
-
     }
-    
+
     public void OnDefendButton()
     {
         if (state != BattleState.PlayerTurn) return;
@@ -87,18 +90,18 @@ public class BattleSystem : MonoBehaviour
         dialogText.text = $@"{playerUnit.unitName} have {playerUnit.defence} armor";
         playerHUD.armorText.text = playerUnit.defence.ToString();
         yield return new WaitForSeconds(1.5f);
-        
+
         state = BattleState.EnemyTurn;
-        StartCoroutine(EnemyTurn()); 
+        StartCoroutine(EnemyTurn());
     }
-    
+
     IEnumerator EnemyTurn()
     {
         dialogText.text = $@"{enemyUnit.unitName} attacks";
         enemyUnit.defence = Math.Max(enemyUnit.minimalDefence, enemyUnit.defence - 1);
-        
+
         yield return new WaitForSeconds(1.5f);
-        
+
         dialogText.text = $@"{enemyUnit.unitName} deals {enemyUnit.damage - playerUnit.defence} damage";
         var dead = playerUnit.TakeDamage(enemyUnit.damage - playerUnit.defence);
         playerHUD.SetHP(playerUnit.health);
@@ -107,7 +110,7 @@ public class BattleSystem : MonoBehaviour
 
         if (dead)
         {
-            state = BattleState.Lost;
+            state = Lost;
             EndBattle();
         }
         else
@@ -124,8 +127,10 @@ public class BattleSystem : MonoBehaviour
 
     private void EndBattle()
     {
-        dialogText.text = state == BattleState.Won
-            ? $@"{playerUnit.unitName} won :)"
-            : $@"{enemyUnit.unitName} won :(";
+        if (state == Won)
+        {
+            SceneManager.LoadScene(GameManager.Instance.level + 1);
+        }
+        else SceneManager.LoadScene("DeathScene");
     }
 }
