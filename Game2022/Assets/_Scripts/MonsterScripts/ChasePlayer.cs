@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MonsterScripts;
 using UnityEngine;
 
 public class ChasePlayer : MonoBehaviour
@@ -35,12 +36,10 @@ public class ChasePlayer : MonoBehaviour
     private void UpdatePlayerLocation()
     {
         var playerLocation = monsterFieldOfView.GetPlayerPositionInVision();
-        if (playerLocation != default)
-        {
-            isPlayerLost = false;
-            isChasingPlayer = true;
-            GetComponent<EnemyMovement>().monsterTargetLocation = playerLocation;
-        }
+        if (playerLocation == default) return;
+        isPlayerLost = false;
+        isChasingPlayer = true;
+        GetComponent<EnemyMovement>().monsterTargetLocation = playerLocation;
     }
 
     private void GetLastSeenPlayerArea()

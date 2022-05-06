@@ -28,7 +28,7 @@ namespace LabyrinthScripts
             return Instantiate(
                 //data.player,
                 GameManager.GameObjectResources("Player"),
-                new Vector2(0.5f * position.x, -0.5f * position.y),
+                new Vector3(-10, 2, 0),
                 Quaternion.identity,
                 parent: transform);
         }
@@ -42,7 +42,7 @@ namespace LabyrinthScripts
                     if (!board[x + y * data.columns].visited) continue;
                     var newRoom = Instantiate(
                         data.room,
-                        new Vector2(x * offset.x, -y * offset.y),
+                        new Vector3(x * offset.x, -y * offset.y, 0),
                         Quaternion.identity,
                         transform).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(board[x + y * data.columns].status);

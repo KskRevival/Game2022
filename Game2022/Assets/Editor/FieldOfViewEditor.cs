@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MonsterScripts;
 using UnityEngine;
 using UnityEditor;
 

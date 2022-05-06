@@ -6,18 +6,19 @@ namespace RoomGeneration
     {
         private const int CellCount = 16;
         private const int Side = 4;
+        public GameObject LeftCorner;
 
         void Start()
         {
             var item = GetItem();
             if (item == null) return;
             var pos = Random.Range(0, CellCount);
-            var position = transform.position;
+            var position = LeftCorner.transform.position;
             var loot = Instantiate(
                 item,
                 new Vector2(
                     position.x + pos / Side,
-                    position.y + pos % Side),
+                    position.y - pos % Side),
                 Quaternion.identity,
                 parent: transform);
         }

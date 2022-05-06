@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using MonsterScripts;
 
 public class FieldOfView : MonoBehaviour
 {
@@ -29,11 +30,11 @@ public class FieldOfView : MonoBehaviour
         while (true)
         {
             yield return wait;
-            FeildOfViewCheck();
+            FieldOfViewCheck();
         }
     }
 
-    private void FeildOfViewCheck()
+    private void FieldOfViewCheck()
     {
         var rangeChecksForPlayer = GetRangeChecks(targetMask);
 
@@ -54,8 +55,9 @@ public class FieldOfView : MonoBehaviour
 
     public Transform[] GetRangeChecks(LayerMask layerMask)
         => Physics2D.OverlapCircleAll(transform.position, radius, layerMask)
-        .Select(collider => collider.transform)
-        .Where(target => InView((target.position - transform.position).normalized)
-        && CanSee(transform.position, (target.position - transform.position).normalized, Vector3.Distance(transform.position, target.position)))
-        .ToArray();
+            .Select(collider => collider.transform)
+            .Where(target => InView((target.position - transform.position).normalized)
+                             && CanSee(transform.position, (target.position - transform.position).normalized,
+                                 Vector3.Distance(transform.position, target.position)))
+            .ToArray();
 }

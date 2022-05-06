@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using MonsterScripts;
 
 
 public class Patrol : MonoBehaviour
@@ -34,7 +35,7 @@ public class Patrol : MonoBehaviour
             Debug.Log(moveSpots.Count);
             RotateAndCheckForWayPoints(90);
             Debug.Log(moveSpots.Count);
-            if (moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).Count() == 0)
+            if (moveSpots.All(moveSpot => moveSpot == TargetWaypoint))
                 RotateAndCheckForWayPoints(180);
             Debug.Log(moveSpots.Count);
             isReachedWaypoint = false;
@@ -64,6 +65,7 @@ public class Patrol : MonoBehaviour
     {
         var random = new System.Random();
         var moveSpotsArray = moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).ToArray();
+        
         TargetWaypoint = moveSpotsArray[random.Next(0, moveSpotsArray.Length)];
         moveSpots.Clear();
     }
