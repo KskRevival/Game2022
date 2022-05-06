@@ -1,57 +1,59 @@
-using UnityEngine;
-using System.Collections;
-using PlayerScripts;
+using System;
+using LabyrinthScripts;
 using SaveScripts;
-using UnityEngine.SceneManagement;
+using UnityEngine;
 
-public class PauseScript: MonoBehaviour
+namespace UIScripts
 {
-    private static bool isPaused;
-    public GameObject pauseMenuUI;
-
-    void Update()
+    public class PauseScript: MonoBehaviour
     {
-        if (!Input.GetKeyDown(KeyCode.Escape)) return;
-        Debug.Log("Escape");
-        if (isPaused) Resume();
-        else Pause();
-    }
+        private static bool isPaused;
+        public GameObject pauseMenuUI;
 
-    public void Resume()
-    {
-        isPaused = false;
-        Time.timeScale = 1f;
-        pauseMenuUI.SetActive(isPaused);
-    }
+        void Update()
+        {
+            if (!Input.GetKeyDown(KeyCode.Escape)) return;
+            Debug.Log("Escape");
+            if (isPaused) Resume();
+            else Pause();
+        }
 
-    private void Pause()
-    {
-        isPaused = true;
-        Time.timeScale = 0f;
-        pauseMenuUI.SetActive(isPaused);
-    }
+        public void Resume()
+        {
+            isPaused = false;
+            Time.timeScale = 1f;
+            pauseMenuUI.SetActive(isPaused);
+        }
 
-    public void Save()
-    {
-        SaveAndLoad.SaveGame();
-    }
+        private void Pause()
+        {
+            isPaused = true;
+            Time.timeScale = 0f;
+            pauseMenuUI.SetActive(isPaused);
+        }
 
-    public void Load()
-    {
-        var data = SaveAndLoad.LoadGame();
-        var player = GameObject.Find("Player");
-        player.transform.position =
-            new Vector3(data.position[0], data.position[1], data.position[2]);
-        //player.id.items = data.inventory;
-    }
+        public void Save()
+        {
+            SaveAndLoad.SaveGame();
+        }
 
-    public void ToMenu()
-    {
-        ExitScript.ToMenu();
-    }
+        public void Load()
+        {
+            var data = SaveAndLoad.LoadGame();
+            var player = GameObject.Find("Player");
+            // player.transform.position =
+            //     new Vector3(data.position[0], data.position[1], data.position[2]);
+            // player.id.items = data.inventory;
+        }
 
-    public void Exit()
-    {
-        ExitScript.Exit();
+        public void ToMenu()
+        {
+            ExitScript.ToMenu();
+        }
+
+        public void Exit()
+        {
+            ExitScript.Exit();
+        }
     }
 }

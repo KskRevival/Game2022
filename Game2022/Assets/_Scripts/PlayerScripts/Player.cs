@@ -13,13 +13,15 @@ namespace PlayerScripts
         public MovementData md;
         public InventoryData id;
 
-        public float health = 20;
-        public float maxHealth = 20;
+        public float health;
+        public float maxHealth;
 
-        public void Init()
+        public Player(Player player)
         {
-            md = gameObject.GetComponent<MovementData>();
-            id = gameObject.GetComponent<InventoryData>();
+            md = new MovementData(player.md);
+            id = new InventoryData(player.id);
+            health = player.health;
+            maxHealth = player.maxHealth;
         }
 
         void Update()

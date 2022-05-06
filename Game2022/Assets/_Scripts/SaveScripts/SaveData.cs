@@ -10,19 +10,20 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
-        public Player player;
-        public float health;
-        public float maxHealth;
+        private Player player;
 
-        public Vector3 position;
-
-        public GameObject[] inventory;
+        private Vector3 position;
+        // public float health;
+        // public float maxHealth;
+        //
+        // public Vector3 position;
+        //
+        // public GameObject[] inventory;
         
         public SaveData()
         {
-            player = GameManager.Instance.player;
+            player = new Player(GameManager.Instance.player);
             position = player.transform.position;
-            inventory = player.id.items;
         }
     }
 }
