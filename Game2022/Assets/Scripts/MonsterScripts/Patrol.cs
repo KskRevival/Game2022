@@ -26,38 +26,23 @@ public class Patrol : MonoBehaviour
     {
         if (IsTargetPointReached()) isReachedWaypoint = true;
 
-        if (!GetComponent<EnemyMovement>().isChasingPlayer && isReachedWaypoint)
+        if (!GetComponent<ChasePlayer>().isChasingPlayer && isReachedWaypoint)
         {
-            foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
-                moveSpots.Add(waypoint);
-
-            GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, 90);
-
-            foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
-                moveSpots.Add(waypoint);
-
-            GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, -180);
-
-            foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
-                moveSpots.Add(waypoint);
-
-            GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, 90);
-
-            if (moveSpots.Count == 0)
-            {
-                GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, 180);
-
-                foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
-                    moveSpots.Add(waypoint);
-            }
-
+            RotateAndCheckForWayPoints(90);
+            Debug.Log(moveSpots.Count);
+            RotateAndCheckForWayPoints(-180);
+            Debug.Log(moveSpots.Count);
+            RotateAndCheckForWayPoints(90);
+            Debug.Log(moveSpots.Count);
+            if (moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).Count() == 0)
+                RotateAndCheckForWayPoints(180);
+            Debug.Log(moveSpots.Count);
             isReachedWaypoint = false;
             GetRandomTargetWayPoint();
         }
 
-        if (!GetComponent<EnemyMovement>().isChasingPlayer)
+        if (!GetComponent<ChasePlayer>().isChasingPlayer)
         {
-            Debug.Log("Penis");
             GetComponent<EnemyMovement>().enemyDirection = GetComponent<EnemyMovement>().GetMovePosition(TargetWaypoint.position).normalized;
             GetComponent<EnemyMovement>().MoveEnemy();
         }
@@ -65,14 +50,23 @@ public class Patrol : MonoBehaviour
             TargetWaypoint = transform;
     }
 
-    private Vector3 GetRotatedVector(Vector3 vector, float angles) => Quaternion.Euler(angles, 0, 0) * vector;
+    private void RotateAndCheckForWayPoints(float angle = 0)
+    {
+        GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, angle);
+
+        foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
+            moveSpots.Add(waypoint);
+    }
+
+    private Vector3 GetRotatedVector(Vector3 vector, float angle) => Quaternion.AngleAxis(angle, Vector3.forward) * vector;
 
     public void GetRandomTargetWayPoint()
     {
         var random = new System.Random();
         var moveSpotsArray = moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).ToArray();
         TargetWaypoint = moveSpotsArray[random.Next(0, moveSpotsArray.Length)];
+        moveSpots.Clear();
     }
 
-    private bool IsTargetPointReached() => (transform.position - TargetWaypoint.position).magnitude < 0.1;
+    private bool IsTargetPointReached() => (transform.position - TargetWaypoint.position).sqrMagnitude < 0.1;
 }
