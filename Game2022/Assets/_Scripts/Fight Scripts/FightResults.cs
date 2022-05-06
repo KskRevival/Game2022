@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using SaveScripts;
+using UIScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,7 +10,7 @@ public class FightResults : MonoBehaviour
 {
     public void FightWin()
     {
-        ExitScript.ToGame();
+        TransitionScript.ToGame();
         //while (!SceneManager.sceneLoaded)
         //{
         //    Thread.Sleep(100);
@@ -20,6 +21,6 @@ public class FightResults : MonoBehaviour
 
     public void FightDefeat()
     {
-        ExitScript.Death();
+        TransitionScript.Death();
     }
 }

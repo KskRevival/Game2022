@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using PlayerScripts;
 using SaveScripts;
+using UIScripts;
 using UnityEngine.SceneManagement;
 
 public class PauseScript: MonoBehaviour
@@ -47,11 +48,11 @@ public class PauseScript: MonoBehaviour
 
     public void ToMenu()
     {
-        ExitScript.ToMenu();
+        TransitionScript.ToMenu();
     }
 
     public void Exit()
     {
-        ExitScript.Exit();
+        TransitionScript.Exit();
     }
 }

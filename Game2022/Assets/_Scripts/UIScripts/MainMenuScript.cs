@@ -1,17 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MainMenuScript : MonoBehaviour
+namespace UIScripts
 {
-   public void PlayButton()
+    public class MainMenuScript : MonoBehaviour
     {
-        SceneManager.LoadScene("Game");
-    }
+        public void PlayButton()
+        {
+            TransitionScript.Next();
+        }
 
-    public void ExitButton()
-    {
-        ExitScript.Exit();
+        public void ExitButton()
+        {
+            TransitionScript.Exit();
+        }
     }
 }
