@@ -4,8 +4,8 @@ namespace MonsterScripts
 {
     public class EnemyMovement : MonoBehaviour
     {
-        public Vector3 monsterTargetLocation;
-        public Vector3 enemyDirection;
+        public Vector2 monsterTargetLocation;
+        public Vector2 enemyDirection;
         public Rigidbody2D monsterRigidbody;
 
         public float moveSpeed;
@@ -32,7 +32,7 @@ namespace MonsterScripts
 
         public void MoveEnemy()
         {
-            monsterRigidbody.MovePosition(transform.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
+            monsterRigidbody.MovePosition(transform.position + (Vector3)enemyDirection * (moveSpeed * Time.fixedDeltaTime));
         }
 
         public Vector2 GetMovePosition(Vector3 target) => target - transform.position;
