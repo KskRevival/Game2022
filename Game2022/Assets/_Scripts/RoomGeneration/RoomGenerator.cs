@@ -18,7 +18,7 @@ namespace RoomGeneration
                 item,
                 new Vector2(
                     position.x + pos / Side,
-                    position.y - pos % Side),
+                    position.y - pos % Side - 1),
                 Quaternion.identity,
                 parent: transform);
         }

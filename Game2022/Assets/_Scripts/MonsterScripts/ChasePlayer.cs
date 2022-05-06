@@ -51,5 +51,5 @@ public class ChasePlayer : MonoBehaviour
         GetComponent<EnemyMovement>().monsterTargetLocation += GetComponent<EnemyMovement>().enemyDirection.normalized / 2;
     }
 
-    private bool IsMonsterReachedLastPlayerLocation() => (transform.position - GetComponent<EnemyMovement>().monsterTargetLocation).sqrMagnitude < 0.01;
+    private bool IsMonsterReachedLastPlayerLocation() => (transform.position - (Vector3)GetComponent<EnemyMovement>().monsterTargetLocation).sqrMagnitude < 0.01;
 }
