@@ -8,6 +8,7 @@ public class FishSpawner : MonoBehaviour
     public GameObject Player;
     public float FishSpawnTime;
     public GameObject LastFish;
+    public GameObject LastFishTraectory;
     public float DistanceFromPlayer;
     public float angle;
 
@@ -28,13 +29,13 @@ public class FishSpawner : MonoBehaviour
             yield return new WaitForSeconds(FishSpawnTime);
 
             angle = GetAngleInDegrees(GetRandomNumberInRange(-Mathf.PI, Mathf.PI));
-            if (LastFish != null) Destroy(LastFish);
-            LastFish = Instantiate(
-                GameManager.GameObjectResources("Fish"),
-                Player.transform.position + GetRotatedVector(),
-                Quaternion.identity
-                );
-            LastFish.transform.Rotate(new Vector3(0, 0, angle));
+            if (LastFish != null) DestroyLastFishGameObject();
+
+            LastFish = InitiatePrefab("Fish", Player.transform.position + GetRotatedVector());
+
+            LastFishTraectory = InitiatePrefab("FishTraectory", Player.transform.position);
+
+            RotateFishAndTraectory();
         }
     }
 
@@ -44,4 +45,26 @@ public class FishSpawner : MonoBehaviour
     private float GetAngleInDegrees(float radians) => radians * 180 / Mathf.PI;
 
     private Vector3 GetRotatedVector() => Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * DistanceFromPlayer;
+
+    private void DestroyLastFishGameObject()
+    {
+        Destroy(LastFish);
+        Destroy(LastFishTraectory);
+    }
+
+    private GameObject InitiatePrefab(string prefabName, Vector3 position)
+    {
+        return Instantiate(
+                GameManager.GameObjectResources(prefabName),
+                position,
+                Quaternion.identity
+                );
+    }
+
+    private void RotateFishAndTraectory()
+    {
+        LastFish.transform.Rotate(new Vector3(0, 0, angle));
+        LastFishTraectory.transform.Rotate(new Vector3(0, 0, angle));
+    }
+
 }
