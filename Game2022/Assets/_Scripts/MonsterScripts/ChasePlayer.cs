@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using LabyrinthScripts;
 using MonsterScripts;
 using UnityEngine;
 
@@ -18,6 +19,7 @@ public class ChasePlayer : MonoBehaviour
 
     void Update()
     {
+        if (GameManager.Instance.State == GameState.Fight) return;
         UpdatePlayerLocation();
 
         var enemyMovement = GetComponent<EnemyMovement>();

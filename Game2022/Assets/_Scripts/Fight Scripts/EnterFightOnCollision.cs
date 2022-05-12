@@ -11,7 +11,8 @@ public class EnterFightOnCollision: MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("Player")) return;
         Debug.Log("Fight is active");
-        SaveAndLoad.SaveGame();
+        // SaveAndLoad.SaveGame();
+        GameManager.Instance.State = GameState.Fight;
         SceneManager.LoadScene("FightScene");
     }
 }

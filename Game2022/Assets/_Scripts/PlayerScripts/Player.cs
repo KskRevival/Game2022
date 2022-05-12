@@ -24,6 +24,7 @@ namespace PlayerScripts
 
         void Update()
         {
+            if (GameManager.Instance.State == GameState.Fight) return;
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 

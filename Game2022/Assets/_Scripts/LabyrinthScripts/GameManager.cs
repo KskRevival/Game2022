@@ -6,6 +6,7 @@ namespace LabyrinthScripts
     public class GameManager : MonoBehaviour
     {
         public static GameManager Instance;
+        public GameState State;
         
         public Player player;
         
@@ -49,5 +50,11 @@ namespace LabyrinthScripts
         {
             return Resources.Load<GameObject>(path);
         }
+    }
+
+    public enum GameState
+    {
+        Maze,
+        Fight
     }
 }
