@@ -15,7 +15,6 @@ public class Patrol : MonoBehaviour
     public bool isReachedWaypoint;
     public LayerMask waypointsMask;
     public Transform TargetWaypoint;
-    private readonly System.Random random = new System.Random();
 
     void Start()
     {
@@ -39,8 +38,7 @@ public class Patrol : MonoBehaviour
             //Debug.Log(moveSpots.Count);
             RotateAndCheckForWayPoints(90);
             //Debug.Log(moveSpots.Count);
-            if (moveSpots.All(moveSpot => moveSpot == TargetWaypoint))
-                RotateAndCheckForWayPoints(180);
+            RotateAndCheckForWayPoints(180);
             //Debug.Log(moveSpots.Count);
             isReachedWaypoint = false;
             GetRandomTargetWayPoint();
@@ -48,7 +46,8 @@ public class Patrol : MonoBehaviour
 
         if (!GetComponent<ChasePlayer>().isChasingPlayer)
         {
-            GetComponent<EnemyMovement>().enemyDirection = GetComponent<EnemyMovement>().GetMovePosition(TargetWaypoint.position).normalized;
+            GetComponent<EnemyMovement>().enemyDirection =
+                GetComponent<EnemyMovement>().GetMovePosition(TargetWaypoint.position).normalized;
             GetComponent<EnemyMovement>().MoveEnemy();
         }
         else
@@ -57,18 +56,21 @@ public class Patrol : MonoBehaviour
 
     private void RotateAndCheckForWayPoints(float angle = 0)
     {
-        GetComponent<EnemyMovement>().enemyDirection = GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, angle);
+        GetComponent<EnemyMovement>().enemyDirection =
+            GetRotatedVector(GetComponent<EnemyMovement>().enemyDirection, angle);
 
         foreach (var waypoint in GetComponent<FieldOfView>().GetRangeChecks(waypointsMask))
             moveSpots.Add(waypoint);
     }
 
-    private Vector3 GetRotatedVector(Vector3 vector, float angle) => Quaternion.AngleAxis(angle, Vector3.forward) * vector;
+    private Vector3 GetRotatedVector(Vector3 vector, float angle) =>
+        Quaternion.AngleAxis(angle, Vector3.forward) * vector;
 
     public void GetRandomTargetWayPoint()
     {
+        var random = new System.Random();
         var moveSpotsArray = moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).ToArray();
-        
+
         TargetWaypoint = moveSpotsArray[random.Next(0, moveSpotsArray.Length)];
         moveSpots.Clear();
     }

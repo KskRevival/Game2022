@@ -164,8 +164,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4dbae10b680adac4fab276efabdd9540, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  monsterTargetLocation: {x: 0, y: 0, z: 0}
-  enemyDirection: {x: 1, y: 0, z: 0}
+  monsterTargetLocation: {x: 0, y: 0}
+  enemyDirection: {x: 1, y: 0}
   monsterRigidbody: {fileID: 0}
   moveSpeed: 0
   standardSpeed: 2.5
