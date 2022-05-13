@@ -15,6 +15,24 @@ EditorBuildSettings:
     path: Assets/Scenes/GenerationScene.unity
     guid: 4e867fcea8a6752478d7163941b55beb
   - enabled: 1
+    path: Assets/Scenes/Level 2.unity
+    guid: dbfa6f8a218d8cd40853d48609206720
+  - enabled: 1
+    path: Assets/Scenes/Level 3.unity
+    guid: c5597eb3e6491104680f5f15eb59fde2
+  - enabled: 1
+    path: Assets/Scenes/Level 4.unity
+    guid: e3d54bde50462854a850f33abcc63679
+  - enabled: 1
+    path: Assets/Scenes/Level 5.unity
+    guid: 140a77f55ae874d4f9fda0cc8b792533
+  - enabled: 1
+    path: Assets/Scenes/Level 6.unity
+    guid: eecb57da44eba5245a2fd619d40ef410
+  - enabled: 1
+    path: Assets/Scenes/Level 7.unity
+    guid: 8b033aaa25bcc084e850a91f738d1bdf
+  - enabled: 1
     path: Assets/Scenes/DeathScene.unity
     guid: f23b61d72d234864b91bd854249561f7
   - enabled: 1

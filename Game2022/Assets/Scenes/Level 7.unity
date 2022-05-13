@@ -2368,7 +2368,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_Origin: {x: -15, y: -92, z: 0}
   m_Size: {x: 30, y: 97, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2537,9 +2537,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  FishSpawnTime: 3
+  FishSpawnTime: 2
   LastFish: {fileID: 0}
-  DistanceFromPlayer: 37.1
+  LastFishTraectory: {fileID: 0}
+  DistanceFromPlayer: 60
   angle: 0
 --- !u!4 &1307793405
 Transform:

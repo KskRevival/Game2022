@@ -135,7 +135,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb28b0d7fbe2dce4a98d48c310e647d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MoveSpeed: 20
+  MoveSpeed: 50
   PlayerPos: {x: 0, y: 0, z: 0}
   FishRb: {fileID: 0}
   DirectionToPlayer: {x: 0, y: 0, z: 0}

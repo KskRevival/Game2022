@@ -31,9 +31,17 @@ public class FishSpawner : MonoBehaviour
             angle = GetAngleInDegrees(GetRandomNumberInRange(-Mathf.PI, Mathf.PI));
             if (LastFish != null) DestroyLastFishGameObject();
 
-            LastFish = InitiatePrefab("Fish", Player.transform.position + GetRotatedVector());
+            LastFish = Instantiate(
+                GameManager.GameObjectResources("Fish"),
+                Player.transform.position + GetRotatedVector(),
+                Quaternion.identity
+                );
 
-            LastFishTraectory = InitiatePrefab("FishTraectory", Player.transform.position);
+            LastFishTraectory = Instantiate(
+                GameManager.GameObjectResources("FishTraectory"),
+                Player.transform.position,
+                Quaternion.identity
+                );
 
             RotateFishAndTraectory();
         }
@@ -50,15 +58,6 @@ public class FishSpawner : MonoBehaviour
     {
         Destroy(LastFish);
         Destroy(LastFishTraectory);
-    }
-
-    private GameObject InitiatePrefab(string prefabName, Vector3 position)
-    {
-        return Instantiate(
-                GameManager.GameObjectResources(prefabName),
-                position,
-                Quaternion.identity
-                );
     }
 
     private void RotateFishAndTraectory()
