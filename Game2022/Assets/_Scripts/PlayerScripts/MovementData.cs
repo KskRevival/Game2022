@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace PlayerScripts
 {
@@ -13,5 +14,13 @@ namespace PlayerScripts
         public static readonly int Horizontal = Animator.StringToHash("Horizontal");
         public static readonly int Vertical = Animator.StringToHash("Vertical");
         public static readonly int Speed = Animator.StringToHash("Speed");
+
+        public MovementData(MovementData md)
+        {
+            speed = md.speed;
+            movement = md.movement;
+            rb = md.rb;
+            animator = md.animator;
+        }
     }
 }

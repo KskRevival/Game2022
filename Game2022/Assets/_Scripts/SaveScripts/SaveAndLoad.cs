@@ -12,7 +12,7 @@ namespace SaveScripts
 
         public static void SaveGame()
         {
-            
+            var sd = new SaveData();
         }
 
         public static SaveData LoadGame()
