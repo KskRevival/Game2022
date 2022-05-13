@@ -2,11 +2,12 @@ using System;
 using LabyrinthScripts;
 using SaveScripts;
 using UIScripts;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace UIScripts
 {
-    public class PauseScript: MonoBehaviour
+    public class PauseScript : MonoBehaviour
     {
         private static bool isPaused;
         public GameObject pauseMenuUI;
@@ -38,13 +39,14 @@ namespace UIScripts
             SaveAndLoad.SaveGame();
         }
 
-    public void ToMenu()
-    {
-        TransitionScript.ToMenu();
-    }
+        public void ToMenu()
+        {
+            TransitionScript.ToMenu();
+        }
 
-    public void Exit()
-    {
-        TransitionScript.Exit();
+        public void Exit()
+        {
+            TransitionScript.Exit();
+        }
     }
 }
