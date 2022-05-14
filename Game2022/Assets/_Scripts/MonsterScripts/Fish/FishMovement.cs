@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FishMovingToPlayer : MonoBehaviour
+public class FishMovement : MonoBehaviour
 {
     public float MoveSpeed;
     public Vector3 PlayerPos;
@@ -14,14 +14,12 @@ public class FishMovingToPlayer : MonoBehaviour
     {
         PlayerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
         FishRb = GetComponent<Rigidbody2D>();
-        GetDirectionToPlayer();
+        SetDirectionToPlayer();
     }
 
     // Update is called once per frame
-    void Update()
-    {
+    void Update() =>
         FishRb.MovePosition(transform.position + DirectionToPlayer * (MoveSpeed * Time.fixedDeltaTime));
-    }
 
-    private void GetDirectionToPlayer() => DirectionToPlayer = (PlayerPos - transform.position).normalized;
+    private void SetDirectionToPlayer() => DirectionToPlayer = (PlayerPos - transform.position).normalized;
 }

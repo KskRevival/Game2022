@@ -33,7 +33,7 @@ public class FishSpawner : MonoBehaviour
 
             LastFish = Instantiate(
                 GameManager.GameObjectResources("Fish"),
-                Player.transform.position + GetRotatedVector(),
+                Player.transform.position + GetRotatedVector() * DistanceFromPlayer,
                 Quaternion.identity
                 );
 
@@ -52,7 +52,7 @@ public class FishSpawner : MonoBehaviour
 
     private float GetAngleInDegrees(float radians) => radians * 180 / Mathf.PI;
 
-    private Vector3 GetRotatedVector() => Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right * DistanceFromPlayer;
+    private Vector3 GetRotatedVector() => Quaternion.AngleAxis(angle, Vector3.forward) * Vector3.right;
 
     private void DestroyLastFishGameObject()
     {
@@ -62,8 +62,23 @@ public class FishSpawner : MonoBehaviour
 
     private void RotateFishAndTraectory()
     {
+        if (Mathf.Abs(angle) > 90) MirrorFish();
+        Debug.Log(angle);
+
         LastFish.transform.Rotate(new Vector3(0, 0, angle));
         LastFishTraectory.transform.Rotate(new Vector3(0, 0, angle));
     }
 
+    private float GetEntitiesRotationAngle()
+    {
+        return Mathf.Abs(angle) <= Mathf.PI / 2 ? angle : angle + Mathf.PI / 2;
+    }
+
+    private void MirrorFish()
+    {
+        var newFishScale = LastFish.transform.localScale;
+        newFishScale.x *= -1;
+        LastFish.transform.localScale = newFishScale;
+        angle += 180;
+    }
 }
