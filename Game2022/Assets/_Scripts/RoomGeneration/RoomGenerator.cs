@@ -20,7 +20,7 @@ namespace RoomGeneration
                     position.x + pos / Side,
                     position.y - pos % Side - 1),
                 Quaternion.identity,
-                parent: transform);
+                parent: GameManager.Instance.container.transform);
         }
 
         GameObject GetItem()

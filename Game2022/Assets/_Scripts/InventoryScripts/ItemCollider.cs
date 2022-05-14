@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace InventoryScripts
 {
-	public class Item : MonoBehaviour
+	public class ItemCollider : MonoBehaviour
 	{
 		public GameObject itemInInventory;
 

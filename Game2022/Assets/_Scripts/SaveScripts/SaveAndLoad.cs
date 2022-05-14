@@ -1,23 +1,26 @@
 using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
-using LabyrinthScripts;
-using PlayerScripts;
 using UnityEngine;
 
 namespace SaveScripts
 {
     public static class SaveAndLoad
     {
-        static readonly string path = Application.persistentDataPath + "Saves/save.json";
+        static readonly string path = Application.persistentDataPath + "/save.txt";
 
         public static void SaveGame()
         {
-            var sd = new SaveData();
+            var data = new SaveData();
+            File.Create(path); 
+            File.WriteAllText(
+                path, 
+                JsonUtility.ToJson(data));
+            
         }
 
         public static SaveData LoadGame()
         {
-            return new SaveData();
+            if(!File.Exists(path)) Debug.LogError("There is no SaveData");
+            return JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
         }
     }
 }

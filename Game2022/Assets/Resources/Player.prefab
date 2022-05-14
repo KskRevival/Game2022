@@ -15,8 +15,6 @@ GameObject:
   - component: {fileID: 1668770886433599872}
   - component: {fileID: 1668770886433599899}
   - component: {fileID: 4468423849931301240}
-  - component: {fileID: 6474372335979062105}
-  - component: {fileID: 2667818467423803608}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -206,47 +204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af3230b2eaae1b4186ef21501824c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  md: {fileID: 6474372335979062105}
-  id: {fileID: 2667818467423803608}
+  player: {fileID: 1668770886433599875}
   health: 20
   maxHealth: 20
---- !u!114 &6474372335979062105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668770886433599875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fff4ba617441219301f613e42e1b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  movement: {x: 0, y: 0}
-  rb: {fileID: 1668770886433599900}
-  animator: {fileID: 1668770886433599899}
---- !u!114 &2667818467423803608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1668770886433599875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b04bd43592047698e0b213ad524c760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!1001 &5816326505883488185
 PrefabInstance:
   m_ObjectHideFlags: 0

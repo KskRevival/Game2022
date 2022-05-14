@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class MovementData : MonoBehaviour
+    public class MovementData
     {
         public float speed;
         public Vector2 movement;
@@ -15,6 +15,12 @@ namespace PlayerScripts
         public static readonly int Vertical = Animator.StringToHash("Vertical");
         public static readonly int Speed = Animator.StringToHash("Speed");
 
+        public MovementData(GameObject player)
+        {
+            rb = player.GetComponent<Rigidbody2D>();
+            animator = player.GetComponent<Animator>();
+        }
+        
         public MovementData(MovementData md)
         {
             speed = md.speed;

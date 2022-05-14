@@ -1,5 +1,6 @@
 using System;
 using LabyrinthScripts;
+using PlayerScripts;
 using SaveScripts;
 using UIScripts;
 using UnityEngine;
@@ -37,6 +38,18 @@ namespace UIScripts
         public void Save()
         {
             SaveAndLoad.SaveGame();
+        }
+
+        public void Load()
+        {
+            var data = SaveAndLoad.LoadGame();
+            var player = GameManager.Instance.player;
+            player.player.transform.position = OnBoardObject.PositionToVector2(data.playerData.position);
+            player.md = data.playerData.md;
+            player.id = data.playerData.id;
+            player.health = data.playerData.health;
+            player.maxHealth = data.playerData.maxHealth;
+
         }
 
         public void ToMenu()
