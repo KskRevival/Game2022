@@ -7,6 +7,7 @@ namespace RoomGeneration
         private const int CellCount = 16;
         private const int Side = 4;
         public GameObject LeftCorner;
+        public Spawnable type;
 
         void Start()
         {
@@ -14,18 +15,21 @@ namespace RoomGeneration
             if (item == null) return;
             var pos = Random.Range(0, CellCount);
             var position = LeftCorner.transform.position;
+            var container = type == Spawnable.Monster
+                ? GameManager.Instance.monsterContainer.transform
+                : GameManager.Instance.lootContainer.transform;
             var loot = Instantiate(
                 item,
                 new Vector2(
                     position.x + pos / Side,
                     position.y - pos % Side - 1),
                 Quaternion.identity,
-                parent: GameManager.Instance.container.transform);
+                container);
         }
 
         GameObject GetItem()
         {
-            var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
+            type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
             return type == Spawnable.Empty
                 ? null
                 : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
@@ -39,6 +43,7 @@ namespace RoomGeneration
             {
                 gen -= GenerationData.Chances[(int) spawnable][index++];
             }
+
             //Debug.Log(index);
             return index;
         }

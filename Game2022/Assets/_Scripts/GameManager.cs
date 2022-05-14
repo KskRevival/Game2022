@@ -9,7 +9,10 @@ public class GameManager : MonoBehaviour
     public GameState state;
 
     public Player player;
-    public GameObject container;
+    
+    public GameObject lootContainer;
+    public GameObject monsterContainer;
+    public GameObject roomContainer;
 
     public DungeonData data;
     public DungeonGenerator dungeonGenerator;
@@ -30,16 +33,28 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
+        InitContainers();
         dungeonGenerator = GetComponent<DungeonGenerator>();
         dungeonGenerator.Generate(data);
-        InitContainers();
         SpawnPlayer();
     }
 
     void InitContainers()
     {
-        container = Instantiate(
+        lootContainer = Instantiate(
             GameObjectResources("Containers/LootContainer"),
+            new Vector3(0, 0, 0),
+            Quaternion.identity,
+            transform);
+        
+        monsterContainer = Instantiate(
+            GameObjectResources("Containers/MonsterContainer"),
+            new Vector3(0, 0, 0),
+            Quaternion.identity,
+            transform);
+        
+        roomContainer = Instantiate(
+            GameObjectResources("Containers/RoomContainer"),
             new Vector3(0, 0, 0),
             Quaternion.identity,
             transform);
