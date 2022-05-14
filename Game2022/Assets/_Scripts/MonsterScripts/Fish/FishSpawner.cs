@@ -63,15 +63,9 @@ public class FishSpawner : MonoBehaviour
     private void RotateFishAndTraectory()
     {
         if (Mathf.Abs(angle) > 90) MirrorFish();
-        Debug.Log(angle);
 
         LastFish.transform.Rotate(new Vector3(0, 0, angle));
         LastFishTraectory.transform.Rotate(new Vector3(0, 0, angle));
-    }
-
-    private float GetEntitiesRotationAngle()
-    {
-        return Mathf.Abs(angle) <= Mathf.PI / 2 ? angle : angle + Mathf.PI / 2;
     }
 
     private void MirrorFish()
@@ -79,6 +73,6 @@ public class FishSpawner : MonoBehaviour
         var newFishScale = LastFish.transform.localScale;
         newFishScale.x *= -1;
         LastFish.transform.localScale = newFishScale;
-        angle += 180;
+        angle -= 180 * Mathf.Sign(angle);
     }
 }
