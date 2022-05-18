@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Xml.Serialization;
 using LabyrinthScripts;
 using PlayerScripts;
@@ -12,19 +14,33 @@ namespace SaveScripts
         public PlayerData playerData;
         public MonsterData[] monsterData;
         public LootData[] lootData;
-        
-        private GameObject player;
-        
+
         public SaveData()
         {
             playerData = new PlayerData(GameManager.Instance.player);
-            player = GameManager.Instance.player.player;
+            monsterData = GetMonsterData();
+            lootData = GetLootData();
+        }
+
+        private static LootData[] GetLootData()
+        {
+            return (from object loot in GameManager.Instance.lootContainer.transform
+                    select new LootData(((Transform) loot).gameObject))
+                .ToArray(); 
+        }
+        
+        private static MonsterData[] GetMonsterData()
+        {
+            return (from object monster in GameManager.Instance.monsterContainer.transform
+                    select new MonsterData((Transform) monster))
+                .ToArray();
         }
     }
-    
+
+    [Serializable]
     public class PlayerData : OnBoardObject
     {
-        public MovementData md;
+        //public MovementData md;
         public InventoryData id;
 
         public float health;
@@ -32,7 +48,7 @@ namespace SaveScripts
 
         public PlayerData(Player player)
         {
-            md = new MovementData(player.md);
+            //md = new MovementData(player.md);
             id = new InventoryData(player.id);
             health = player.health;
             maxHealth = player.maxHealth;
@@ -40,6 +56,7 @@ namespace SaveScripts
         }
     }
 
+    [Serializable]
     public class MonsterData : OnBoardObject
     {
         public int level;
@@ -49,25 +66,43 @@ namespace SaveScripts
             level = GameManager.Instance.level;
             position = GetObjectPosition(obj);
         }
+
+        public MonsterData(Transform transform)
+        {
+            level = GameManager.Instance.level;
+            position = GetTransformPosition(transform);
+        }
     }
 
+    [Serializable]
     public class LootData : OnBoardObject
     {
         
+        public LootData(GameObject loot)
+        {
+            position = GetObjectPosition(loot);
+            
+        }
     }
-
+    
+    [Serializable]
     public class OnBoardObject
     {
         public float[] position;
 
-        public static float[] GetObjectPosition(GameObject obj)
+        public static float[] GetTransformPosition(Transform transform)
         {
             var pos = new float[2];
-            var transform = obj.transform.position;
-            pos[0] = transform.x;
-            pos[1] = transform.y;
-            
+            var vector = transform.position;
+            pos[0] = vector.x;
+            pos[1] = vector.y;
+
             return pos;
+        }
+
+        public static float[] GetObjectPosition(GameObject obj)
+        {
+            return GetTransformPosition(obj.transform);
         }
 
         public static Vector2 PositionToVector2(float[] pos)

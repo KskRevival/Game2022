@@ -137,7 +137,7 @@ GameObject:
   - component: {fileID: 265757056}
   - component: {fileID: 265757060}
   m_Layer: 0
-  m_Name: Generator
+  m_Name: Manager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -186,8 +186,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6ff084afb5659e14882f7adfa8f2797d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  State: 0
+  state: 0
   player: {fileID: 0}
+  lootContainer: {fileID: 0}
+  monsterContainer: {fileID: 0}
+  roomContainer: {fileID: 0}
   data: {fileID: 265757056}
   dungeonGenerator: {fileID: 265757059}
   level: 1

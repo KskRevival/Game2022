@@ -8,6 +8,7 @@ namespace RoomGeneration
         private const int Side = 4;
         public GameObject LeftCorner;
         public Spawnable type;
+        public int itemSpawnIndex;
 
         void Start()
         {
@@ -25,6 +26,16 @@ namespace RoomGeneration
                     position.y - pos % Side - 1),
                 Quaternion.identity,
                 container);
+            
+            AddItemData(loot);
+        }
+
+        void AddItemData(GameObject loot)
+        {
+            if (type == Spawnable.Monster) return;
+            loot.AddComponent<ItemData>();
+            loot.GetComponent<ItemData>().type = type;
+            loot.GetComponent<ItemData>().itemSpawnIndex = itemSpawnIndex;
         }
 
         GameObject GetItem()
@@ -32,7 +43,7 @@ namespace RoomGeneration
             type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
             return type == Spawnable.Empty
                 ? null
-                : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
+                : GenerationData.Objects[(int) type][itemSpawnIndex = GetIndex(Random.Range(0, 100), type)];
         }
 
         int GetIndex(int gen, Spawnable spawnable)

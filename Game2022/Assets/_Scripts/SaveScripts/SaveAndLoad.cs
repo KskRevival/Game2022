@@ -1,4 +1,5 @@
 using System.IO;
+using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 namespace SaveScripts
@@ -9,11 +10,14 @@ namespace SaveScripts
 
         public static void SaveGame()
         {
-            var data = new SaveData();
-            File.Create(path); 
-            File.WriteAllText(
-                path, 
-                JsonUtility.ToJson(data));
+            var bf = new BinaryFormatter();
+            using (var fs = File.Create(Application.persistentDataPath + "/MySaveData.dat"))
+            {
+                var data = new SaveData();
+                bf.Serialize(fs, data);
+            }
+
+            Debug.Log("Game data saved!");
             
         }
 

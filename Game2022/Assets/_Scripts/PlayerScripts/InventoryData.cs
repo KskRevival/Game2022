@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace PlayerScripts
 {
+    [Serializable]
     public class InventoryData
     {
         public GameObject[] items;
