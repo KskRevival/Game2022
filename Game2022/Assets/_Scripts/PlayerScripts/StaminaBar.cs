@@ -45,7 +45,7 @@ public class StaminaBar : MonoBehaviour
     {
         for (float i = 0; i <= 1; i += Time.deltaTime * 4)
         {
-            var alphaValue = alpha == 1f ? i : 1 - i;
+            var alphaValue = alpha == 0f ? 1 - i : i;
 
             staminaBarFilling.color = new Color(staminaBarFilling.color.r,
                                                 staminaBarFilling.color.g,
@@ -59,5 +59,15 @@ public class StaminaBar : MonoBehaviour
 
             yield return null;
         }
+
+        staminaBarFilling.color = new Color(staminaBarFilling.color.r,
+                                                staminaBarFilling.color.g,
+                                                staminaBarFilling.color.b,
+                                                alpha);
+
+        staminaBar.color = new Color(staminaBar.color.r,
+                                 staminaBar.color.g,
+                                 staminaBar.color.b,
+                                 alpha);
     }
 }
