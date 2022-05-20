@@ -23,8 +23,21 @@ namespace SaveScripts
 
         public static SaveData LoadGame()
         {
-            if(!File.Exists(path)) Debug.LogError("There is no SaveData");
-            return JsonUtility.FromJson<SaveData>(File.ReadAllText(path));
+            if (!File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
+            {
+                Debug.LogError("There is no save data!");
+                return null;
+            }
+            
+            var bf = new BinaryFormatter();
+            SaveData data;
+            using (var file = File.Open(Application.persistentDataPath + "/MySaveData.dat", FileMode.Open))
+            {
+                data = (SaveData) bf.Deserialize(file);
+                file.Close();
+            }
+            Debug.Log("Game data loaded!");
+            return data;
         }
     }
 }

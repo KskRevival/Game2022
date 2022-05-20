@@ -3,7 +3,8 @@ using UnityEngine;
 
 namespace RoomGeneration
 {
-    public class ItemData : MonoBehaviour
+    [Serializable]
+    public class ItemData
     {
         public Spawnable type;
         public int itemSpawnIndex;

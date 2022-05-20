@@ -7,9 +7,9 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            70, //nothing
-            15, //food
-            10, //monster
+            75, //nothing
+            12, //food
+            8, //monster
             5   //weapon
         };
 

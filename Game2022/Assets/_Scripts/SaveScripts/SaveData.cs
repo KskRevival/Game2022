@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
+using InventoryScripts;
 using LabyrinthScripts;
 using PlayerScripts;
+using RoomGeneration;
 using UnityEngine;
 
 namespace SaveScripts
@@ -41,7 +43,7 @@ namespace SaveScripts
     public class PlayerData : OnBoardObject
     {
         //public MovementData md;
-        public InventoryData id;
+        public InventorySaveData[] id;
 
         public float health;
         public float maxHealth;
@@ -49,10 +51,21 @@ namespace SaveScripts
         public PlayerData(Player player)
         {
             //md = new MovementData(player.md);
-            id = new InventoryData(player.id);
+            id = GameManager.Instance.player.id.GetSaveData();
             health = player.health;
             maxHealth = player.maxHealth;
             position = GetObjectPosition(player.player);
+        }
+    }
+
+    [Serializable]
+    public class InventorySaveData
+    {
+        private ItemData itemData;
+
+        public InventorySaveData(GameObject item)
+        {
+            itemData = item?.GetComponent<InventoryItem>().itemData;
         }
     }
 
@@ -77,11 +90,11 @@ namespace SaveScripts
     [Serializable]
     public class LootData : OnBoardObject
     {
-        
+        private ItemData itemData;
         public LootData(GameObject loot)
         {
             position = GetObjectPosition(loot);
-            
+            itemData = loot.GetComponent<ItemBehaviour>().itemData;
         }
     }
     

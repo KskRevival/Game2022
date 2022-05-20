@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Linq;
+using SaveScripts;
 using UnityEngine;
 
 namespace PlayerScripts
 {
-    [Serializable]
     public class InventoryData
     {
         public GameObject[] items;
@@ -22,6 +23,13 @@ namespace PlayerScripts
         public InventoryData()
         {
             items = new GameObject[8];
+        }
+
+        public InventorySaveData[] GetSaveData()
+        {
+            return items
+                .Select(x => new InventorySaveData(x))
+                .ToArray();
         }
     }
     

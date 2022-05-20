@@ -46,7 +46,7 @@ namespace UIScripts
             var player = GameManager.Instance.player;
             player.player.transform.position = OnBoardObject.PositionToVector2(data.playerData.position);
             //player.md = data.playerData.md;
-            player.id = data.playerData.id;
+            //player.id = data.playerData.id;
             player.health = data.playerData.health;
             player.maxHealth = data.playerData.maxHealth;
 

@@ -1,3 +1,4 @@
+using InventoryScripts;
 using UnityEngine;
 
 namespace RoomGeneration
@@ -27,15 +28,15 @@ namespace RoomGeneration
                 Quaternion.identity,
                 container);
             
-            AddItemData(loot);
+            //AddItemData(loot);
         }
 
         void AddItemData(GameObject loot)
         {
             if (type == Spawnable.Monster) return;
-            loot.AddComponent<ItemData>();
-            loot.GetComponent<ItemData>().type = type;
-            loot.GetComponent<ItemData>().itemSpawnIndex = itemSpawnIndex;
+            var itemData = loot.GetComponent<ItemBehaviour>().itemData;
+            itemData.type = type;
+            itemData.itemSpawnIndex = itemSpawnIndex;
         }
 
         GameObject GetItem()
