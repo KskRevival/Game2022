@@ -6,6 +6,8 @@ namespace LabyrinthScripts
     public class DungeonData : MonoBehaviour
     {
         private const int wallCount = 4;
+        public Vector2 offset;
+
         public class Cell
         {
             //можно заоптимизировать потом через 0b

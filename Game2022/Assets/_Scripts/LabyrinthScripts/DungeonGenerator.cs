@@ -12,7 +12,6 @@ namespace LabyrinthScripts
         private DungeonData data;
         private Transform container;
 
-        public Vector2 offset;
         private Cell[] board;
         
         public void Generate(DungeonData dungeonData)
@@ -44,7 +43,7 @@ namespace LabyrinthScripts
                     if (!board[x + y * data.columns].visited) continue;
                     var newRoom = Instantiate(
                         data.room,
-                        new Vector3(x * offset.x, -y * offset.y, 0),
+                        new Vector3(x * data.offset.x, -y * data.offset.y, 0),
                         Quaternion.identity,
                         container).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(board[x + y * data.columns].status);
