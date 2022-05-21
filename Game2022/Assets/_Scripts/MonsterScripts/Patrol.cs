@@ -50,14 +50,10 @@ public class Patrol : MonoBehaviour
     private void NewMethod()
     {
         RotateAndCheckForWayPoints(90);
-        Debug.Log(moveSpots.Count);
         RotateAndCheckForWayPoints(-180);
-        Debug.Log(moveSpots.Count);
         RotateAndCheckForWayPoints(90);
-        Debug.Log(moveSpots.Count);
         if (moveSpots.All(moveSpot => moveSpot == TargetWaypoint))
             RotateAndCheckForWayPoints(180);
-        Debug.Log(moveSpots.Count);
         isReachedWaypoint = false;
         GetRandomTargetWayPoint();
     }

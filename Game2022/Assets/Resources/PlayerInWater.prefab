@@ -189,8 +189,6 @@ GameObject:
   - component: {fileID: 1257656294839047548}
   - component: {fileID: -3155379010868583698}
   - component: {fileID: -8743108695786499811}
-  - component: {fileID: 14652367876504996}
-  - component: {fileID: 3320158095627862096}
   - component: {fileID: 1824894224771063496}
   m_Layer: 8
   m_Name: PlayerInWater
@@ -363,47 +361,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af3230b2eaae1b4186ef21501824c7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  md: {fileID: 14652367876504996}
-  id: {fileID: 3320158095627862096}
+  player: {fileID: 0}
+  md:
+    speed: 0
+    movement: {x: 0, y: 0}
+    rb: {fileID: 0}
+    animator: {fileID: 0}
   health: 20
   maxHealth: 20
---- !u!114 &14652367876504996
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5460682073779999770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28fff4ba617441219301f613e42e1b89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 0
-  movement: {x: 0, y: 0}
-  rb: {fileID: 7718609964390569186}
-  animator: {fileID: 1824894224771063496}
---- !u!114 &3320158095627862096
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5460682073779999770}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b04bd43592047698e0b213ad524c760, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  items:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
 --- !u!95 &1824894224771063496
 Animator:
   serializedVersion: 3

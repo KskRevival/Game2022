@@ -49,7 +49,7 @@ namespace UIScripts
             #region load player
 
             var player = GameManager.Instance.player;
-            player.player.transform.position = PositionToVector2(data.playerData.position);
+            player.gameObject.transform.position = PositionToVector2(data.playerData.position);
             player.id.items =
                 data.playerData.id
                     .Where(id => id.itemData != null)

@@ -54,7 +54,7 @@ namespace SaveScripts
             id = GameManager.Instance.player.id.GetSaveData();
             health = player.health;
             maxHealth = player.maxHealth;
-            position = GetObjectPosition(player.player);
+            position = GetObjectPosition(player.gameObject);
         }
     }
 

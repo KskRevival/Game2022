@@ -10,7 +10,6 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
-        public GameObject player;
         public MovementData md;
         public InventoryData id;
 
@@ -62,10 +61,10 @@ namespace PlayerScripts
 
         public int GetFirstEmptySlot() => id.items.TakeWhile(item => item != null).Count();
 
-        public void AddItem(GameObject gameObject)
+        public void AddItem(GameObject item)
         {
             var index = GetFirstEmptySlot();
-            id.items[index] = gameObject;
+            id.items[index] = item;
         }
 
         public void DragAndDropItem(int slotIndex)

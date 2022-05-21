@@ -19,7 +19,7 @@ namespace PlayerScripts
         public MovementData(GameObject player)
         {
             rb = player.GetComponent<Rigidbody2D>();
-            animator = player.GetComponent<Animator>();
+            animator = player.GetComponentInChildren<Animator>();
         }
         
         public MovementData(MovementData md)

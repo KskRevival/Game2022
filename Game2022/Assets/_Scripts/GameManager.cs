@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
     public void SpawnPlayer()
     {
         player = dungeonGenerator.SpawnPlayer().GetComponent<Player>();
-        player.md = new MovementData(player.player);
+        player.md = new MovementData(player.gameObject);
         player.id = new InventoryData();
     }
 
