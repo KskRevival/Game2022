@@ -20,10 +20,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        if (Instance == null) Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+            DontDestroyOnLoad(gameObject);
+            InitGame();
+        }
         else if (Instance != this) Destroy(gameObject);
-        DontDestroyOnLoad(gameObject);
-        InitGame();
     }
 
     public static void DestroyPlayer()
