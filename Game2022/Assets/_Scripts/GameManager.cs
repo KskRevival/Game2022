@@ -67,6 +67,18 @@ public class GameManager : MonoBehaviour
         player.id = new InventoryData();
     }
 
+    public void DestroyMonsters()
+    {
+        foreach (var monster in monsterContainer.transform)
+            Destroy(((Transform)monster).gameObject);
+    }
+
+    public void DestroyLoot()
+    {
+        foreach (var loot in monsterContainer.transform)
+            Destroy(((Transform)loot).gameObject);
+    }
+
     public static GameObject GameObjectResources(string path)
     {
         return Resources.Load<GameObject>(path);

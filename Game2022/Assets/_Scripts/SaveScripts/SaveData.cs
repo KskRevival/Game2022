@@ -61,7 +61,7 @@ namespace SaveScripts
     [Serializable]
     public class InventorySaveData
     {
-        private ItemData itemData;
+        public ItemData itemData;
 
         public InventorySaveData(GameObject item)
         {
@@ -90,7 +90,7 @@ namespace SaveScripts
     [Serializable]
     public class LootData : OnBoardObject
     {
-        private ItemData itemData;
+        public ItemData itemData;
         public LootData(GameObject loot)
         {
             position = GetObjectPosition(loot);
