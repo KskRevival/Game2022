@@ -9,7 +9,7 @@ public class Slot : MonoBehaviour
 
     public Image equippedBorder;
 
-    public GameObject gameObject;
+    public GameObject item;
 
     public void UpdateSlot(GameObject gameObjectToSlot) //Обновление слота
     {
@@ -19,14 +19,14 @@ public class Slot : MonoBehaviour
 
     private void PlaceGameObjectToSlot(GameObject gameObjectToSlot)
     {
-        gameObject = gameObjectToSlot;
+        item = gameObjectToSlot;
         SetIconAlpha(1f);
-        icon.sprite = gameObject.GetComponent<SpriteRenderer>().sprite;
+        icon.sprite = item.GetComponent<SpriteRenderer>().sprite;
     }
 
     private void RemoveGameObjectFromSlot()
     {
-        gameObject = null;
+        item = null;
         SetIconAlpha(0f);
         icon.sprite = null;
     }

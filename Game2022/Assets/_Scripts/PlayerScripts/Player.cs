@@ -10,23 +10,16 @@ namespace PlayerScripts
 {
     public class Player : MonoBehaviour
     {
+        public GameObject player;
         public MovementData md;
         public InventoryData id;
 
         public float health;
         public float maxHealth;
 
-        public Player(Player player)
-        {
-            md = new MovementData(player.md);
-            id = new InventoryData(player.id);
-            health = player.health;
-            maxHealth = player.maxHealth;
-        }
-
         void Update()
         {
-            if (GameManager.Instance.State == GameState.Fight) return;
+            if (GameManager.Instance.state == GameState.Fight) return;
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
@@ -89,7 +82,7 @@ namespace PlayerScripts
 
         public bool HasItemInIndex(int index) => id.items[index] != null;
         
-        public int GetDamage() => id.Weapon.Item.GetComponent<WeaponScript>().Damage;
+        public int GetWeaponDamage() => id.Weapon.Item.GetComponent<WeaponScript>().Damage;
 
         private bool IsWeapon(GameObject item) => item.GetComponent<WeaponScript>() != null;
 

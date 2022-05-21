@@ -29,7 +29,7 @@ public class Patrol : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.State == GameState.Fight) return;
+        if (GameManager.Instance.state == GameState.Fight) return;
         isReachedWaypoint = IsTargetPointReached();
 
         if (!GetComponent<ChasePlayer>().isChasingPlayer && isReachedWaypoint)
@@ -37,14 +37,14 @@ public class Patrol : MonoBehaviour
             NewMethod();
         }
 
-        if (!GetComponent<ChasePlayer>().isChasingPlayer)
+        if (GetComponent<ChasePlayer>().isChasingPlayer)
+            TargetWaypoint = transform;
+        else
         {
             GetComponent<EnemyMovement>().enemyDirection =
                 GetComponent<EnemyMovement>().GetMovePosition(TargetWaypoint.position).normalized;
             GetComponent<EnemyMovement>().MoveEnemy();
         }
-        else
-            TargetWaypoint = transform;
     }
 
     private void NewMethod()

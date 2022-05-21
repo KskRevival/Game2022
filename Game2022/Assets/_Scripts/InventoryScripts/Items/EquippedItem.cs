@@ -1,9 +1,9 @@
+using RoomGeneration;
 using UnityEngine;
 
 namespace InventoryScripts.Items
 {
-    public class EquippedItem : MonoBehaviour
+    public class EquippedItem : InventoryItem
     {
-        
     }
 }

@@ -18,7 +18,7 @@ public class ChasePlayer : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.State == GameState.Fight) return;
+        if (GameManager.Instance.state == GameState.Fight) return;
         UpdatePlayerLocation();
 
         var enemyMovement = GetComponent<EnemyMovement>();

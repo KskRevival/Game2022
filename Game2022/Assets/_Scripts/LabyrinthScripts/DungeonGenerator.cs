@@ -10,6 +10,7 @@ namespace LabyrinthScripts
     public class DungeonGenerator : MonoBehaviour
     {
         private DungeonData data;
+        private Transform container;
 
         public Vector2 offset;
         private Cell[] board;
@@ -19,6 +20,7 @@ namespace LabyrinthScripts
             data = dungeonData;
             CreateBoard();
             MazeGenerator();
+            container = GameManager.Instance.roomContainer.transform;
             GenerateDungeon();
         }
 
@@ -44,7 +46,7 @@ namespace LabyrinthScripts
                         data.room,
                         new Vector3(x * offset.x, -y * offset.y, 0),
                         Quaternion.identity,
-                        transform).GetComponent<RoomBehaviour>();
+                        container).GetComponent<RoomBehaviour>();
                     newRoom.UpdateRoom(board[x + y * data.columns].status);
                     newRoom.name = "" + x + '-' + y;
                 }

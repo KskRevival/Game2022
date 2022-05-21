@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Linq;
+using SaveScripts;
 using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class InventoryData : MonoBehaviour
+    public class InventoryData
     {
-        public GameObject[] items = new GameObject[8];
+        public GameObject[] items;
         
         public EquipmentItem Weapon;
         public EquipmentItem Armor;
@@ -16,6 +18,18 @@ namespace PlayerScripts
             Array.Copy(id.items, items, 8);
             Weapon = new EquipmentItem(id.Weapon);
             Armor = new EquipmentItem(id.Armor);
+        }
+
+        public InventoryData()
+        {
+            items = new GameObject[8];
+        }
+
+        public InventorySaveData[] GetSaveData()
+        {
+            return items
+                .Select(x => new InventorySaveData(x))
+                .ToArray();
         }
     }
     
@@ -32,8 +46,8 @@ namespace PlayerScripts
 
         public EquipmentItem(EquipmentItem ei)
         {
-            Item = ei.Item;
-            SlotIndex = ei.SlotIndex;
+            Item = ei?.Item;
+            if (ei != null) SlotIndex = ei.SlotIndex;
         }
     }
 }

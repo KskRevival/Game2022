@@ -16,14 +16,14 @@ namespace InventoryScripts
             var armorComponent = player.id.items[slotIndex].GetComponent<ArmorScript>();
             var healerComponent = player.id.items[slotIndex].GetComponent<HealerScript>();
 
-            if (!(weaponComponent == null)) 
+            if (weaponComponent != null) 
                 player.id.Weapon 
                     = player.id.Weapon == null 
                       || player.id.Weapon.SlotIndex != slotIndex
                         ? new EquipmentItem(player.id.items[slotIndex], slotIndex)
                         : null;
 
-            if (!(armorComponent == null))
+            if (armorComponent != null)
                 player.id.Armor
                     = player.id.Armor == null
                       || player.id.Armor.SlotIndex != slotIndex

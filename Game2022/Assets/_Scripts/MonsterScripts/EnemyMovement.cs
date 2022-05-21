@@ -25,7 +25,7 @@ namespace MonsterScripts
         // Update is called once per frame
         void Update()
         {
-            if (GameManager.Instance.State == GameState.Fight) return;
+            if (GameManager.Instance.state == GameState.Fight) return;
             SetMovingSpeed();
 
             angle = Mathf.Atan2(enemyDirection.y, enemyDirection.x);

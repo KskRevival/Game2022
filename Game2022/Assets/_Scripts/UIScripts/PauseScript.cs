@@ -1,9 +1,12 @@
 using System;
+using System.Linq;
 using LabyrinthScripts;
+using PlayerScripts;
 using SaveScripts;
 using UIScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using static SaveScripts.OnBoardObject;
 
 namespace UIScripts
 {
@@ -37,6 +40,55 @@ namespace UIScripts
         public void Save()
         {
             SaveAndLoad.SaveGame();
+        }
+
+        public void Load()
+        {
+            var data = SaveAndLoad.LoadGame();
+
+            #region load player
+
+            var player = GameManager.Instance.player;
+            player.player.transform.position = PositionToVector2(data.playerData.position);
+            player.id.items =
+                data.playerData.id
+                    .Where(id => id.itemData != null)
+                    .Select(Restorer.RestoreInventoryItem)
+                    .ToArray();
+            player.health = data.playerData.health;
+            player.maxHealth = data.playerData.maxHealth;
+
+            #endregion
+
+            #region load monsters
+
+            GameManager.Instance.DestroyMonsters();
+            var monsters = data.monsterData;
+            foreach (var monster in monsters)
+            {
+                Instantiate(
+                    Restorer.RestoreMonster(),
+                    PositionToVector2(monster.position),
+                    Quaternion.identity,
+                    GameManager.Instance.monsterContainer.transform);
+            }
+
+            #endregion
+
+            #region load loot
+
+            GameManager.Instance.DestroyLoot();
+            var loot = data.lootData;
+            foreach (var item in loot)
+            {
+                Instantiate(
+                    Restorer.RestoreItem(item.itemData),
+                    PositionToVector2(item.position),
+                    Quaternion.identity,
+                    GameManager.Instance.monsterContainer.transform);
+            }
+
+            #endregion
         }
 
         public void ToMenu()

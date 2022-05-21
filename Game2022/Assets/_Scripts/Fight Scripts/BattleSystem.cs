@@ -127,7 +127,7 @@ public class BattleSystem : MonoBehaviour
 
     private void EndBattle()
     {
-        GameManager.Instance.State = GameState.Maze;
+        GameManager.Instance.state = GameState.Maze;
         if (state == Won)
         {
             SceneManager.LoadScene(GameManager.Instance.level + 1);

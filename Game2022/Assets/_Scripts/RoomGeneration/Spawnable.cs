@@ -1,11 +1,11 @@
 ﻿namespace RoomGeneration
 {
-    enum Spawnable
+    public enum Spawnable
     {
         Empty,
         Food,
-        Weapon,
         Monster,
+        Weapon,
         Size
     }
 }

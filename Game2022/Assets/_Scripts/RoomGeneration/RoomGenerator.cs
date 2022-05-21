@@ -1,3 +1,4 @@
+using InventoryScripts;
 using UnityEngine;
 
 namespace RoomGeneration
@@ -7,6 +8,8 @@ namespace RoomGeneration
         private const int CellCount = 16;
         private const int Side = 4;
         public GameObject LeftCorner;
+        public Spawnable type;
+        public int itemSpawnIndex;
 
         void Start()
         {
@@ -14,21 +17,34 @@ namespace RoomGeneration
             if (item == null) return;
             var pos = Random.Range(0, CellCount);
             var position = LeftCorner.transform.position;
+            var container = type == Spawnable.Monster
+                ? GameManager.Instance.monsterContainer.transform
+                : GameManager.Instance.lootContainer.transform;
             var loot = Instantiate(
                 item,
                 new Vector2(
                     position.x + pos / Side,
                     position.y - pos % Side - 1),
                 Quaternion.identity,
-                parent: transform);
+                container);
+            
+            //AddItemData(loot);
+        }
+
+        void AddItemData(GameObject loot)
+        {
+            if (type == Spawnable.Monster) return;
+            var itemData = loot.GetComponent<ItemBehaviour>().itemData;
+            itemData.type = type;
+            itemData.itemSpawnIndex = itemSpawnIndex;
         }
 
         GameObject GetItem()
         {
-            var type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
+            type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
             return type == Spawnable.Empty
                 ? null
-                : GenerationData.Objects[(int) type][GetIndex(Random.Range(0, 100), type)];
+                : GenerationData.Objects[(int) type][itemSpawnIndex = GetIndex(Random.Range(0, 100), type)];
         }
 
         int GetIndex(int gen, Spawnable spawnable)
@@ -39,6 +55,7 @@ namespace RoomGeneration
             {
                 gen -= GenerationData.Chances[(int) spawnable][index++];
             }
+
             //Debug.Log(index);
             return index;
         }

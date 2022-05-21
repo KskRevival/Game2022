@@ -7,22 +7,32 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            60, //nothing
-            24, //food
-            8,  //weapon
-            8   //monster
+            75, //nothing
+            12, //food
+            8, //monster
+            5   //weapon
         };
 
         private static GameObject[] Food =
         {
             GameManager.GameObjectResources("Loot/mayo"),
             GameManager.GameObjectResources("Loot/redbull")
-            
         };
+
         private static readonly int[] FoodChances =
         {
             50, //food
-            50  //water
+            50 //water
+        };
+
+        private static GameObject[] Monsters =
+        {
+            GameManager.GameObjectResources("Monster")
+        };
+
+        private static readonly int[] MonsterChances =
+        {
+            100
         };
 
         private static GameObject[] Weapons =
@@ -33,6 +43,7 @@ namespace RoomGeneration
             GameManager.GameObjectResources("Loot/shotgun"),
             GameManager.GameObjectResources("Loot/shotgun")
         };
+
         private static readonly int[] WeaponChances =
         {
             60, //meelee
@@ -42,30 +53,21 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-        private static GameObject[] Monsters =
-        {
-            GameManager.GameObjectResources("Monster")
-            
-        };
-        private static readonly int[] MonsterChances =
-        {
-            100
-        };
+    public static int[][] Chances =
+    {
+        SpawnChances,
+        FoodChances,
+        MonsterChances,
+        WeaponChances
+    };
 
-        public static int[][] Chances =
-        {
-            SpawnChances,
-            FoodChances,
-            WeaponChances,
-            MonsterChances
-        };
+    public static GameObject[][] Objects =
+    {
+        null,
+        Food,
+        Monsters,
+        Weapons
+    };
+}
 
-        public static GameObject[][] Objects = 
-        {
-            null,
-            Food,
-            Weapons,
-            Monsters
-        };
-    }
 }
