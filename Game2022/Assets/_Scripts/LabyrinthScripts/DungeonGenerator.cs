@@ -21,6 +21,7 @@ namespace LabyrinthScripts
             MazeGenerator();
             container = GameManager.Instance.roomContainer.transform;
             GenerateDungeon();
+            SpawnExitDoor();
         }
 
         public GameObject SpawnPlayer()
@@ -29,7 +30,7 @@ namespace LabyrinthScripts
             return Instantiate(
                 //data.player,
                 GameManager.GameObjectResources("Player"),
-                new Vector3(2.5f, 2.5f, 0),
+                new Vector3((data.offset.x - 1) / 2, (data.offset.y - 1) / 2, 0),
                 Quaternion.identity,
                 parent: transform);
         }
@@ -57,8 +58,9 @@ namespace LabyrinthScripts
             var currCell = data.startPos;
             var path = new Stack<int>();
 
-            while (currCell != board.Length - 1)
+            while (currCell <= board.Length - 1)
             {
+                Debug.Log(currCell);
                 board[currCell].visited = true;
                 var neighbours = CheckNeighbours(currCell);
 
@@ -108,6 +110,18 @@ namespace LabyrinthScripts
             if (pos % data.columns > 0 && !board[pos - 1].visited)
                 list.Add(pos - 1); //Left
             return list;
+        }
+
+        void SpawnExitDoor()
+        {
+            var doorLocation = !board[board.Length - 1].status[(int)Doors.Left] 
+                ? new Vector3((data.columns - 1) * data.offset.x + data.offset.x - 1, -(data.rows - 1) * data.offset.y + (data.offset.y - 1) / 2)
+                : new Vector3((data.columns - 1) * data.offset.x + (data.offset.x - 1) / 2, -(data.rows - 1) * data.offset.y);
+
+            var rotationAngle = !board[board.Length - 1].status[(int)Doors.Left] ? -90 : 180;
+
+            var door = Instantiate(GameManager.GameObjectResources("ExitDoor"), doorLocation, Quaternion.Euler(0, 0, rotationAngle));
+            DontDestroyOnLoad(door);
         }
     }
 }
