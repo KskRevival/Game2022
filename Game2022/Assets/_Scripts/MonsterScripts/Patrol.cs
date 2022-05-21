@@ -16,6 +16,8 @@ public class Patrol : MonoBehaviour
     public LayerMask waypointsMask;
     public Transform TargetWaypoint;
 
+    private System.Random random = new System.Random();
+
     void Start()
     {
         moveSpots = new HashSet<Transform>();
@@ -32,16 +34,7 @@ public class Patrol : MonoBehaviour
 
         if (!GetComponent<ChasePlayer>().isChasingPlayer && isReachedWaypoint)
         {
-            RotateAndCheckForWayPoints(90);
-            //Debug.Log(moveSpots.Count);
-            RotateAndCheckForWayPoints(-180);
-            //Debug.Log(moveSpots.Count);
-            RotateAndCheckForWayPoints(90);
-            //Debug.Log(moveSpots.Count);
-            RotateAndCheckForWayPoints(180);
-            //Debug.Log(moveSpots.Count);
-            isReachedWaypoint = false;
-            GetRandomTargetWayPoint();
+            NewMethod();
         }
 
         if (!GetComponent<ChasePlayer>().isChasingPlayer)
@@ -52,6 +45,21 @@ public class Patrol : MonoBehaviour
         }
         else
             TargetWaypoint = transform;
+    }
+
+    private void NewMethod()
+    {
+        RotateAndCheckForWayPoints(90);
+        Debug.Log(moveSpots.Count);
+        RotateAndCheckForWayPoints(-180);
+        Debug.Log(moveSpots.Count);
+        RotateAndCheckForWayPoints(90);
+        Debug.Log(moveSpots.Count);
+        if (moveSpots.All(moveSpot => moveSpot == TargetWaypoint))
+            RotateAndCheckForWayPoints(180);
+        Debug.Log(moveSpots.Count);
+        isReachedWaypoint = false;
+        GetRandomTargetWayPoint();
     }
 
     private void RotateAndCheckForWayPoints(float angle = 0)
@@ -68,7 +76,6 @@ public class Patrol : MonoBehaviour
 
     public void GetRandomTargetWayPoint()
     {
-        var random = new System.Random();
         var moveSpotsArray = moveSpots.Where(moveSpot => moveSpot != TargetWaypoint).ToArray();
 
         TargetWaypoint = moveSpotsArray[random.Next(0, moveSpotsArray.Length)];

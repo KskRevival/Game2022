@@ -8,7 +8,6 @@ public class ChasePlayer : MonoBehaviour
 {
     public bool isChasingPlayer;
     public bool isPlayerLost;
-    public static Vector2 playerHitboxOffset = new Vector2(0, -0.25f);
 
     private FieldOfView monsterFieldOfView;
 
@@ -27,7 +26,7 @@ public class ChasePlayer : MonoBehaviour
         if (isChasingPlayer)
         {
             enemyMovement.enemyDirection 
-                = enemyMovement.GetMovePosition(enemyMovement.monsterTargetLocation + playerHitboxOffset).normalized;
+                = enemyMovement.GetMovePosition(enemyMovement.monsterTargetLocation).normalized;
             if (!isPlayerLost && !GetComponent<FieldOfView>().canSeePlayer) GetLastSeenPlayerArea();
         }
 
