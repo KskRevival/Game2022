@@ -30,7 +30,7 @@ namespace LabyrinthScripts
             return Instantiate(
                 //data.player,
                 GameManager.GameObjectResources("Player"),
-                new Vector3(-10, 2, 0),
+                new Vector3(2.5f, 2.5f, 0),
                 Quaternion.identity,
                 parent: transform);
         }
