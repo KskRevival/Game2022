@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using PlayerScripts;
+using RoomGeneration;
 using UnityEngine;
 using static LabyrinthScripts.DungeonData;
 using Random = UnityEngine.Random;
@@ -13,7 +14,7 @@ namespace LabyrinthScripts
         private Transform container;
 
         private Cell[] board;
-        
+
         public void Generate(DungeonData dungeonData)
         {
             data = dungeonData;
@@ -21,6 +22,7 @@ namespace LabyrinthScripts
             MazeGenerator();
             container = GameManager.Instance.roomContainer.transform;
             GenerateDungeon();
+            GenerateLastRoom();
             SpawnExitDoor();
         }
 
@@ -47,20 +49,36 @@ namespace LabyrinthScripts
                         new Vector3(x * data.offset.x, -y * data.offset.y, 0),
                         Quaternion.identity,
                         container).GetComponent<RoomBehaviour>();
-                    newRoom.UpdateRoom(board[x + y * data.columns].status);
+                    newRoom.UpdateRoom(board[x + y * data.columns].closed);
                     newRoom.name = "" + x + '-' + y;
                 }
             }
         }
-
+        
+        void GenerateLastRoom()
+        {
+            var newRoom = Instantiate(
+                data.room,
+                new Vector3((data.rows - 1) * data.offset.x, -(data.columns - 1) * data.offset.y, 0),
+                Quaternion.identity,
+                container).GetComponent<RoomBehaviour>();
+            var toOpen = board[board.Length - 1].closed[(int) Doors.Right]
+                ? Doors.Up
+                : Doors.Left;
+        
+            var closed = Enumerable.Range(0, wallCount).Select(x => true).ToArray();
+            closed[(int) toOpen] = false;
+            newRoom.UpdateRoom(closed);
+            newRoom.name = "last room";
+        }
+        
         void MazeGenerator()
         {
             var currCell = data.startPos;
             var path = new Stack<int>();
 
-            while (currCell <= board.Length - 1)
+            while (currCell != board.Length - 1)
             {
-                Debug.Log(currCell);
                 board[currCell].visited = true;
                 var neighbours = CheckNeighbours(currCell);
 
@@ -86,8 +104,8 @@ namespace LabyrinthScripts
             else if (dif == data.columns) (curr, nc) = (Doors.Down, Doors.Up);
             else if (dif == -1) (curr, nc) = (Doors.Left, Doors.Right);
 
-            board[currCell].status[(int) curr] = false;
-            board[newCell].status[(int) nc] = false;
+            board[currCell].closed[(int) curr] = false;
+            board[newCell].closed[(int) nc] = false;
         }
 
         void CreateBoard()
@@ -114,14 +132,19 @@ namespace LabyrinthScripts
 
         void SpawnExitDoor()
         {
-            var doorLocation = !board[board.Length - 1].status[(int)Doors.Left] 
-                ? new Vector3((data.columns - 1) * data.offset.x + data.offset.x - 1, -(data.rows - 1) * data.offset.y + (data.offset.y - 1) / 2)
-                : new Vector3((data.columns - 1) * data.offset.x + (data.offset.x - 1) / 2, -(data.rows - 1) * data.offset.y);
+            var doorLocation = !board[board.Length - 1].closed[(int) Doors.Left]
+                ? new Vector3((data.columns - 1) * data.offset.x + data.offset.x - 1,
+                    -(data.rows - 1) * data.offset.y + (data.offset.y - 1) / 2)
+                : new Vector3((data.columns - 1) * data.offset.x + (data.offset.x - 1) / 2,
+                    -(data.rows - 1) * data.offset.y);
 
-            var rotationAngle = !board[board.Length - 1].status[(int)Doors.Left] ? -90 : 180;
+            var rotationAngle = board[board.Length - 1].closed[(int) Doors.Left] ? 180 : -90;
 
-            var door = Instantiate(GameManager.GameObjectResources("ExitDoor"), doorLocation, Quaternion.Euler(0, 0, rotationAngle));
-            DontDestroyOnLoad(door);
+            var door = Instantiate(
+                GameManager.GameObjectResources("ExitDoor"),
+                doorLocation,
+                Quaternion.Euler(0, 0, rotationAngle),
+                GameManager.Instance.transform);
         }
     }
 }
