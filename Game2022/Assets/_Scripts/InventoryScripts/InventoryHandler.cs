@@ -12,6 +12,11 @@ namespace InventoryScripts
         public static GameObject Item;
         public static bool IsDraggingEquippedItem;
         public static int SourceSlotIndex;
+
+        public static void DropDraggedItem()
+        {
+            
+        }
     }
 
     public class InventoryHandler : MonoBehaviour
@@ -71,6 +76,29 @@ namespace InventoryScripts
             else player.DragAndDropItem(DraggedItem.SourceSlotIndex);
 
             // DraggedItem.Item = null;
+        }
+
+        public void DropItem()
+        {
+            if (DraggedItem.Item == null) return;
+
+            var dropPos = GameObject
+                .FindGameObjectsWithTag("Waypoint")
+                .Select(waypoint => waypoint.transform.position - player.transform.position)
+                .OrderBy(vectorToWaypoint => vectorToWaypoint.magnitude)
+                .First().normalized * 1.7f + player.transform.position;
+
+            Debug.Log(dropPos);
+
+            var itemOnScene = Instantiate(DraggedItem.Item.GetComponent<DropItem>().ItemOnScene, 
+                dropPos, 
+                Quaternion.identity, 
+                GameManager.Instance.lootContainer.transform);
+            DontDestroyOnLoad(itemOnScene);
+
+            Destroy(DraggedItem.Item);
+            DraggedItem.IsDraggingEquippedItem = false;
+            DraggedItem.SourceSlotIndex = 0;
         }
     }
 }

@@ -15,6 +15,7 @@ namespace InventoryScripts
             var weaponComponent = player.id.items[slotIndex].GetComponent<WeaponScript>();
             var armorComponent = player.id.items[slotIndex].GetComponent<ArmorScript>();
             var healerComponent = player.id.items[slotIndex].GetComponent<HealerScript>();
+            var energyDrinkComponent = player.id.items[slotIndex].GetComponent<EnergyDrinkScript>();
 
             if (weaponComponent != null) 
                 player.id.Weapon 
@@ -29,6 +30,8 @@ namespace InventoryScripts
                       || player.id.Armor.SlotIndex != slotIndex
                         ? new EquipmentItem(player.id.items[slotIndex], slotIndex)
                         : null;
+
+            if (energyDrinkComponent != null) energyDrinkComponent.UseEnergyDrink();
         }
     }
 }

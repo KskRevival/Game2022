@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9202713421508866719}
   - component: {fileID: 7375626478479426627}
   - component: {fileID: 8888551201823130014}
+  - component: {fileID: 2262923633633456876}
   m_Layer: 0
   m_Name: mayonnaise_64
   m_TagString: Untagged
@@ -98,3 +99,16 @@ MonoBehaviour:
   itemData:
     type: 0
     itemSpawnIndex: 0
+--- !u!114 &2262923633633456876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274161749672404682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4685ead1ee4ae47a18f569fcf92f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemOnScene: {fileID: 3274161749672404682, guid: b65d79592865ec94bb9b79f1131f904e, type: 3}
