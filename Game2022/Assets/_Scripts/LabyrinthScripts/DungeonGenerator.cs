@@ -22,7 +22,6 @@ namespace LabyrinthScripts
             MazeGenerator();
             container = GameManager.Instance.roomContainer.transform;
             GenerateDungeon();
-            GenerateLastRoom();
             SpawnExitDoor();
         }
 
@@ -55,23 +54,6 @@ namespace LabyrinthScripts
             }
         }
         
-        void GenerateLastRoom()
-        {
-            var newRoom = Instantiate(
-                data.room,
-                new Vector3((data.rows - 1) * data.offset.x, -(data.columns - 1) * data.offset.y, 0),
-                Quaternion.identity,
-                container).GetComponent<RoomBehaviour>();
-            var toOpen = board[board.Length - 1].closed[(int) Doors.Right]
-                ? Doors.Up
-                : Doors.Left;
-        
-            var closed = Enumerable.Range(0, wallCount).Select(x => true).ToArray();
-            closed[(int) toOpen] = false;
-            newRoom.UpdateRoom(closed);
-            newRoom.name = "last room";
-        }
-        
         void MazeGenerator()
         {
             var currCell = data.startPos;
@@ -94,6 +76,8 @@ namespace LabyrinthScripts
                 UpdateNeighbours(currCell, newCell);
                 currCell = newCell;
             }
+
+            board[currCell].visited = true;
         }
 
         void UpdateNeighbours(int currCell, int newCell)
