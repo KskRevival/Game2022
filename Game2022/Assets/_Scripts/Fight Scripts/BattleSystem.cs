@@ -28,6 +28,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.Start;
+        enemy = FightPrefab.GetFightPrefab();
         StartCoroutine(SetUpBattle());
     }
 
