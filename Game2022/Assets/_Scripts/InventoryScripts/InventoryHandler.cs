@@ -40,15 +40,7 @@ namespace InventoryScripts
         void Update()
         {
             if (player == null) player = GameManager.Instance.player;
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                isInventoryActive = !isInventoryActive;
-                Time.timeScale = isInventoryActive ? 0f : 1f;
-
-                if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
-
-                inventoryPanel.SetActive(isInventoryActive);
-            }
+            if (Input.GetKeyDown(KeyCode.Tab) && GameManager.Instance.state != GameState.Fight) SwitchInventory();
 
             UpdateUI();
         }
@@ -65,6 +57,16 @@ namespace InventoryScripts
                     slots[i].SetSlotAsEquipped();
                 else slots[i].SetSlotAsUnequipped();
             }
+        }
+
+        public void SwitchInventory()
+        {
+            isInventoryActive = !isInventoryActive;
+            Time.timeScale = isInventoryActive ? 0f : 1f;
+
+            if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
+
+            inventoryPanel.SetActive(isInventoryActive);
         }
 
         void ReturnDraggedItem()

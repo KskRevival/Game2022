@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static class FightPrefab
+public static class FightPreparation
 {
     private static GameObject fightPrefab;
 

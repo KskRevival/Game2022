@@ -16,7 +16,7 @@ public class EnterFightOnCollision: MonoBehaviour
         // Debug.Log("Fight is active");
         // SaveAndLoad.SaveGame();
 
-        FightPrefab.SetFightPrefab(fightPrefabIndex);
+        FightPreparation.SetFightPrefab(fightPrefabIndex);
         GameManager.Instance.state = GameState.Fight;
         SceneManager.LoadScene("FightScene");
 

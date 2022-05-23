@@ -15,6 +15,9 @@ public class BattleSystem : MonoBehaviour
     public GameObject player;
     public GameObject enemy;
 
+    private int damageAddition;
+    private int armorAddition;
+
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
@@ -28,7 +31,7 @@ public class BattleSystem : MonoBehaviour
     void Start()
     {
         state = BattleState.Start;
-        enemy = FightPrefab.GetFightPrefab();
+        enemy = FightPreparation.GetFightPrefab();
         StartCoroutine(SetUpBattle());
     }
 
