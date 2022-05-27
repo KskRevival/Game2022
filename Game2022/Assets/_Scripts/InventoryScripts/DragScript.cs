@@ -32,7 +32,7 @@ public class DragScript : MonoBehaviour
 
     private void FollowCursor()
     {
-        var cursorLocation = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0);
+        var cursorLocation = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 600);
         icon.transform.position = cursorLocation;
     }
 

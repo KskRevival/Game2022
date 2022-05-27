@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2562134793287347512}
   - component: {fileID: 5696541204557681911}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Entity6InFight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -49,7 +49,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f422c2c63e9ac342b9cc367f19be137, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unitName: Monster
+  unitName: Entity 6
   unitLevel: 1
   damage: 3
   defenceStack: 0

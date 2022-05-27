@@ -26,23 +26,14 @@ namespace InventoryScripts
         void Awake()
         {
             inventoryPanel.SetActive(isInventoryActive);
-            slots = inventorySlots.GetComponentsInChildren<Slot>(); //Получение всех яичек
+            slots = inventorySlots.GetComponentsInChildren<Slot>(); //пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             // player = GameManager.Instance.player;
         }
 
         void Update()
         {
             if (player == null) player = GameManager.Instance.player;
-            if(PauseScript.isPaused) return;
-            if (Input.GetKeyDown(KeyCode.Tab))
-            {
-                isInventoryActive = !isInventoryActive;
-                Time.timeScale = isInventoryActive ? 0f : 1f;
-
-                if (!isInventoryActive && DraggedItem != null) ReturnDraggedItem();
-
-                inventoryPanel.SetActive(isInventoryActive);
-            }
+            if (Input.GetKeyDown(KeyCode.Tab) && GameManager.Instance.state != GameState.Fight) SwitchInventory();
 
             UpdateUI();
         }
@@ -59,6 +50,16 @@ namespace InventoryScripts
                     slots[i].SetSlotAsEquipped();
                 else slots[i].SetSlotAsUnequipped();
             }
+        }
+
+        public void SwitchInventory()
+        {
+            isInventoryActive = !isInventoryActive;
+            Time.timeScale = isInventoryActive ? 0f : 1f;
+
+            if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
+
+            inventoryPanel.SetActive(isInventoryActive);
         }
 
         void ReturnDraggedItem()
@@ -82,11 +83,11 @@ namespace InventoryScripts
                 .OrderBy(vectorToWaypoint => vectorToWaypoint.magnitude)
                 .First().normalized * 1.7f + player.transform.position;
 
-            var itemOnScene = Instantiate(DraggedItem.GetComponent<DropItem>().ItemOnScene, 
-                dropPos, 
-                Quaternion.identity, 
+            var itemOnScene = Instantiate(DraggedItem.GetComponent<DropItem>().ItemOnScene,
+                dropPos,
+                Quaternion.identity,
                 GameManager.Instance.lootContainer.transform);
-            
+
             DestroyDraggedItem();
         }
 
