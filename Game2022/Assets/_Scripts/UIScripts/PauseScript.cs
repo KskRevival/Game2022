@@ -12,7 +12,7 @@ namespace UIScripts
 {
     public class PauseScript : MonoBehaviour
     {
-        private static bool isPaused;
+        public static bool isPaused;
         public GameObject pauseMenuUI;
 
         void Update()

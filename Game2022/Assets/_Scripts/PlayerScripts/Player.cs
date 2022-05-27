@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using InventoryScripts;
 using LabyrinthScripts;
+using UIScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,7 +20,7 @@ namespace PlayerScripts
 
         void Update()
         {
-            if (GameManager.Instance.state == GameState.Fight) return;
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.isPaused) return;
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
