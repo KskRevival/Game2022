@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LabyrinthScripts;
 using PlayerScripts;
+using UIScripts;
 using UnityEngine;
 
 namespace InventoryScripts
@@ -40,6 +41,7 @@ namespace InventoryScripts
         void Update()
         {
             if (player == null) player = GameManager.Instance.player;
+            if(PauseScript.isPaused) return;
             if (Input.GetKeyDown(KeyCode.Tab))
             {
                 isInventoryActive = !isInventoryActive;
