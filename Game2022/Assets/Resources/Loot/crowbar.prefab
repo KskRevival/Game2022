@@ -123,3 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemInInventory: {fileID: 7904577363975443827, guid: 51a9a3a35138e734783674e39d0f230e, type: 3}
+  itemData:
+    type: 0
+    itemSpawnIndex: 0

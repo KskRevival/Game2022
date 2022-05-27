@@ -192,6 +192,7 @@ MonoBehaviour:
   lootContainer: {fileID: 0}
   monsterContainer: {fileID: 0}
   roomContainer: {fileID: 0}
+  dropContainer: {fileID: 0}
   data: {fileID: 265757056}
   dungeonGenerator: {fileID: 265757059}
   level: 1

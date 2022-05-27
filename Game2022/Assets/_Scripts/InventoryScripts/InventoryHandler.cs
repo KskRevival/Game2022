@@ -8,22 +8,14 @@ using UnityEngine;
 
 namespace InventoryScripts
 {
-    public static class DraggedItem
-    {
-        public static GameObject Item;
-        public static bool IsDraggingEquippedItem;
-        public static int SourceSlotIndex;
-
-        public static void DropDraggedItem()
-        {
-            
-        }
-    }
-
     public class InventoryHandler : MonoBehaviour
     {
         public GameObject inventoryPanel;
         private bool isInventoryActive;
+
+        public GameObject DraggedItem;
+        public bool IsDraggingEquippedItem;
+        public int SourceSlotIndex;
 
         public Player player;
 
@@ -47,7 +39,7 @@ namespace InventoryScripts
                 isInventoryActive = !isInventoryActive;
                 Time.timeScale = isInventoryActive ? 0f : 1f;
 
-                if (!isInventoryActive && DraggedItem.Item != null) ReturnDraggedItem();
+                if (!isInventoryActive && DraggedItem != null) ReturnDraggedItem();
 
                 inventoryPanel.SetActive(isInventoryActive);
             }
@@ -71,18 +63,18 @@ namespace InventoryScripts
 
         void ReturnDraggedItem()
         {
-            Debug.Log(DraggedItem.SourceSlotIndex);
-            if (player.HasItemInIndex(DraggedItem.SourceSlotIndex))
-                player.AddItem(DraggedItem.Item);
+            Debug.Log(SourceSlotIndex);
+            if (player.HasItemInIndex(SourceSlotIndex))
+                player.AddItem(DraggedItem);
 
-            else player.DragAndDropItem(DraggedItem.SourceSlotIndex);
+            else player.DragAndDropItem(SourceSlotIndex);
 
             // DraggedItem.Item = null;
         }
 
         public void DropItem()
         {
-            if (DraggedItem.Item == null) return;
+            if (DraggedItem == null) return;
 
             var dropPos = GameObject
                 .FindGameObjectsWithTag("Waypoint")
@@ -90,17 +82,25 @@ namespace InventoryScripts
                 .OrderBy(vectorToWaypoint => vectorToWaypoint.magnitude)
                 .First().normalized * 1.7f + player.transform.position;
 
-            Debug.Log(dropPos);
-
-            var itemOnScene = Instantiate(DraggedItem.Item.GetComponent<DropItem>().ItemOnScene, 
+            var itemOnScene = Instantiate(DraggedItem.GetComponent<DropItem>().ItemOnScene, 
                 dropPos, 
                 Quaternion.identity, 
                 GameManager.Instance.lootContainer.transform);
-            DontDestroyOnLoad(itemOnScene);
+            
+            DestroyDraggedItem();
+        }
 
-            Destroy(DraggedItem.Item);
-            DraggedItem.IsDraggingEquippedItem = false;
-            DraggedItem.SourceSlotIndex = 0;
+        public void RemoveFromInventory(int index)
+        {
+            GameManager.Instance.player.id.items[index] = null;
+        }
+
+        public void DestroyDraggedItem()
+        {
+            RemoveFromInventory(SourceSlotIndex);
+            Destroy(DraggedItem);
+            IsDraggingEquippedItem = false;
+            SourceSlotIndex = 0;
         }
     }
 }

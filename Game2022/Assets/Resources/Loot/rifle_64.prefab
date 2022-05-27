@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 506273131295664716}
   - component: {fileID: -996870564352245171}
   - component: {fileID: 1726945609691178498}
+  - component: {fileID: 1700164229557299803}
   m_Layer: 0
   m_Name: rifle_64
   m_TagString: Untagged
@@ -97,8 +98,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemData:
-    type: 0
-    itemSpawnIndex: 0
+    type: 3
+    itemSpawnIndex: 2
   Damage: 6
 --- !u!114 &1726945609691178498
 MonoBehaviour:
@@ -113,3 +114,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ItemOnScene: {fileID: 6962407594466149117, guid: 3ac1168827b95854aa91f5577d1caec1, type: 3}
+--- !u!114 &1700164229557299803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962407594466149117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827e07cf0324663a63e332b2989c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0

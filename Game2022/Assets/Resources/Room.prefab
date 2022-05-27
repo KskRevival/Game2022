@@ -1600,7 +1600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9337eb915486e5a41916a49f1dfd95dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeftCorner: {fileID: 1020934355625476557}
+  leftCorner: {fileID: 1020934355625476557}
   type: 0
   itemSpawnIndex: 0
 --- !u!1 &1170906356701594054

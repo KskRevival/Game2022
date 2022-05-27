@@ -5,15 +5,9 @@ using UnityEngine;
 
 public class HealerScript : EquippedItem
 {
-    // Start is called before the first frame update
-    void Start()
+    public void UseHealer()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        GameManager.Instance.player.health = GameManager.Instance.player.maxHealth;
+        Destroy(gameObject);
     }
 }

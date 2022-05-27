@@ -11,7 +11,7 @@ public class DragScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var draggedItem = DraggedItem.Item;
+        var draggedItem = GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().DraggedItem;
         FollowCursor();
         if (draggedItem != null)
         {

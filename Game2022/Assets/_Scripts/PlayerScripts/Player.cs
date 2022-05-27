@@ -71,13 +71,14 @@ namespace PlayerScripts
         public void DragAndDropItem(int slotIndex)
         {
             var equippedSlots = GetEquippedSlotsIndexes();
-            (DraggedItem.Item, id.items[slotIndex]) = (id.items[slotIndex], DraggedItem.Item);
+            var handler = gameObject.GetComponentInChildren<InventoryHandler>();
+            (handler.DraggedItem, id.items[slotIndex]) = (id.items[slotIndex], handler.DraggedItem);
 
-            if (DraggedItem.IsDraggingEquippedItem)
+            if (handler.IsDraggingEquippedItem)
                 ReequipItem(id.items[slotIndex], slotIndex);
 
-            DraggedItem.IsDraggingEquippedItem = equippedSlots.Contains(slotIndex);
-            DraggedItem.SourceSlotIndex = slotIndex;
+            handler.IsDraggingEquippedItem = equippedSlots.Contains(slotIndex);
+            handler.SourceSlotIndex = slotIndex;
         }
 
         public bool HasItemInIndex(int index) => id.items[index] != null;

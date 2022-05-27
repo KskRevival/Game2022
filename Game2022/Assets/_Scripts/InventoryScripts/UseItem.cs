@@ -31,7 +31,17 @@ namespace InventoryScripts
                         ? new EquipmentItem(player.id.items[slotIndex], slotIndex)
                         : null;
 
-            if (energyDrinkComponent != null) energyDrinkComponent.UseEnergyDrink();
+            if (energyDrinkComponent != null)
+            {
+                GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
+                energyDrinkComponent.UseEnergyDrink();
+            }
+            
+            if (healerComponent != null)
+            {
+                GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
+                healerComponent.UseHealer();
+            }
         }
     }
 }

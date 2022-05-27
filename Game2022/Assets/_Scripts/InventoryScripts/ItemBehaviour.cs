@@ -18,9 +18,13 @@ namespace InventoryScripts
 			if (player.IsInventoryFull()) return;
 			CopyItemDataToInventory();
 
-			var instantiatedItem = Instantiate(itemInInventory, new Vector3(-999, 999, -999), Quaternion.identity);
+			var instantiatedItem = Instantiate(
+				itemInInventory,
+				new Vector3(-999, 999, -999),
+				Quaternion.identity,
+				GameManager.Instance.dropContainer.transform);
 			player.AddItem(instantiatedItem);
-			DontDestroyOnLoad(instantiatedItem);
+			// player.AddItem(itemInInventory);
 
 			Destroy(gameObject);
 		}

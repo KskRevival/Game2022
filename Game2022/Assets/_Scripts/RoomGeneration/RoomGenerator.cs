@@ -7,7 +7,7 @@ namespace RoomGeneration
     {
         private const int CellCount = 16;
         private const int Side = 4;
-        public GameObject LeftCorner;
+        public GameObject leftCorner;
         public Spawnable type;
         public int itemSpawnIndex;
 
@@ -16,7 +16,7 @@ namespace RoomGeneration
             var item = GetItem();
             if (item == null) return;
             var pos = Random.Range(0, CellCount);
-            var position = LeftCorner.transform.position;
+            var position = leftCorner.transform.position;
             var container = type == Spawnable.Monster
                 ? GameManager.Instance.monsterContainer.transform
                 : GameManager.Instance.lootContainer.transform;
@@ -28,7 +28,7 @@ namespace RoomGeneration
                 Quaternion.identity,
                 container);
             
-            //AddItemData(loot);
+            AddItemData(loot);
         }
 
         void AddItemData(GameObject loot)

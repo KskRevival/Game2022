@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject lootContainer;
     public GameObject monsterContainer;
     public GameObject roomContainer;
+    public GameObject dropContainer;
 
     public DungeonData data;
     public DungeonGenerator dungeonGenerator;
@@ -58,6 +59,12 @@ public class GameManager : MonoBehaviour
         
         roomContainer = Instantiate(
             GameObjectResources("Containers/RoomContainer"),
+            new Vector3(0, 0, 0),
+            Quaternion.identity,
+            transform);
+        
+        dropContainer = Instantiate(
+            GameObjectResources("Containers/DropContainer"),
             new Vector3(0, 0, 0),
             Quaternion.identity,
             transform);
