@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static BattleState;
+using Random = System.Random;
 
 public class BattleSystem : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class BattleSystem : MonoBehaviour
     public TextMeshProUGUI dialogText;
     public BattleHUD playerHUD;
     public BattleHUD enemyHUD;
+
+    private Random random = new Random();
 
     void Start()
     {
@@ -139,6 +142,39 @@ public class BattleSystem : MonoBehaviour
         }
     }
 
+    public void TryLeave()
+    {
+        var chance = random.Next(0, 100);
+        StartCoroutine(Leave(chance > 90));
+        // Debug.Log(chance);
+        // if (chance > 90)
+        // {
+        //     state = Left;
+        //     EndBattle();
+        // }
+        //
+        // StartCoroutine(EnemyTurn());
+    }
+
+    IEnumerator Leave(bool left)
+    {
+        if (left)
+        {
+            dialogText.text = $@"{playerUnit.unitName} ran away";
+            
+            yield return new WaitForSeconds(1f);
+
+            state = Left;
+            EndBattle();
+        } 
+        
+        dialogText.text = $@"{playerUnit.unitName} failed to ran away";
+        
+        yield return new WaitForSeconds(0.5f);
+
+        StartCoroutine(EnemyTurn());
+    }
+
     // IEnumerator Turn(Unit attacker, Unit defender)
     // {
     //     
@@ -147,7 +183,7 @@ public class BattleSystem : MonoBehaviour
     private void EndBattle()
     {
         GameManager.Instance.state = GameState.Maze;
-        if (state == Won)
+        if (state == Won || state == Left)
         {
             SceneManager.LoadScene(GameManager.Instance.level + 1);
             GameManager.Instance.player.health = playerUnit.health;
