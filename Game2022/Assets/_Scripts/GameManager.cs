@@ -85,7 +85,7 @@ public class GameManager : MonoBehaviour
 
     public void DestroyLoot()
     {
-        foreach (var loot in monsterContainer.transform)
+        foreach (var loot in lootContainer.transform)
             Destroy(((Transform)loot).gameObject);
     }
 

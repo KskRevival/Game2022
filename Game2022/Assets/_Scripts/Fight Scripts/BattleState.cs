@@ -4,5 +4,6 @@
     PlayerTurn,
     EnemyTurn,
     Won,
-    Lost
+    Lost,
+    Left
 }

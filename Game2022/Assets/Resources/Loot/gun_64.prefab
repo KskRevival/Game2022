@@ -100,7 +100,7 @@ MonoBehaviour:
   itemData:
     type: 0
     itemSpawnIndex: 0
-  Damage: 4
+  damage: 2
 --- !u!114 &5115372989432420883
 MonoBehaviour:
   m_ObjectHideFlags: 0
