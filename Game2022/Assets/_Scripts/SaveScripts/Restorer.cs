@@ -8,7 +8,9 @@ namespace SaveScripts
     {
         public static GameObject RestoreInventoryItem(InventorySaveData isd)
         {
-            return RestoreItem(isd.itemData).GetComponent<ItemBehaviour>().itemInInventory;
+            return isd?.itemData == null
+                ? null
+                : RestoreItem(isd.itemData).GetComponent<ItemBehaviour>().itemInInventory;
         }
 
         public static GameObject RestoreItem(ItemData itemData)
@@ -18,7 +20,7 @@ namespace SaveScripts
 
         public static GameObject RestoreMonster()
         {
-            return GenerationData.Objects[(int) Spawnable.Monster][GameManager.Instance.level];
+            return GenerationData.Objects[(int) Spawnable.Monster][GameManager.Instance.level - 1];
         }
     }
 }

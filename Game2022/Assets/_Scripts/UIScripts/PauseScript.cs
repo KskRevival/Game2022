@@ -52,7 +52,7 @@ namespace UIScripts
             player.gameObject.transform.position = PositionToVector2(data.playerData.position);
             player.id.items =
                 data.playerData.id
-                    .Where(id => id.itemData != null)
+                    //.Where(id => id.itemData != null)
                     .Select(Restorer.RestoreInventoryItem)
                     .ToArray();
             player.health = data.playerData.health;
@@ -66,8 +66,9 @@ namespace UIScripts
             var monsters = data.monsterData;
             foreach (var monster in monsters)
             {
+                var m = Restorer.RestoreMonster();
                 Instantiate(
-                    Restorer.RestoreMonster(),
+                    m,
                     PositionToVector2(monster.position),
                     Quaternion.identity,
                     GameManager.Instance.monsterContainer.transform);
@@ -85,7 +86,7 @@ namespace UIScripts
                     Restorer.RestoreItem(item.itemData),
                     PositionToVector2(item.position),
                     Quaternion.identity,
-                    GameManager.Instance.monsterContainer.transform);
+                    GameManager.Instance.lootContainer.transform);
             }
 
             #endregion
