@@ -1315,7 +1315,7 @@ GameObject:
   - component: {fileID: 1237024801}
   - component: {fileID: 1237024800}
   m_Layer: 11
-  m_Name: Cube
+  m_Name: VHS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
