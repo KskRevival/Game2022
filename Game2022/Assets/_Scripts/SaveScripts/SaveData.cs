@@ -45,8 +45,8 @@ namespace SaveScripts
         //public MovementData md;
         public InventorySaveData[] id;
 
-        public float health;
-        public float maxHealth;
+        public int health;
+        public int maxHealth;
 
         public PlayerData(Player player)
         {

@@ -1509,7 +1509,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  player: {fileID: 4810624416362252565, guid: 6a6deafdb9f77c54688bd6944544188b, type: 3}
+  playerInFight: {fileID: 4810624416362252565, guid: 6a6deafdb9f77c54688bd6944544188b, type: 3}
   enemy: {fileID: 2562134793287347517, guid: 0427eff6da8c2b842a551fec94a0c519, type: 3}
   playerBattleStation: {fileID: 564779564}
   enemyBattleStation: {fileID: 1333271684}
