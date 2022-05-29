@@ -109,7 +109,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerDefence()
     {
-        playerUnit.defence = Math.Min(enemyUnit.damage, playerUnit.defence + playerUnit.defenceStack);
+        playerUnit.defence = Math.Min(enemyUnit.damage + playerUnit.minimalDefence, playerUnit.defence + playerUnit.defenceStack);
         dialogText.text = $@"{playerUnit.unitName} have {playerUnit.defence} armor";
         playerHUD.armorText.text = playerUnit.defence.ToString();
         yield return new WaitForSeconds(0.5f);
@@ -125,7 +125,9 @@ public class BattleSystem : MonoBehaviour
 
         yield return new WaitForSeconds(0.5f);
 
-        dialogText.text = $@"{enemyUnit.unitName} deals {enemyUnit.damage - playerUnit.defence} damage";
+        var damage = Math.Max(0, enemyUnit.damage - playerUnit.defence);
+        
+        dialogText.text = $@"{enemyUnit.unitName} deals {damage} damage";
         var dead = playerUnit.TakeDamage(enemyUnit.damage - playerUnit.defence);
         playerHUD.SetHP(playerUnit.health);
 

@@ -7,6 +7,7 @@
         Ammo,
         Monster,
         Weapon,
+        Armor,
         Size
     }
 }

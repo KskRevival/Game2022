@@ -1,5 +1,4 @@
-﻿using LabyrinthScripts;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace RoomGeneration
 {
@@ -10,8 +9,19 @@ namespace RoomGeneration
             50, //nothing
             25, //ammo
             12, //food
-            8, //monster
-            5 //weapon
+            6, //monster
+            5, //weapon
+            3 //armor
+        };
+
+        private static readonly int[] AmmoChances =
+        {
+            100
+        };
+
+        private static GameObject[] Ammo =
+        {
+            GameManager.GameObjectResources("Loot/ammo")
         };
 
         private static GameObject[] Food =
@@ -54,14 +64,16 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-        private static readonly int[] AmmoChances =
+        private static readonly GameObject[] Armor =
         {
-            100
+            GameManager.GameObjectResources("Loot/ArmorBad"),
+            GameManager.GameObjectResources("Loot/ArmorGood")
         };
 
-        private static GameObject[] Ammo =
+        private static readonly int[] ArmorChances =
         {
-            GameManager.GameObjectResources("Loot/ammo")
+            75,
+            25
         };
 
         public static int[][] Chances =
@@ -70,7 +82,8 @@ namespace RoomGeneration
             FoodChances,
             AmmoChances,
             MonsterChances,
-            WeaponChances
+            WeaponChances,
+            ArmorChances
         };
 
         public static GameObject[][] Objects =
@@ -79,7 +92,8 @@ namespace RoomGeneration
             Food,
             Ammo,
             Monsters,
-            Weapons
+            Weapons,
+            Armor
         };
     }
 }
