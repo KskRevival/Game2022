@@ -1,32 +1,32 @@
 using System.Collections;
-using System.Collections.Generic;
-using LabyrinthScripts;
-using SaveScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class EnterFightOnCollision: MonoBehaviour
+namespace Fight_Scripts
 {
-    public int fightPrefabIndex;
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class EnterFightOnCollision: MonoBehaviour
     {
-        if (!collision.gameObject.CompareTag("Player")) return;
+        public int fightPrefabIndex;
 
-        // Debug.Log("Fight is active");
-        // SaveAndLoad.SaveGame();
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (!collision.gameObject.CompareTag("Player")) return;
 
-        FightPreparation.SetFightPrefab(fightPrefabIndex);
-        GameManager.Instance.state = GameState.Fight;
-        SceneManager.LoadScene("FightScene");
+            // Debug.Log("Fight is active");
+            // SaveAndLoad.SaveGame();
 
-        StartCoroutine(DestroyMonster());
-    }
+            FightPreparation.SetFightPrefab(fightPrefabIndex);
+            GameManager.Instance.state = GameState.Fight;
+            SceneManager.LoadScene("FightScene");
 
-    private IEnumerator DestroyMonster()
-    {
-        yield return new WaitForSeconds(1f);
+            StartCoroutine(DestroyMonster());
+        }
 
-        Destroy(gameObject);
+        private IEnumerator DestroyMonster()
+        {
+            yield return new WaitForSeconds(1f);
+
+            Destroy(gameObject);
+        }
     }
 }

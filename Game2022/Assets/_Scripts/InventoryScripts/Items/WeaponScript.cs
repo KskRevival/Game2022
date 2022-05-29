@@ -5,5 +5,5 @@ using UnityEngine;
 
 public class WeaponScript : EquippedItem
 {
-    public int Damage;
+    public int damage;
 }

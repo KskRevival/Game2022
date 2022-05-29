@@ -11,6 +11,7 @@ public class DragScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.state == GameState.Fight) return;
         var draggedItem = GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().DraggedItem;
         FollowCursor();
         if (draggedItem != null)

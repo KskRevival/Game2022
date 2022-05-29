@@ -23,7 +23,7 @@ namespace RoomGeneration
             var loot = Instantiate(
                 item,
                 new Vector2(
-                    position.x + pos / Side,
+                    position.x + pos / Side + 1,
                     position.y - pos % Side - 1),
                 Quaternion.identity,
                 container);

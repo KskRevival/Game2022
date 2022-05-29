@@ -14,8 +14,8 @@ namespace PlayerScripts
         public MovementData md;
         public InventoryData id;
 
-        public float health;
-        public float maxHealth;
+        public int health;
+        public int maxHealth;
 
         void Update()
         {
@@ -48,7 +48,7 @@ namespace PlayerScripts
             md.rb.MovePosition(md.rb.position + md.movement * (md.speed * Time.fixedDeltaTime * speedMultiplier));
         }
 
-        public void TakeDamage(float amount)
+        public void TakeDamage(int amount)
         {
             health -= amount;
             if (health > 0) return;
@@ -83,7 +83,9 @@ namespace PlayerScripts
 
         public bool HasItemInIndex(int index) => id.items[index] != null;
         
-        public int GetWeaponDamage() => id.Weapon.Item.GetComponent<WeaponScript>().Damage;
+        public int GetWeaponDamage() => id.Weapon?.Item.GetComponent<WeaponScript>().damage ?? 0;
+
+        public int GetArmor() => id.Armor?.Item.GetComponent<ArmorScript>().armor ?? 0;
 
         private bool IsWeapon(GameObject item) => item.GetComponent<WeaponScript>() != null;
 
