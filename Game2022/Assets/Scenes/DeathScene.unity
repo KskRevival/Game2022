@@ -563,6 +563,7 @@ GameObject:
   - component: {fileID: 1428288183}
   - component: {fileID: 1428288185}
   - component: {fileID: 1428288182}
+  - component: {fileID: 1428288186}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -649,6 +650,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DeathMenu: {fileID: 369929778}
   VideoPlayerUI: {fileID: 997114120}
+--- !u!114 &1428288186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1428288181}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e4b4e36b2b2d4e4cab4c0fa202f2aa0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CameraYDelta: 0
+  dampTime: 0.15
+  target: {fileID: 0}
+  camera: {fileID: 1428288183}
+  IsCameraLockedByX: 0
 --- !u!1 &1561057618
 GameObject:
   m_ObjectHideFlags: 0
