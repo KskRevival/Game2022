@@ -38,7 +38,7 @@ namespace MonsterScripts
             animator.SetFloat(Animator.StringToHash("Horizontal"), GetHorizontal());
             animator.SetFloat(Animator.StringToHash("Vertical"), GetVertical());
             animator.SetFloat(Animator.StringToHash("Speed"), moveSpeed);
-            animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 0.8f : 0.3f;
+            animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 0.8f : 0.5f;
             monsterRigidbody.MovePosition(transform.position + (Vector3)enemyDirection * (moveSpeed * Time.fixedDeltaTime));
         }
 
