@@ -8,6 +8,7 @@ namespace MonsterScripts
         public Vector2 monsterTargetLocation;
         public Vector2 enemyDirection;
         public Rigidbody2D monsterRigidbody;
+        public Animator animator;
 
         public float moveSpeed;
         public float standardSpeed;
@@ -34,6 +35,10 @@ namespace MonsterScripts
 
         public void MoveEnemy()
         {
+            animator.SetFloat(Animator.StringToHash("Horizontal"), 0);
+            animator.SetFloat(Animator.StringToHash("Vertical"), -1f);
+            animator.SetFloat(Animator.StringToHash("Speed"), moveSpeed);
+            animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 1f : 0.7f;
             monsterRigidbody.MovePosition(transform.position + (Vector3)enemyDirection * (moveSpeed * Time.fixedDeltaTime));
         }
 
