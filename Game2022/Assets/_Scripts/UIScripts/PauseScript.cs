@@ -45,7 +45,9 @@ namespace UIScripts
         public void Load()
         {
             var data = SaveAndLoad.LoadGame();
-
+            
+            AmmoCounter.AmmoCount = data.ammo;
+            
             #region load player
 
             var player = GameManager.Instance.player;

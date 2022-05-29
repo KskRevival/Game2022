@@ -1,4 +1,5 @@
 using InventoryScripts;
+using InventoryScripts.Items;
 using UnityEngine;
 using static RoomGeneration.Spawnable;
 
@@ -41,7 +42,7 @@ namespace RoomGeneration
 
         void AddItemData(GameObject loot)
         {
-            if (type == Monster || type == Ammo) return;
+            if (type == Monster) return;
             var itemData = loot.GetComponent<ItemBehaviour>().itemData;
             itemData.type = type;
             itemData.itemSpawnIndex = itemSpawnIndex;

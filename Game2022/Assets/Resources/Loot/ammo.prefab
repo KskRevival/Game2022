@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 7926272395053351125}
   - component: {fileID: 7843967015901881701}
-  - component: {fileID: -4506815414315476174}
   - component: {fileID: 6840143483033500657}
+  - component: {fileID: 7197892737487806613}
   m_Layer: 0
   m_Name: ammo
   m_TagString: Untagged
@@ -84,18 +84,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-4506815414315476174
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4856409537395035044}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f2f5d76b548b20140960dbc94c757eaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!61 &6840143483033500657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -122,3 +110,19 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.64, y: 0.64}
   m_EdgeRadius: 0
+--- !u!114 &7197892737487806613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856409537395035044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729ee9faaafb10546a5f18ba1634989c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemInInventory: {fileID: 0}
+  itemData:
+    type: 0
+    itemSpawnIndex: 0

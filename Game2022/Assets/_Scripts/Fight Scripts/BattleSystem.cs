@@ -25,8 +25,8 @@ public class BattleSystem : MonoBehaviour
     public Transform playerBattleStation;
     public Transform enemyBattleStation;
 
-    private Unit playerUnit;
-    private Unit enemyUnit;
+    public Unit playerUnit;
+    public Unit enemyUnit;
 
     public TextMeshProUGUI dialogText;
     public BattleHUD playerHUD;

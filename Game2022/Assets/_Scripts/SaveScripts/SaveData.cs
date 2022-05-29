@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml.Serialization;
 using InventoryScripts;
+using InventoryScripts.Items;
 using LabyrinthScripts;
 using PlayerScripts;
 using RoomGeneration;
@@ -13,12 +14,14 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
+        public int ammo;
         public PlayerData playerData;
         public MonsterData[] monsterData;
         public LootData[] lootData;
 
         public SaveData()
         {
+            ammo = AmmoCounter.AmmoCount;
             playerData = new PlayerData(GameManager.Instance.player);
             monsterData = GetMonsterData();
             lootData = GetLootData();

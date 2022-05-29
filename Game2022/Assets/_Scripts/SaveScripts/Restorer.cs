@@ -15,7 +15,12 @@ namespace SaveScripts
 
         public static GameObject RestoreItem(ItemData itemData)
         {
-            return GenerationData.Objects[(int) itemData.type][itemData.itemSpawnIndex];
+            var item =  GenerationData.Objects[(int) itemData.type][itemData.itemSpawnIndex];
+            var data = item.GetComponent<ItemBehaviour>().itemData;
+            data.type = itemData.type;
+            data.itemSpawnIndex = itemData.itemSpawnIndex;
+            
+            return item;
         }
 
         public static GameObject RestoreMonster()
