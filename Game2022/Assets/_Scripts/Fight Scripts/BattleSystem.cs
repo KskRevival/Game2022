@@ -84,6 +84,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         playerUnit.damage = 2 + player.GetWeaponDamage();
+        if (playerUnit.damage >= 4) AmmoCounter.AmmoCount = Math.Max(0, AmmoCounter.AmmoCount - 1);
         var dead = enemyUnit.TakeDamage(playerUnit.damage - enemyUnit.defence);
         enemyHUD.SetHP(enemyUnit.health);
         dialogText.text = $@"{playerUnit.unitName} deals {playerUnit.damage - enemyUnit.defence} damage";

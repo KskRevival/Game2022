@@ -84,7 +84,12 @@ namespace PlayerScripts
 
         public bool HasItemInIndex(int index) => id.items[index] != null;
         
-        public int GetWeaponDamage() => id.Weapon?.Item.GetComponent<WeaponScript>().damage ?? 0;
+        public int GetWeaponDamage()
+        {
+            if (id.Weapon == null) return 0;
+            if (AmmoCounter.AmmoCount == 0) return 1;
+            return id.Weapon.Item.GetComponent<WeaponScript>().damage;
+        }
 
         public int GetArmor() => id.Armor?.Item.GetComponent<ArmorScript>().armor ?? 0;
 
