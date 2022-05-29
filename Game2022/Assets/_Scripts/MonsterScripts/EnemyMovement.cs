@@ -35,12 +35,20 @@ namespace MonsterScripts
 
         public void MoveEnemy()
         {
-            animator.SetFloat(Animator.StringToHash("Horizontal"), 0);
-            animator.SetFloat(Animator.StringToHash("Vertical"), -1f);
+            animator.SetFloat(Animator.StringToHash("Horizontal"), GetHorizontal());
+            animator.SetFloat(Animator.StringToHash("Vertical"), GetVertical());
             animator.SetFloat(Animator.StringToHash("Speed"), moveSpeed);
-            animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 1f : 0.7f;
+            animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 0.8f : 0.3f;
             monsterRigidbody.MovePosition(transform.position + (Vector3)enemyDirection * (moveSpeed * Time.fixedDeltaTime));
         }
+
+        private float GetHorizontal() => !(Mathf.Abs(angle) < Mathf.PI / 4 || Mathf.Abs(angle) > 3 * Mathf.PI / 4)
+            ? 0
+            : Mathf.Abs(angle) < Mathf.PI / 4 ? 1 : -1;
+
+        private float GetVertical() => Mathf.Abs(angle) < Mathf.PI / 4 || Mathf.Abs(angle) > 3 * Mathf.PI / 4
+            ? 0
+            : angle > 0 ? 1 : -1;
 
         public Vector2 GetMovePosition(Vector3 target) => target - transform.position;
 
