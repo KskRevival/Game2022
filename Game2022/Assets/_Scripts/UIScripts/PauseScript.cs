@@ -45,9 +45,9 @@ namespace UIScripts
         public void Load()
         {
             var data = SaveAndLoad.LoadGame();
-            
+
             AmmoCounter.AmmoCount = data.ammo;
-            
+
             #region load player
 
             var player = GameManager.Instance.player;
@@ -55,7 +55,16 @@ namespace UIScripts
             player.id.items =
                 data.playerData.id
                     //.Where(id => id.itemData != null)
-                    .Select(Restorer.RestoreInventoryItem)
+                    .Select(x =>
+                    {
+                        var restored = Restorer.RestoreInventoryItem(x);
+                        if (restored == null) return null;
+                        return Instantiate(
+                            restored,
+                            new Vector3(-999, 999, -999),
+                            Quaternion.identity,
+                            GameManager.Instance.dropContainer.transform);
+                    })
                     .ToArray();
             player.health = data.playerData.health;
             player.maxHealth = data.playerData.maxHealth;
