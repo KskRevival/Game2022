@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 5105104691073383653}
   - component: {fileID: 5105104691073383658}
   - component: {fileID: 5105104691073383659}
+  - component: {fileID: 7959209663184290}
   m_Layer: 6
   m_Name: Monster
   m_TagString: Untagged
@@ -240,6 +241,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isChasingPlayer: 0
   isPlayerLost: 0
+--- !u!114 &7959209663184290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5105104691073377053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e7e6f6aa1d3e4c4a93bdbefb80c827b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MonsterRadius: 12
+  MonsterFootsteps: {fileID: 8300000, guid: 86a75cb4d3e4e2a49ae09d0332bc0c04, type: 3}
+  MonsterIdle: {fileID: 8300000, guid: 40b78e6059f96c6438d64b79f74bec65, type: 3}
+  MonsterChase:
+  - {fileID: 8300000, guid: fe0fcb0578b456543a74f33dc6317208, type: 3}
+  - {fileID: 8300000, guid: 3b7cd658ec2d6c24bbb33355fa63a7e8, type: 3}
+  - {fileID: 8300000, guid: 795d4087af18c854fbf33b57c02ada43, type: 3}
 --- !u!1 &5105104691461656587
 GameObject:
   m_ObjectHideFlags: 0
