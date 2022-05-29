@@ -10,6 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9202713421508866719}
   - component: {fileID: 7375626478479426627}
+  - component: {fileID: 2262923633633456876}
+  - component: {fileID: 7513877268569905094}
+  - component: {fileID: 6019533868315247412}
+  - component: {fileID: 6154725030350596857}
   m_Layer: 0
   m_Name: mayonnaise_64
   m_TagString: Untagged
@@ -82,3 +86,61 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2262923633633456876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274161749672404682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4685ead1ee4ae47a18f569fcf92f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemOnScene: {fileID: 3274161749672404682, guid: b65d79592865ec94bb9b79f1131f904e, type: 3}
+--- !u!114 &7513877268569905094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274161749672404682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827e07cf0324663a63e332b2989c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0
+--- !u!114 &6019533868315247412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274161749672404682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827e07cf0324663a63e332b2989c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0
+--- !u!114 &6154725030350596857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3274161749672404682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 916d858aaedb64a4483d8e1caed4211e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0

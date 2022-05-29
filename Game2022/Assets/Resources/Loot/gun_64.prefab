@@ -10,6 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 4539562529354479146}
   - component: {fileID: 5889233019826089798}
+  - component: {fileID: 6416269992374745375}
+  - component: {fileID: 5115372989432420883}
+  - component: {fileID: -2487809933774001322}
   m_Layer: 0
   m_Name: gun_64
   m_TagString: Untagged
@@ -26,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 8099610830076861145}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -82,3 +85,47 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &6416269992374745375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099610830076861145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9335681f8e4b38542a1bd886338d425a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0
+  damage: 2
+--- !u!114 &5115372989432420883
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099610830076861145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d4685ead1ee4ae47a18f569fcf92f1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ItemOnScene: {fileID: 8099610830076861145, guid: 0c3ad5ec74b66bd4a9f678a789553f1c, type: 3}
+--- !u!114 &-2487809933774001322
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8099610830076861145}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a827e07cf0324663a63e332b2989c0bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemData:
+    type: 0
+    itemSpawnIndex: 0
