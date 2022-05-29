@@ -27,7 +27,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             InitGame();
         }
-        else if (Instance != this) Destroy(gameObject);
+        else if (Instance != this && Instance.level == level) Destroy(gameObject);
     }
 
     public static void DestroyPlayer()

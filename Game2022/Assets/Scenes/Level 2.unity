@@ -442,7 +442,7 @@ MonoBehaviour:
   dropContainer: {fileID: 0}
   data: {fileID: 640841569}
   dungeonGenerator: {fileID: 640841570}
-  level: 1
+  level: 2
 --- !u!4 &640841572
 Transform:
   m_ObjectHideFlags: 0

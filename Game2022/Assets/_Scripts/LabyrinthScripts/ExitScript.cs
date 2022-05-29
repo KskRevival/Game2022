@@ -5,11 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class ExitScript : MonoBehaviour
 {
+    private GameObject manager;
+    
     void OnCollisionEnter2D(Collision2D collision)
     {
         if (!collision.gameObject.CompareTag("Player")) return;
         var level = GameManager.Instance.level;
-        Destroy(GameManager.Instance);
+        Destroy(GameManager.Instance.gameObject);
         SceneManager.LoadScene(level + 2);
     }
 }
