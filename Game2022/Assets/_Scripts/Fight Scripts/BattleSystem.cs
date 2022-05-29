@@ -49,6 +49,7 @@ public class BattleSystem : MonoBehaviour
         playerUnit.health = player.health;
         playerUnit.maxHealth = player.maxHealth;
         playerUnit.minimalDefence = player.GetArmor();
+        playerHUD.SetHP(playerUnit.health);
     }
 
     IEnumerator SetUpBattle()
