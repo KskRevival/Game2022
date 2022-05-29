@@ -34,7 +34,9 @@ public class ChasePlayer : MonoBehaviour
             enemyMovement.MoveEnemy();
 
         if (IsMonsterReachedLastPlayerLocation())
+        {
             isChasingPlayer = false;
+        }
     }
 
     private void UpdatePlayerLocation()

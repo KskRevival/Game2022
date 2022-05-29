@@ -72,8 +72,8 @@ public class MonsterSounds : MonoBehaviour
 
     private AudioClip GetRandomRoar()
     {
-        var randomIndex = Random.Range(0, 2);
-        if (randomIndex == previousIndex) randomIndex = (previousIndex + randomIndex) % MonsterChase.Length;
+        var randomIndex = Random.Range(0, MonsterChase.Length - 1);
+        if (randomIndex == previousIndex) randomIndex = (previousIndex + 1) % MonsterChase.Length;
         previousIndex = randomIndex;
 
         return MonsterChase[randomIndex];
