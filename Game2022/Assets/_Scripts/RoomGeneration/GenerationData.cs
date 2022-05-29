@@ -7,10 +7,11 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            75, //nothing
+            50, //nothing
+            25, //ammo
             12, //food
             8, //monster
-            5   //weapon
+            5 //weapon
         };
 
         private static GameObject[] Food =
@@ -53,21 +54,32 @@ namespace RoomGeneration
             5 //missle-launcher
         };
 
-    public static int[][] Chances =
-    {
-        SpawnChances,
-        FoodChances,
-        MonsterChances,
-        WeaponChances
-    };
+        private static readonly int[] AmmoChances =
+        {
+            100
+        };
 
-    public static GameObject[][] Objects =
-    {
-        null,
-        Food,
-        Monsters,
-        Weapons
-    };
-}
+        private static GameObject[] Ammo =
+        {
+            GameManager.GameObjectResources("Loot/ammo")
+        };
 
+        public static int[][] Chances =
+        {
+            SpawnChances,
+            FoodChances,
+            AmmoChances,
+            MonsterChances,
+            WeaponChances
+        };
+
+        public static GameObject[][] Objects =
+        {
+            null,
+            Food,
+            Ammo,
+            Monsters,
+            Weapons
+        };
+    }
 }

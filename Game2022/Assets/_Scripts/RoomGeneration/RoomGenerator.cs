@@ -29,7 +29,7 @@ namespace RoomGeneration
             var loot = Instantiate(
                 item,
                 new Vector2(
-                    position.x + pos / Side,
+                    position.x + pos / Side + 1,
                     position.y - pos % Side - 1),
                 Quaternion.identity,
                 container);
@@ -41,7 +41,7 @@ namespace RoomGeneration
 
         void AddItemData(GameObject loot)
         {
-            if (type == Monster) return;
+            if (type == Monster || type == Ammo) return;
             var itemData = loot.GetComponent<ItemBehaviour>().itemData;
             itemData.type = type;
             itemData.itemSpawnIndex = itemSpawnIndex;

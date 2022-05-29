@@ -4,6 +4,7 @@
     {
         Empty,
         Food,
+        Ammo,
         Monster,
         Weapon,
         Size
