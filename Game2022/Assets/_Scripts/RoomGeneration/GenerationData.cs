@@ -26,14 +26,16 @@ namespace RoomGeneration
 
         private static GameObject[] Food =
         {
+            GameManager.GameObjectResources("Loot/redbull"),
             GameManager.GameObjectResources("Loot/mayo"),
-            GameManager.GameObjectResources("Loot/redbull")
+            GameManager.GameObjectResources("Loot/egor")
         };
 
         private static readonly int[] FoodChances =
         {
-            50, //food
-            50 //water
+            50, //water
+            25, //mayo
+            25  //egor
         };
 
         private static GameObject[] Monsters =
