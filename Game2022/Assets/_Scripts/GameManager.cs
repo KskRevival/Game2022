@@ -1,5 +1,7 @@
+using System.Linq;
 using LabyrinthScripts;
 using PlayerScripts;
+using SaveScripts;
 using Unity.Mathematics;
 using UnityEngine;
 
@@ -30,9 +32,27 @@ public class GameManager : MonoBehaviour
         else if (Instance != this && Instance.level == level) Destroy(gameObject);
     }
 
-    public static void DestroyPlayer()
+    public static void LoadPlayer()
     {
-        Destroy(GameObject.FindWithTag("Player"));
+        var data = SaveAndLoad.LoadGame();
+        
+        var player = Instance.player;
+        player.id.items =
+            data.playerData.id
+                //.Where(id => id.itemData != null)
+                .Select(x =>
+                {
+                    var restored = Restorer.RestoreInventoryItem(x);
+                    if (restored == null) return null;
+                    return Instantiate(
+                        restored,
+                        new Vector3(-999, 999, -999),
+                        Quaternion.identity,
+                        GameManager.Instance.dropContainer.transform);
+                })
+                .ToArray();
+        player.health = data.playerData.health;
+        player.maxHealth = data.playerData.maxHealth;
     }
 
     void InitGame()
@@ -41,6 +61,7 @@ public class GameManager : MonoBehaviour
         dungeonGenerator = GetComponent<DungeonGenerator>();
         dungeonGenerator.Generate(data);
         SpawnPlayer();
+        if (level != 1) LoadPlayer();
     }
 
     void InitContainers()
