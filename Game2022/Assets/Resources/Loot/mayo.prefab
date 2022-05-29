@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7375626478479426627}
   - component: {fileID: -675115654185608296}
   - component: {fileID: -307770692165315967}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: mayo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
