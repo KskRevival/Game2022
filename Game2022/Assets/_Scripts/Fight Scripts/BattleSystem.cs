@@ -183,7 +183,7 @@ public class BattleSystem : MonoBehaviour
     //     
     // }
 
-    private void EndBattle()
+    public void EndBattle()
     {
         GameManager.Instance.state = GameState.Maze;
         if (state == Won || state == Left)

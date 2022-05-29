@@ -32,6 +32,7 @@ namespace PlayerScripts
         
         private void FixedUpdate()
         {
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.isPaused) return;
             if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(md.movement))
             {
                 md.animator.speed = 2f;

@@ -6,9 +6,9 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            50, //nothing
+            55, //nothing
             25, //ammo
-            12, //food
+            7, //food
             6, //monster
             5, //weapon
             3 //armor
@@ -52,7 +52,7 @@ namespace RoomGeneration
             GameManager.GameObjectResources("Loot/pistol"),
             GameManager.GameObjectResources("Loot/rifle"),
             GameManager.GameObjectResources("Loot/shotgun"),
-            GameManager.GameObjectResources("Loot/shotgun")
+            GameManager.GameObjectResources("Loot/grenade")
         };
 
         private static readonly int[] WeaponChances =
@@ -61,7 +61,7 @@ namespace RoomGeneration
             20, //pistol
             10, //rifle
             5, //shootgun
-            5 //missle-launcher
+            5 //grenade
         };
 
         private static readonly GameObject[] Armor =
