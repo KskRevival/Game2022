@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class ButtonClick : MonoBehaviour, IPointerClickHandler
 {
     public Player player;
-    
+
     public int SlotIndex;
 
     public UnityEvent leftClick;
@@ -20,7 +20,8 @@ public class ButtonClick : MonoBehaviour, IPointerClickHandler
         switch (eventData.button)
         {
             case PointerEventData.InputButton.Left:
-                player.DragAndDropItem(SlotIndex);
+                if (GameManager.Instance.state != GameState.Fight)
+                    player.DragAndDropItem(SlotIndex);
                 break;
             case PointerEventData.InputButton.Right:
                 UseItem.UseFromSlot(SlotIndex);

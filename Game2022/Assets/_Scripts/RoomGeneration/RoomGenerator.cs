@@ -1,5 +1,7 @@
 using InventoryScripts;
+using InventoryScripts.Items;
 using UnityEngine;
+using static RoomGeneration.Spawnable;
 
 namespace RoomGeneration
 {
@@ -10,16 +12,21 @@ namespace RoomGeneration
         public GameObject leftCorner;
         public Spawnable type;
         public int itemSpawnIndex;
+        public static int roomsCreated;
 
         void Start()
         {
+            roomsCreated++;
             var item = GetItem();
             if (item == null) return;
             var pos = Random.Range(0, CellCount);
             var position = leftCorner.transform.position;
-            var container = type == Spawnable.Monster
+            var container = type == Monster
                 ? GameManager.Instance.monsterContainer.transform
                 : GameManager.Instance.lootContainer.transform;
+            
+            if (type == Monster && roomsCreated < 4) return;
+            
             var loot = Instantiate(
                 item,
                 new Vector2(
@@ -30,10 +37,12 @@ namespace RoomGeneration
             
             AddItemData(loot);
         }
+        
+        
 
         void AddItemData(GameObject loot)
         {
-            if (type == Spawnable.Monster) return;
+            if (type == Monster) return;
             var itemData = loot.GetComponent<ItemBehaviour>().itemData;
             itemData.type = type;
             itemData.itemSpawnIndex = itemSpawnIndex;
@@ -41,8 +50,8 @@ namespace RoomGeneration
 
         GameObject GetItem()
         {
-            type = (Spawnable) GetIndex(Random.Range(0, 100), Spawnable.Empty);
-            return type == Spawnable.Empty
+            type = (Spawnable) GetIndex(Random.Range(0, 100), Empty);
+            return type == Empty
                 ? null
                 : GenerationData.Objects[(int) type][itemSpawnIndex = GetIndex(Random.Range(0, 100), type)];
         }

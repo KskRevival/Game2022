@@ -4,8 +4,10 @@
     {
         Empty,
         Food,
+        Ammo,
         Monster,
         Weapon,
+        Armor,
         Size
     }
 }
