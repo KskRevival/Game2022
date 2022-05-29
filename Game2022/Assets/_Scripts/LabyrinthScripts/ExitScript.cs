@@ -7,11 +7,9 @@ public class ExitScript : MonoBehaviour
 {
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("TODO: Добавить переход между сценами");
-
-            SceneManager.LoadScene("DeathScene");
-        }
+        if (!collision.gameObject.CompareTag("Player")) return;
+        var level = GameManager.Instance.level;
+        Destroy(GameManager.Instance);
+        SceneManager.LoadScene(level + 2);
     }
 }
