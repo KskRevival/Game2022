@@ -10,14 +10,14 @@ namespace UIScripts
     public class CheatScript : MonoBehaviour
     {
         public GameObject cheatMenuUI;
-        
+
         public static Spawnable type;
         public TMP_Dropdown typeDropdown;
-        
+
         public static int index;
+
         public TMP_Dropdown[] indexDropdowns =
         {
-            
         };
 
         void Update()
@@ -60,19 +60,30 @@ namespace UIScripts
         public void SpawnItem()
         {
             if (type == Spawnable.Empty) return;
-            var itemData = new ItemData{itemSpawnIndex = index, type = type};
+            var itemData = new ItemData {itemSpawnIndex = index, type = type};
             var player = GameManager.Instance.player;
             var dropPos = GameObject
                 .FindGameObjectsWithTag("Waypoint")
                 .Select(waypoint => waypoint.transform.position - player.transform.position)
                 .OrderBy(vectorToWaypoint => vectorToWaypoint.magnitude)
                 .First().normalized * 1.7f + player.transform.position;
-            
-            var itemOnScene = Instantiate(
-                Restorer.RestoreItem(itemData),
-                dropPos,
-                Quaternion.identity,
-                GameManager.Instance.lootContainer.transform);
+
+            if (type == Spawnable.Monster)
+            {
+                Instantiate(
+                    Restorer.RestoreMonster(),
+                    dropPos,
+                    Quaternion.identity,
+                    GameManager.Instance.monsterContainer.transform);
+            }
+            else
+            {
+                Instantiate(
+                    Restorer.RestoreItem(itemData),
+                    dropPos,
+                    Quaternion.identity,
+                    GameManager.Instance.lootContainer.transform);
+            }
         }
 
         public void UpdateType()
