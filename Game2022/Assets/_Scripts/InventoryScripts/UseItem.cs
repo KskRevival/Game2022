@@ -1,6 +1,7 @@
 using InventoryScripts.Items;
 using LabyrinthScripts;
 using PlayerScripts;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 namespace InventoryScripts
@@ -52,6 +53,8 @@ namespace InventoryScripts
                 if (GameManager.Instance.state != GameState.Fight)
                 {
                     player.health = 0;
+                    Time.timeScale = 1;
+                    GameManager.Instance.player.gameObject.GetComponentInChildren<InventoryHandler>().SwitchInventory();
                     SceneManager.LoadScene("DeathScene");
                 }
                 else grenadeComponent.ThrowGrenade();

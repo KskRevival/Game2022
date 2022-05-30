@@ -66,6 +66,7 @@ public class GameManager : MonoBehaviour
                 .ToArray();
         player.health = data.playerData.health;
         player.maxHealth = data.playerData.maxHealth;
+        AmmoCounter.AmmoCount = data.ammo;
     }
 
     void InitContainers()

@@ -22,7 +22,7 @@ namespace UIScripts
 
         void Update()
         {
-            if (!Input.GetKeyDown(KeyCode.Backspace)) return;
+            if (!Input.GetKeyDown(KeyCode.Backspace) && !Input.GetKeyDown(KeyCode.BackQuote)) return;
             Debug.Log("Cheats");
             if (PauseScript.IsPaused) Resume();
             else Pause();
