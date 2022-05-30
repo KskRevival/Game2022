@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using RoomGeneration;
 using SaveScripts;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,7 +17,7 @@ public class ExitScript : MonoBehaviour
         var level = GameManager.Instance.level;
         SaveAndLoad.SaveGame();
         Destroy(GameManager.Instance.gameObject);
-        
+        RoomGenerator.roomsCreated = 0;
         SceneManager.LoadScene(level + 2);
     }
 }
