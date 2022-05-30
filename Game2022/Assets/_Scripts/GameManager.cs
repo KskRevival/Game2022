@@ -1,6 +1,7 @@
 using System.Linq;
 using LabyrinthScripts;
 using PlayerScripts;
+using RoomGeneration;
 using SaveScripts;
 using Unity.Mathematics;
 using UnityEngine;
@@ -35,6 +36,7 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
+        RoomGenerator.roomsCreated = 0;
         InitContainers();
         dungeonGenerator = GetComponent<DungeonGenerator>();
         dungeonGenerator.Generate(data);

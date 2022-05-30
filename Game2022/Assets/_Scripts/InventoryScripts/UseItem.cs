@@ -49,7 +49,11 @@ namespace InventoryScripts
             if (grenadeComponent != null)
             {
                 GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
-                if (GameManager.Instance.state != GameState.Fight) SceneManager.LoadScene("DeathScene");
+                if (GameManager.Instance.state != GameState.Fight)
+                {
+                    player.health = 0;
+                    SceneManager.LoadScene("DeathScene");
+                }
                 else grenadeComponent.ThrowGrenade();
             }
         }

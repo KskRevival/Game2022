@@ -187,11 +187,15 @@ public class BattleSystem : MonoBehaviour
     public void EndBattle()
     {
         GameManager.Instance.state = GameState.Maze;
+        GameManager.Instance.player.health = playerUnit.health;
         if (state == Won || state == Left)
         {
             SceneManager.LoadScene(GameManager.Instance.level + 1);
-            GameManager.Instance.player.health = playerUnit.health;
         }
-        else SceneManager.LoadScene("DeathScene");
+        else
+        {
+            
+            SceneManager.LoadScene("DeathScene");
+        }
     }
 }

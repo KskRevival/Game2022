@@ -19,7 +19,7 @@ namespace PlayerScripts
 
         void Update()
         {
-            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused) return;
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused || health <= 0) return;
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
@@ -32,7 +32,7 @@ namespace PlayerScripts
         
         private void FixedUpdate()
         {
-            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused) return;
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused || health <= 0) return;
             if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(md.movement))
             {
                 md.animator.speed = 2f;

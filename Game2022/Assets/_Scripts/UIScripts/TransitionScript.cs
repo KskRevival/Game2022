@@ -19,6 +19,8 @@ namespace UIScripts
         public static void ToLevelSelect()
         {
             Time.timeScale = 1f;
+            if (GameManager.Instance != null)
+                Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(1);
         }
 
@@ -31,6 +33,8 @@ namespace UIScripts
         public static void ToMenu()
         {
             Time.timeScale = 1f;
+            if (GameManager.Instance != null)
+                Destroy(GameManager.Instance.gameObject);
             SceneManager.LoadScene(0);
         }
     
