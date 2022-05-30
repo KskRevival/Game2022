@@ -81,7 +81,7 @@ public class MonsterSounds : MonoBehaviour
 
     private float GetDistanceToPlayer() => (transform.position - player.transform.position).magnitude;
 
-    private bool IsPlayerInMonsterRadius() => GameManager.Instance.state == GameState.Maze && !PauseScript.isPaused && GetDistanceToPlayer() <= MonsterRadius;
+    private bool IsPlayerInMonsterRadius() => GameManager.Instance.state == GameState.Maze && !PauseScript.IsPaused && GetDistanceToPlayer() <= MonsterRadius;
 
     private float GetSoundsVolume() => Mathf.Max(0, MonsterRadius - GetDistanceToPlayer()) / MonsterRadius;
 }

@@ -3,8 +3,8 @@
     public enum Spawnable
     {
         Empty,
-        Food,
         Ammo,
+        Food,
         Monster,
         Weapon,
         Armor,

@@ -6,8 +6,8 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            55, //nothing
-            25, //ammo
+            60, //nothing
+            20, //ammo
             7, //food
             6, //monster
             5, //weapon
@@ -81,8 +81,8 @@ namespace RoomGeneration
         public static int[][] Chances =
         {
             SpawnChances,
-            FoodChances,
             AmmoChances,
+            FoodChances,
             MonsterChances,
             WeaponChances,
             ArmorChances
@@ -91,8 +91,8 @@ namespace RoomGeneration
         public static GameObject[][] Objects =
         {
             null,
-            Food,
             Ammo,
+            Food,
             Monsters,
             Weapons,
             Armor

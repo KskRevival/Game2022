@@ -12,29 +12,29 @@ namespace UIScripts
 {
     public class PauseScript : MonoBehaviour
     {
-        public static bool isPaused;
+        public static bool IsPaused;
         public GameObject pauseMenuUI;
 
         void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
             Debug.Log("Escape");
-            if (isPaused) Resume();
+            if (IsPaused) Resume();
             else Pause();
         }
 
         public void Resume()
         {
-            isPaused = false;
+            IsPaused = false;
             Time.timeScale = 1f;
-            pauseMenuUI.SetActive(isPaused);
+            pauseMenuUI.SetActive(IsPaused);
         }
 
         private void Pause()
         {
-            isPaused = true;
+            IsPaused = true;
             Time.timeScale = 0f;
-            pauseMenuUI.SetActive(isPaused);
+            pauseMenuUI.SetActive(IsPaused);
         }
 
         public void Save()
