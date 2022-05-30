@@ -4,6 +4,7 @@ using PlayerScripts;
 using SaveScripts;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -32,6 +33,16 @@ public class GameManager : MonoBehaviour
         else if (Instance != this && Instance.level == level) Destroy(gameObject);
     }
 
+    void InitGame()
+    {
+        InitContainers();
+        dungeonGenerator = GetComponent<DungeonGenerator>();
+        dungeonGenerator.Generate(data);
+        SpawnPlayer();
+        level = SceneManager.GetActiveScene().buildIndex - 1;
+        if (level != 1) LoadPlayer();
+    }
+
     public static void LoadPlayer()
     {
         var data = SaveAndLoad.LoadGame();
@@ -53,15 +64,6 @@ public class GameManager : MonoBehaviour
                 .ToArray();
         player.health = data.playerData.health;
         player.maxHealth = data.playerData.maxHealth;
-    }
-
-    void InitGame()
-    {
-        InitContainers();
-        dungeonGenerator = GetComponent<DungeonGenerator>();
-        dungeonGenerator.Generate(data);
-        SpawnPlayer();
-        if (level != 1) LoadPlayer();
     }
 
     void InitContainers()
