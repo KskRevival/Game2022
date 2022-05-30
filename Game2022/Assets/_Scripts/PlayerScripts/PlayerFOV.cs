@@ -5,8 +5,7 @@ using UnityEngine;
 public class PlayerFOV : MonoBehaviour
 {
     [SerializeField]
-    public LayerMask[] layerMasks;
-    private LayerMask finalLayerMask;
+    public LayerMask layerMask;
     private Mesh mesh;
     private Vector3 origin;
     private float startingAngle;
@@ -16,21 +15,20 @@ public class PlayerFOV : MonoBehaviour
 
     private void Start()
     {
-        finalLayerMask = layerMasks[0] | layerMasks[1];
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         origin = Vector3.zero;
-        fov = 90f;
+        fov = 110f;
         viewDistance = 3f;
     }
 
     private void Update()
     {
-        var playerPos = GameManager.Instance.player.transform.position + new Vector3(0, 0.8f);
+        var playerPos = GameManager.Instance.player.transform.position + Vector3.up * 0.8f;
 
         if (Input.GetMouseButtonDown(0))
         {
-            SetFOV(fov == 90f ? 40f : 90f);
+            SetFOV(fov == 110f ? 30f : 110f);
             SetViewDistance(viewDistance == 3f ? 7f : 3f);
         }
 
@@ -54,7 +52,7 @@ public class PlayerFOV : MonoBehaviour
         var triangleIndex = 0;
         for (var i = 0; i <= rayCount; i++)
         {
-            var raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, finalLayerMask);
+            var raycastHit2D = Physics2D.Raycast(origin, GetVectorFromAngle(angle), viewDistance, layerMask);
 
             var vertex = raycastHit2D.collider == null
                 ? origin + GetVectorFromAngle(angle) * viewDistance
@@ -103,6 +101,12 @@ public class PlayerFOV : MonoBehaviour
     public void SetOrigin(Vector3 origin)
     {
         this.origin = origin;
+        var raycastHit2D = Physics2D.Raycast(origin, new Vector2(0, -1), viewDistance, layerMask);
+        if (raycastHit2D.collider != null && (raycastHit2D.collider.transform.position - this.origin).magnitude < 1)
+        {
+            Debug.Log(raycastHit2D.collider.transform.position - transform.up * 0.51f);
+            this.origin.y = raycastHit2D.collider.transform.position.y - transform.up.y * 0.51f;
+        }
     }
 
     public void SetAimDirection(Vector3 aimDirection)
