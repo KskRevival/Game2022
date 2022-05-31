@@ -27,7 +27,6 @@ namespace LabyrinthScripts
 
         public GameObject SpawnPlayer()
         {
-            var position = transform.position;
             return Instantiate(
                 //data.player,
                 GameManager.GameObjectResources("Player"),

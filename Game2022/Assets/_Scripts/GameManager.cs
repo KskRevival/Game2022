@@ -36,12 +36,16 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
-        RoomGenerator.roomsCreated = 0;
-        InitContainers();
-        dungeonGenerator = GetComponent<DungeonGenerator>();
-        dungeonGenerator.Generate(data);
-        SpawnPlayer();
         level = SceneManager.GetActiveScene().buildIndex - 1;
+        InitContainers();
+        if (level != 3)
+        {
+            RoomGenerator.roomsCreated = 0;
+            dungeonGenerator = GetComponent<DungeonGenerator>();
+            dungeonGenerator.Generate(data);
+        }
+        SpawnPlayer();
+        if (level == 1) LoadTutorial();
         if (level != 1) LoadPlayer();
         if (level == 2 || level == 4) LoadFlashlight();
     }
@@ -68,6 +72,15 @@ public class GameManager : MonoBehaviour
         player.health = data.playerData.health;
         player.maxHealth = data.playerData.maxHealth;
         AmmoCounter.AmmoCount = data.ammo;
+    }
+
+    public void LoadTutorial()
+    {
+        Instantiate(
+            GameObjectResources("Tutorial"),
+            new Vector3(0,0,0),
+            Quaternion.identity,
+            Instance.transform);
     }
 
     public void LoadFlashlight()
@@ -108,7 +121,18 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        player = dungeonGenerator.SpawnPlayer().GetComponent<Player>();
+        if (level != 3)
+        {
+            player = dungeonGenerator.SpawnPlayer().GetComponent<Player>();
+        }
+        else
+        {
+            player = Instantiate(
+                GameManager.GameObjectResources("PP"),
+                new Vector3(0, 0, 0),
+                Quaternion.identity,
+                parent: transform).GetComponent<Player>();
+        }
         player.md = new MovementData(player.gameObject);
         player.id = new InventoryData();
     }

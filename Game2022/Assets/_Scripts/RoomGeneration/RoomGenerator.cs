@@ -32,7 +32,7 @@ namespace RoomGeneration
                 new Vector2(
                     position.x + pos / Side + 1,
                     position.y - pos % Side - 1),
-                Quaternion.identity,
+                Quaternion.identity,    
                 container);
             
             AddItemData(loot);
