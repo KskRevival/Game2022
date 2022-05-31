@@ -110,7 +110,7 @@ public class BattleSystem : MonoBehaviour
 
     IEnumerator PlayerDefence()
     {
-        playerUnit.defence = Math.Min(enemyUnit.damage + playerUnit.minimalDefence, playerUnit.defence + playerUnit.defenceStack);
+        playerUnit.defence = Math.Min(enemyUnit.damage, playerUnit.defence + playerUnit.defenceStack);
         dialogText.text = $@"{playerUnit.unitName} have {playerUnit.defence} armor";
         playerHUD.armorText.text = playerUnit.defence.ToString();
         yield return new WaitForSeconds(0.5f);
