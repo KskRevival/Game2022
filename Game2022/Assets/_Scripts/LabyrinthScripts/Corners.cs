@@ -1,7 +1,11 @@
 enum Corners
 {
-    UpLeft,
-    UpRight,
-    DownRight,
-    DownLeft
+    InnerUpLeft,
+    InnerUpRight,
+    InnerDownRight,
+    InnerDownLeft,
+    OuterUpLeft,
+    OuterUpRight,
+    OuterDownRight,
+    OuterDownLeft
 }

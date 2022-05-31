@@ -17,9 +17,14 @@ public class RoomBehaviour : MonoBehaviour
             walls[i].SetActive(closed[i]);
         }
 
-        corners[(int)Corners.UpLeft].SetActive(closed[(int)Doors.Up] && closed[(int)Doors.Left]);
-        corners[(int)Corners.UpRight].SetActive(closed[(int)Doors.Up] && closed[(int)Doors.Right]);
-        corners[(int)Corners.DownRight].SetActive(closed[(int)Doors.Down] && closed[(int)Doors.Right]);
-        corners[(int)Corners.DownLeft].SetActive(closed[(int)Doors.Down] && closed[(int)Doors.Left]);
+        corners[(int)Corners.InnerUpLeft].SetActive(closed[(int)Doors.Up] && closed[(int)Doors.Left]);
+        corners[(int)Corners.InnerUpRight].SetActive(closed[(int)Doors.Up] && closed[(int)Doors.Right]);
+        corners[(int)Corners.InnerDownRight].SetActive(closed[(int)Doors.Down] && closed[(int)Doors.Right]);
+        corners[(int)Corners.InnerDownLeft].SetActive(closed[(int)Doors.Down] && closed[(int)Doors.Left]);
+
+        corners[(int)Corners.OuterUpLeft].SetActive(!(closed[(int)Doors.Up] || closed[(int)Doors.Left]));
+        corners[(int)Corners.OuterUpRight].SetActive(!(closed[(int)Doors.Up] || closed[(int)Doors.Right]));
+        corners[(int)Corners.OuterDownRight].SetActive(!(closed[(int)Doors.Down] || closed[(int)Doors.Right]));
+        corners[(int)Corners.OuterDownLeft].SetActive(!(closed[(int)Doors.Down] || closed[(int)Doors.Left]));
     }
 }

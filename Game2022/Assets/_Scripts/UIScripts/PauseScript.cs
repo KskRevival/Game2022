@@ -77,7 +77,7 @@ namespace UIScripts
             var monsters = data.monsterData;
             foreach (var monster in monsters)
             {
-                var m = Restorer.RestoreMonster();
+                var m = Restorer.RestoreMonster(monster);
                 Instantiate(
                     m,
                     PositionToVector2(monster.position),

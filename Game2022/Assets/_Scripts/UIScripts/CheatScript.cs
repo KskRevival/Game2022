@@ -70,8 +70,9 @@ namespace UIScripts
 
             if (type == Spawnable.Monster)
             {
+                var md = new MonsterData(index);
                 Instantiate(
-                    Restorer.RestoreMonster(),
+                    Restorer.RestoreMonster(md),
                     dropPos,
                     Quaternion.identity,
                     GameManager.Instance.monsterContainer.transform);

@@ -88,6 +88,11 @@ namespace SaveScripts
             level = GameManager.Instance.level;
             position = GetTransformPosition(transform);
         }
+
+        public MonsterData(int index)
+        {
+            level = index;
+        }
     }
 
     [Serializable]

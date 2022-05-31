@@ -23,9 +23,9 @@ namespace SaveScripts
             return item;
         }
 
-        public static GameObject RestoreMonster()
+        public static GameObject RestoreMonster(MonsterData md)
         {
-            return GenerationData.Objects[(int) Spawnable.Monster][GameManager.Instance.level - 1];
+            return GenerationData.Objects[(int) Spawnable.Monster][md.level];
         }
     }
 }

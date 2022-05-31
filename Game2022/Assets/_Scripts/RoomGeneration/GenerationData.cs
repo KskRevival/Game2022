@@ -40,12 +40,13 @@ namespace RoomGeneration
 
         private static GameObject[] Monsters =
         {
-            GameManager.GameObjectResources("Monster")
+            GameManager.GameObjectResources("Monster"),
+            GameManager.GameObjectResources("Entity10")
         };
 
         private static readonly int[] MonsterChances =
         {
-            100
+            50, 50
         };
 
         private static GameObject[] Weapons =
