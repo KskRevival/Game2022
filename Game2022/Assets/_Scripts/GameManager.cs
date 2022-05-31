@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         level = SceneManager.GetActiveScene().buildIndex - 1;
         if (level != 1) LoadPlayer();
+        if (level == 2 || level == 4) LoadFlashlight();
     }
 
     public static void LoadPlayer()
@@ -67,6 +68,15 @@ public class GameManager : MonoBehaviour
         player.health = data.playerData.health;
         player.maxHealth = data.playerData.maxHealth;
         AmmoCounter.AmmoCount = data.ammo;
+    }
+
+    public void LoadFlashlight()
+    {
+        Instantiate(
+            GameObjectResources("Flashlight"),
+            new Vector2(1629,-1357),
+            Quaternion.identity,
+            GameManager.Instance.transform);
     }
 
     void InitContainers()
