@@ -2,17 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AudioResourses : MonoBehaviour
+public static class AudioResourses
 {
-    // Start is called before the first frame update
-    void Start()
+    public static AudioClip[] PlayerFootsteps =
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+        GameManager.AudioClipResources("Audio/Sounds/Level 0 Player Footsteps"),
+        GameManager.AudioClipResources("Audio/Sounds/Level 6 Player Footsteps")
+    };
 }

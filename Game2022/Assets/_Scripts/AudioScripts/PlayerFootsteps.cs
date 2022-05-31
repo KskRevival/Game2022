@@ -5,12 +5,13 @@ using UIScripts;
 
 public class PlayerFootsteps : MonoBehaviour
 {
-    public AudioClip audioClip;
+    private AudioClip audioClip;
     private AudioSource audioData;
     private Player player;
 
     void Start()
     {
+        audioClip = AudioResourses.PlayerFootsteps[GameManager.Instance.level - 1];
         player = GameManager.Instance.player;
         audioData = gameObject.AddComponent<AudioSource>();
         audioData.clip = audioClip;

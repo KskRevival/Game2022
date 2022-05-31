@@ -119,6 +119,11 @@ public class GameManager : MonoBehaviour
     {
         return Resources.Load<GameObject>(path);
     }
+
+    public static AudioClip AudioClipResources(string path)
+    {
+        return Resources.Load<AudioClip>(path);
+    }
 }
 
 public enum GameState
