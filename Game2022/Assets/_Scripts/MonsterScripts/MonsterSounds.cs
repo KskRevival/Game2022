@@ -8,9 +8,10 @@ public class MonsterSounds : MonoBehaviour
 {
     public float MonsterRadius;
     public AudioClip MonsterFootsteps;
-    public AudioClip MonsterIdle;
+    public AudioClip[] MonsterIdle;
     public AudioClip[] MonsterChase;
-    private int previousIndex = -1;
+    private int previousRoarIndex = -1;
+    private int previousIdleIndex = -1;
     private Player player;
     private AudioSource footstepsSourse;
     private AudioSource monsterSoundsSourse;
@@ -54,7 +55,7 @@ public class MonsterSounds : MonoBehaviour
         while (true)
         {
             var isChasingPlayer = GetComponent<ChasePlayer>().isChasingPlayer;
-            monsterSoundsSourse.clip = isChasingPlayer ? GetRandomRoar() : MonsterIdle;
+            monsterSoundsSourse.clip = isChasingPlayer ? GetRandomRoar() : GetRandomIdle();
 
             if (IsPlayerInMonsterRadius())
             {
@@ -73,10 +74,19 @@ public class MonsterSounds : MonoBehaviour
     private AudioClip GetRandomRoar()
     {
         var randomIndex = Random.Range(0, MonsterChase.Length - 1);
-        if (randomIndex == previousIndex) randomIndex = (previousIndex + 1) % MonsterChase.Length;
-        previousIndex = randomIndex;
+        if (randomIndex == previousRoarIndex) randomIndex = (previousRoarIndex + 1) % MonsterChase.Length;
+        previousRoarIndex = randomIndex;
 
         return MonsterChase[randomIndex];
+    }
+
+    private AudioClip GetRandomIdle()
+    {
+        var randomIndex = Random.Range(0, MonsterIdle.Length - 1);
+        if (randomIndex == previousIdleIndex) randomIndex = (previousIdleIndex + 1) % MonsterIdle.Length;
+        previousIdleIndex = randomIndex;
+
+        return MonsterIdle[randomIndex];
     }
 
     private float GetDistanceToPlayer() => (transform.position - player.transform.position).magnitude;
