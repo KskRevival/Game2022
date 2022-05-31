@@ -36,6 +36,7 @@ public class BattleSystem : MonoBehaviour
 
     void Start()
     {
+        if (GameManager.Instance.player.health <= 0) EndBattle();
         state = BattleState.Start;
         enemy = FightPreparation.fightPrefab;
         StartCoroutine(SetUpBattle());
