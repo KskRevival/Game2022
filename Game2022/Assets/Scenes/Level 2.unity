@@ -2075,7 +2075,7 @@ MonoBehaviour:
   columns: 8
   rows: 8
   startPos: 0
-  room: {fileID: 1170906356432216999, guid: 61bbde8c18037724fb2be51fa755bdc7, type: 3}
+  room: {fileID: 1170906356432216999, guid: 2f9aca66389e2f44c902f7bd5134565a, type: 3}
   player: {fileID: 1668770886433599875, guid: 0bbe5fd1eb7cb7b45acba1b029d4dd01, type: 3}
 --- !u!114 &362863820
 MonoBehaviour:
@@ -11170,7 +11170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4668009689547542362, guid: bf7627caf9826b74c8a09d048340dfc4, type: 3}
       propertyPath: m_Color.a
-      value: 0.83137256
+      value: 0.78431374
       objectReference: {fileID: 0}
     - target: {fileID: 5742155158040823695, guid: bf7627caf9826b74c8a09d048340dfc4, type: 3}
       propertyPath: m_RootOrder
