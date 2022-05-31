@@ -256,7 +256,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MonsterRadius: 12
   MonsterFootsteps: {fileID: 8300000, guid: 86a75cb4d3e4e2a49ae09d0332bc0c04, type: 3}
-  MonsterIdle: {fileID: 8300000, guid: 43dbebf75608afd4a986d5730568346a, type: 3}
+  MonsterIdle:
+  - {fileID: 8300000, guid: 43dbebf75608afd4a986d5730568346a, type: 3}
   MonsterChase:
   - {fileID: 8300000, guid: 6cceb50587c394a48b86036f6ffc12fe, type: 3}
   - {fileID: 8300000, guid: e7ecfb6ea4eb8af4799f2e5f5878f31b, type: 3}
