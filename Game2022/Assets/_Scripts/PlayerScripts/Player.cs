@@ -19,7 +19,7 @@ namespace PlayerScripts
 
         void Update()
         {
-            if (GameManager.Instance.state == GameState.Fight || PauseScript.isPaused) return;
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused || health <= 0) return;
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
@@ -32,6 +32,7 @@ namespace PlayerScripts
         
         private void FixedUpdate()
         {
+            if (GameManager.Instance.state == GameState.Fight || PauseScript.IsPaused || health <= 0) return;
             if (Input.GetKey(KeyCode.LeftShift) && Stamina.IsStaminaAvailable(md.movement))
             {
                 md.animator.speed = 2f;
@@ -83,7 +84,12 @@ namespace PlayerScripts
 
         public bool HasItemInIndex(int index) => id.items[index] != null;
         
-        public int GetWeaponDamage() => id.Weapon?.Item.GetComponent<WeaponScript>().damage ?? 0;
+        public int GetWeaponDamage()
+        {
+            if (id.Weapon == null) return 0;
+            if (AmmoCounter.AmmoCount == 0) return 1;
+            return id.Weapon.Item.GetComponent<WeaponScript>().damage;
+        }
 
         public int GetArmor() => id.Armor?.Item.GetComponent<ArmorScript>().armor ?? 0;
 

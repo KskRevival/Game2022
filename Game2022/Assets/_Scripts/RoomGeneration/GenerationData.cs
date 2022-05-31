@@ -6,9 +6,9 @@ namespace RoomGeneration
     {
         private static readonly int[] SpawnChances =
         {
-            50, //nothing
-            25, //ammo
-            12, //food
+            60, //nothing
+            20, //ammo
+            7, //food
             6, //monster
             5, //weapon
             3 //armor
@@ -26,14 +26,16 @@ namespace RoomGeneration
 
         private static GameObject[] Food =
         {
+            GameManager.GameObjectResources("Loot/redbull"),
             GameManager.GameObjectResources("Loot/mayo"),
-            GameManager.GameObjectResources("Loot/redbull")
+            GameManager.GameObjectResources("Loot/egor")
         };
 
         private static readonly int[] FoodChances =
         {
-            50, //food
-            50 //water
+            50, //water
+            25, //mayo
+            25  //egor
         };
 
         private static GameObject[] Monsters =
@@ -52,7 +54,7 @@ namespace RoomGeneration
             GameManager.GameObjectResources("Loot/pistol"),
             GameManager.GameObjectResources("Loot/rifle"),
             GameManager.GameObjectResources("Loot/shotgun"),
-            GameManager.GameObjectResources("Loot/shotgun")
+            GameManager.GameObjectResources("Loot/grenade")
         };
 
         private static readonly int[] WeaponChances =
@@ -61,7 +63,7 @@ namespace RoomGeneration
             20, //pistol
             10, //rifle
             5, //shootgun
-            5 //missle-launcher
+            5 //grenade
         };
 
         private static readonly GameObject[] Armor =
@@ -79,8 +81,8 @@ namespace RoomGeneration
         public static int[][] Chances =
         {
             SpawnChances,
-            FoodChances,
             AmmoChances,
+            FoodChances,
             MonsterChances,
             WeaponChances,
             ArmorChances
@@ -89,8 +91,8 @@ namespace RoomGeneration
         public static GameObject[][] Objects =
         {
             null,
-            Food,
             Ammo,
+            Food,
             Monsters,
             Weapons,
             Armor

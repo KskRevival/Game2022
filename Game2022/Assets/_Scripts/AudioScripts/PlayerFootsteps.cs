@@ -18,7 +18,7 @@ public class PlayerFootsteps : MonoBehaviour
 
     void Update()
     {
-        if (player.md.movement != default && GameManager.Instance.state == GameState.Maze && !PauseScript.isPaused && !audioData.isPlaying)
+        if (player.md.movement != default && GameManager.Instance.state == GameState.Maze && !PauseScript.IsPaused && !audioData.isPlaying)
         {
             audioData.volume = Random.Range(0.8f, 1);
             audioData.pitch = player.md.speed == MovementData.NormalSpeed ? Random.Range(0.8f, 1f) : Random.Range(1.1f, 1.4f);

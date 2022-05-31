@@ -33,7 +33,7 @@ namespace InventoryScripts
         void Update()
         {
             if (player == null) player = GameManager.Instance.player;
-            if (PauseScript.isPaused) return;
+            if (PauseScript.IsPaused) return;
             if (Input.GetKeyDown(KeyCode.Tab) && GameManager.Instance.state != GameState.Fight) SwitchInventory();
 
             UpdateUI();

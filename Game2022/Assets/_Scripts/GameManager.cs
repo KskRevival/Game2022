@@ -1,7 +1,11 @@
+using System.Linq;
 using LabyrinthScripts;
 using PlayerScripts;
+using RoomGeneration;
+using SaveScripts;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,20 +31,42 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             InitGame();
         }
-        else if (Instance != this) Destroy(gameObject);
-    }
-
-    public static void DestroyPlayer()
-    {
-        Destroy(GameObject.FindWithTag("Player"));
+        else if (Instance != this && Instance.level == level) Destroy(gameObject);
     }
 
     void InitGame()
     {
+        RoomGenerator.roomsCreated = 0;
         InitContainers();
         dungeonGenerator = GetComponent<DungeonGenerator>();
         dungeonGenerator.Generate(data);
         SpawnPlayer();
+        level = SceneManager.GetActiveScene().buildIndex - 1;
+        if (level != 1) LoadPlayer();
+    }
+
+    public static void LoadPlayer()
+    {
+        var data = SaveAndLoad.LoadGame();
+        
+        var player = Instance.player;
+        player.id.items =
+            data.playerData.id
+                //.Where(id => id.itemData != null)
+                .Select(x =>
+                {
+                    var restored = Restorer.RestoreInventoryItem(x);
+                    if (restored == null) return null;
+                    return Instantiate(
+                        restored,
+                        new Vector3(-999, 999, -999),
+                        Quaternion.identity,
+                        GameManager.Instance.dropContainer.transform);
+                })
+                .ToArray();
+        player.health = data.playerData.health;
+        player.maxHealth = data.playerData.maxHealth;
+        AmmoCounter.AmmoCount = data.ammo;
     }
 
     void InitContainers()

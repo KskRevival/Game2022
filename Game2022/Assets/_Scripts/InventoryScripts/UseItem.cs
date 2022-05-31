@@ -1,5 +1,8 @@
+using InventoryScripts.Items;
 using LabyrinthScripts;
 using PlayerScripts;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace InventoryScripts
 {
@@ -16,6 +19,7 @@ namespace InventoryScripts
             var armorComponent = player.id.items[slotIndex].GetComponent<ArmorScript>();
             var healerComponent = player.id.items[slotIndex].GetComponent<HealerScript>();
             var energyDrinkComponent = player.id.items[slotIndex].GetComponent<EnergyDrinkScript>();
+            var grenadeComponent = player.id.items[slotIndex].GetComponent<GrenadeScript>();
 
             if (weaponComponent != null) 
                 player.id.Weapon 
@@ -41,6 +45,19 @@ namespace InventoryScripts
             {
                 GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
                 healerComponent.UseHealer();
+            }
+
+            if (grenadeComponent != null)
+            {
+                GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
+                if (GameManager.Instance.state != GameState.Fight)
+                {
+                    player.health = 0;
+                    Time.timeScale = 1;
+                    GameManager.Instance.player.gameObject.GetComponentInChildren<InventoryHandler>().SwitchInventory();
+                    SceneManager.LoadScene("DeathScene");
+                }
+                else grenadeComponent.ThrowGrenade();
             }
         }
     }

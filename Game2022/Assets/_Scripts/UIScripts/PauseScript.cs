@@ -12,29 +12,29 @@ namespace UIScripts
 {
     public class PauseScript : MonoBehaviour
     {
-        public static bool isPaused;
+        public static bool IsPaused;
         public GameObject pauseMenuUI;
 
         void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Escape)) return;
             Debug.Log("Escape");
-            if (isPaused) Resume();
+            if (IsPaused) Resume();
             else Pause();
         }
 
         public void Resume()
         {
-            isPaused = false;
+            IsPaused = false;
             Time.timeScale = 1f;
-            pauseMenuUI.SetActive(isPaused);
+            pauseMenuUI.SetActive(IsPaused);
         }
 
         private void Pause()
         {
-            isPaused = true;
+            IsPaused = true;
             Time.timeScale = 0f;
-            pauseMenuUI.SetActive(isPaused);
+            pauseMenuUI.SetActive(IsPaused);
         }
 
         public void Save()
@@ -45,9 +45,9 @@ namespace UIScripts
         public void Load()
         {
             var data = SaveAndLoad.LoadGame();
-            
+
             AmmoCounter.AmmoCount = data.ammo;
-            
+
             #region load player
 
             var player = GameManager.Instance.player;
@@ -55,7 +55,16 @@ namespace UIScripts
             player.id.items =
                 data.playerData.id
                     //.Where(id => id.itemData != null)
-                    .Select(Restorer.RestoreInventoryItem)
+                    .Select(x =>
+                    {
+                        var restored = Restorer.RestoreInventoryItem(x);
+                        if (restored == null) return null;
+                        return Instantiate(
+                            restored,
+                            new Vector3(-999, 999, -999),
+                            Quaternion.identity,
+                            GameManager.Instance.dropContainer.transform);
+                    })
                     .ToArray();
             player.health = data.playerData.health;
             player.maxHealth = data.playerData.maxHealth;

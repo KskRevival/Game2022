@@ -190,6 +190,7 @@ MonoBehaviour:
   monsterTargetLocation: {x: 0, y: 0}
   enemyDirection: {x: 1, y: 0}
   monsterRigidbody: {fileID: 0}
+  animator: {fileID: 7932754457571090277}
   moveSpeed: 0
   standardSpeed: 2.5
   chaseSpeed: 4
@@ -353,7 +354,7 @@ Animator:
   m_GameObject: {fileID: 5105104691461656587}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f47e238be073b6149b7d73c6cf405c95, type: 2}
+  m_Controller: {fileID: 9100000, guid: f84d8d94d11308b4280621db174b32aa, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

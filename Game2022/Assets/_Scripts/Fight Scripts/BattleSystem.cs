@@ -84,6 +84,7 @@ public class BattleSystem : MonoBehaviour
     IEnumerator PlayerAttack()
     {
         playerUnit.damage = 2 + player.GetWeaponDamage();
+        if (playerUnit.damage >= 4) AmmoCounter.AmmoCount = Math.Max(0, AmmoCounter.AmmoCount - 1);
         var dead = enemyUnit.TakeDamage(playerUnit.damage - enemyUnit.defence);
         enemyHUD.SetHP(enemyUnit.health);
         dialogText.text = $@"{playerUnit.unitName} deals {playerUnit.damage - enemyUnit.defence} damage";
@@ -183,14 +184,18 @@ public class BattleSystem : MonoBehaviour
     //     
     // }
 
-    private void EndBattle()
+    public void EndBattle()
     {
         GameManager.Instance.state = GameState.Maze;
+        GameManager.Instance.player.health = playerUnit.health;
         if (state == Won || state == Left)
         {
             SceneManager.LoadScene(GameManager.Instance.level + 1);
-            GameManager.Instance.player.health = playerUnit.health;
         }
-        else SceneManager.LoadScene("DeathScene");
+        else
+        {
+            
+            SceneManager.LoadScene("DeathScene");
+        }
     }
 }
