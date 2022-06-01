@@ -2199,11 +2199,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1484264018248046648}
   - component: {fileID: 4199232856228222450}
+  - component: {fileID: 1515082601444921210}
   - component: {fileID: 1853015872001750856}
   - component: {fileID: 2520599718736607230}
   - component: {fileID: 5244777306032186893}
   - component: {fileID: 710244727601466451}
-  - component: {fileID: 1515082601444921210}
   m_Layer: 8
   m_Name: PP
   m_TagString: Player
@@ -2266,7 +2266,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 10
+  m_SortingOrder: -5
   m_Sprite: {fileID: 21300000, guid: 45661302778da7e41aea6b7f3be25540, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -2278,6 +2278,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1515082601444921210
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4388712021389463509}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2016d9038b5548b4d863f7c427379736, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!50 &1853015872001750856
 Rigidbody2D:
   serializedVersion: 4
@@ -2382,25 +2401,6 @@ MonoBehaviour:
     animator: {fileID: 0}
   health: 20
   maxHealth: 20
---- !u!95 &1515082601444921210
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4388712021389463509}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2016d9038b5548b4d863f7c427379736, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5395258659727302404
 GameObject:
   m_ObjectHideFlags: 0

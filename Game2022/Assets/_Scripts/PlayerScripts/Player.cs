@@ -47,6 +47,22 @@ namespace PlayerScripts
             }
             var speedMultiplier = md.movement.x != 0 && md.movement.y != 0 ? 0.75f : 1f;
             md.rb.MovePosition(md.rb.position + md.movement * (md.speed * Time.fixedDeltaTime * speedMultiplier));
+            if (GameManager.Instance.level == 3)
+            {
+                var quaternion = new Quaternion();
+                quaternion.eulerAngles = new Vector3(0, 0, GetAngleFromVectorFloat(md.movement) - 90);
+                gameObject.transform.rotation = quaternion;
+            }
+        }
+
+        private float GetAngleFromVectorFloat(Vector2 dir)
+        {
+            if (dir == default) return 90;
+            dir = dir.normalized;
+            var angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+            if (angle < -180) angle += 360;
+
+            return angle;
         }
 
         public void TakeDamage(int amount)
