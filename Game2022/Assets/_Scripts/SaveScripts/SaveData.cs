@@ -14,6 +14,7 @@ namespace SaveScripts
     [Serializable]
     public class SaveData
     {
+        public int level;
         public int ammo;
         public PlayerData playerData;
         public MonsterData[] monsterData;
@@ -21,6 +22,7 @@ namespace SaveScripts
 
         public SaveData()
         {
+            level = GameManager.Instance.level;
             ammo = AmmoCounter.AmmoCount;
             playerData = new PlayerData(GameManager.Instance.player);
             monsterData = GetMonsterData();
