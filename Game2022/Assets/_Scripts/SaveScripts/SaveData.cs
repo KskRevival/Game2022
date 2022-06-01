@@ -25,6 +25,7 @@ namespace SaveScripts
             level = GameManager.Instance.level;
             ammo = AmmoCounter.AmmoCount;
             playerData = new PlayerData(GameManager.Instance.player);
+            if (level == 3) return;
             monsterData = GetMonsterData();
             lootData = GetLootData();
         }

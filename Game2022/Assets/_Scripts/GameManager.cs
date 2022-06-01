@@ -49,6 +49,7 @@ public class GameManager : MonoBehaviour
         if (level == 1) LoadTutorial();
         if (level != 1) LoadPlayer();
         if (level == 2 || level == 4) LoadFlashlight();
+        SaveAndLoad.SaveGame();
     }
 
     public static void LoadPlayer()

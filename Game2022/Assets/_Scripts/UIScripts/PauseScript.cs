@@ -71,7 +71,9 @@ namespace UIScripts
             player.maxHealth = data.playerData.maxHealth;
 
             #endregion
-
+            
+            if (data.level == 3) return;
+            
             #region load monsters
 
             GameManager.Instance.DestroyMonsters();
