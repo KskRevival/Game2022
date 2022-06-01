@@ -21,6 +21,7 @@ namespace LabyrinthScripts
             CreateBoard();
             MazeGenerator();
             container = GameManager.Instance.roomContainer.transform;
+            if (data.isFull && data.hasBigRooms) BreakWalls();
             GenerateDungeon();
             SpawnExitDoor();
         }
@@ -79,12 +80,59 @@ namespace LabyrinthScripts
             board[currCell].visited = true;
         }
 
-        bool CheckEnd(int currCell)
-        {
-            return data.isFull
+        bool CheckEnd(int currCell) =>
+            data.isFull
                 ? currCell <= board.Length
                 : currCell != board.Length - 1;
 
+        bool IsBorder(int x, int y) =>
+            x == 0 ||
+            y == 0 ||
+            x == data.columns - 1 ||
+            y == data.rows;
+
+        private void BreakWalls()
+        {
+            for (var x = 1; x < data.columns - 1; x++)
+            {
+                for (var y = 1; y < data.rows - 1; y++)
+                {
+                    var currCell = x + y * data.columns;
+                    var neighbours = AllInnerNeighbours(currCell);
+                    var newDoors = GetOpenedDoors();
+                    for (var i = 0; i < newDoors; i++)
+                    {
+                        var newCell = neighbours[Random.Range(0, neighbours.Count)];
+                        UpdateNeighbours(currCell, newCell);
+                    }
+                }
+            }
+        }
+
+        int GetOpenedDoors()
+        {
+            var index = 0;
+            var gen = Random.Range(0, 100);
+            while (index < BigRoomData.breakChances.Length
+                   && BigRoomData.breakChances[index] < gen)
+            {
+                gen -= BigRoomData.breakChances[index++];
+            }
+
+            //Debug.Log(index);
+            return index;
+        }
+
+        List<int> AllInnerNeighbours(int pos)
+        {
+            var list = new List<int>
+            {
+                pos - data.columns, //Up
+                pos + data.columns, //Down
+                pos + 1, //Right
+                pos - 1 //Left
+            };
+            return list;
         }
 
         void UpdateNeighbours(int currCell, int newCell)

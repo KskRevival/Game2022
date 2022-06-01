@@ -58,15 +58,15 @@ namespace RoomGeneration
 
         int GetIndex(int gen, Spawnable spawnable)
         {
-            var index = 0;
-            while (index < GenerationData.Chances[(int) spawnable].Length
-                   && GenerationData.Chances[(int) spawnable][index] < gen)
-            {
-                gen -= GenerationData.Chances[(int) spawnable][index++];
-            }
+                var index = 0;
+                while (index < GenerationData.Chances[(int) spawnable].Length
+                       && GenerationData.Chances[(int) spawnable][index] < gen)
+                {
+                    gen -= GenerationData.Chances[(int) spawnable][index++];
+                }
 
-            //Debug.Log(index);
-            return index;
+                //Debug.Log(index);
+                return index;
         }
     }
 }
