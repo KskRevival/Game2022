@@ -58,7 +58,7 @@ namespace LabyrinthScripts
             var currCell = data.startPos;
             var path = new Stack<int>();
 
-            while (currCell != board.Length - 1)
+            while (CheckEnd(currCell))
             {
                 board[currCell].visited = true;
                 var neighbours = CheckNeighbours(currCell);
@@ -77,6 +77,14 @@ namespace LabyrinthScripts
             }
 
             board[currCell].visited = true;
+        }
+
+        bool CheckEnd(int currCell)
+        {
+            return data.isFull
+                ? currCell <= board.Length
+                : currCell != board.Length - 1;
+
         }
 
         void UpdateNeighbours(int currCell, int newCell)

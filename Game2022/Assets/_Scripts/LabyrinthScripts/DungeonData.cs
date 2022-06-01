@@ -7,6 +7,7 @@ namespace LabyrinthScripts
     {
         public const int wallCount = 4;
         public Vector2 offset;
+        public bool isFull;
 
         public class Cell
         {
