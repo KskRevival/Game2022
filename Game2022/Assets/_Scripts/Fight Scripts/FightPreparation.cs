@@ -5,6 +5,7 @@ using UnityEngine;
 public static class FightPreparation
 {
     public static GameObject fightPrefab;
+    public static GameObject Camera;
 
     private static readonly GameObject[] fightPrefabs =
     {

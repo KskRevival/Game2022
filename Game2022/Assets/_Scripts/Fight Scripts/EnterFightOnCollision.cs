@@ -17,15 +17,17 @@ namespace Fight_Scripts
 
             FightPreparation.SetFightPrefab(fightPrefabIndex);
             GameManager.Instance.state = GameState.Fight;
+            FightPreparation.Camera = GameObject.FindGameObjectWithTag("MainCamera");
             SceneManager.LoadScene("FightScene");
 
-            StartCoroutine(DestroyMonster());
+            StartCoroutine(DestroyMonsterAndOffCamera());
         }
 
-        private IEnumerator DestroyMonster()
+        private IEnumerator DestroyMonsterAndOffCamera()
         {
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(0.01f);
 
+            FightPreparation.Camera.SetActive(false);
             Destroy(gameObject);
         }
     }

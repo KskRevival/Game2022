@@ -165,7 +165,8 @@ public class GameManager : MonoBehaviour
         Instantiate(
             GameObjectResources($"Cameras/Camera{Instance.level}"),
             new Vector3(0, 0, -10),
-            Quaternion.identity);
+            Quaternion.identity,
+            transform);
     }
 }
 
