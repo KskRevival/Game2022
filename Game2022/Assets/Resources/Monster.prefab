@@ -193,7 +193,7 @@ MonoBehaviour:
   animator: {fileID: 7932754457571090277}
   moveSpeed: 0
   standardSpeed: 3
-  chaseSpeed: 5
+  chaseSpeed: 4.5
   angle: 0
 --- !u!70 &5105104691073383653
 CapsuleCollider2D:

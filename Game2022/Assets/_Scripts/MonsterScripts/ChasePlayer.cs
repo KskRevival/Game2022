@@ -16,7 +16,7 @@ public class ChasePlayer : MonoBehaviour
         monsterFieldOfView = GetComponent<FieldOfView>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameManager.Instance.state == GameState.Fight) return;
         UpdatePlayerLocation();

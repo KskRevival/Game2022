@@ -27,7 +27,7 @@ public class Patrol : MonoBehaviour
         // StartCoroutine(DoPatrol());
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (GameManager.Instance.state == GameState.Fight) return;
         isReachedWaypoint = IsTargetPointReached();

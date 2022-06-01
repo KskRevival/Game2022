@@ -24,7 +24,7 @@ namespace MonsterScripts
         }
 
         // Update is called once per frame
-        void Update()
+        void FixedUpdate()
         {
             if (GameManager.Instance.state == GameState.Fight) return;
             SetMovingSpeed();
@@ -39,7 +39,7 @@ namespace MonsterScripts
             animator.SetFloat(Animator.StringToHash("Vertical"), GetVertical());
             animator.SetFloat(Animator.StringToHash("Speed"), moveSpeed);
             animator.speed = GetComponent<ChasePlayer>().isChasingPlayer ? 0.8f : 0.5f;
-            monsterRigidbody.MovePosition(transform.position + (Vector3)enemyDirection * (moveSpeed * Time.fixedDeltaTime));
+            monsterRigidbody.MovePosition(monsterRigidbody.position + enemyDirection * (moveSpeed * Time.fixedDeltaTime));
         }
 
         private float GetHorizontal() => !(Mathf.Abs(angle) < Mathf.PI / 4 || Mathf.Abs(angle) > 3 * Mathf.PI / 4)
