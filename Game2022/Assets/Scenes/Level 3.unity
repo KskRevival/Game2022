@@ -2525,7 +2525,7 @@ MonoBehaviour:
   dropContainer: {fileID: 0}
   data: {fileID: 1462900920}
   dungeonGenerator: {fileID: 1462900921}
-  level: 2
+  level: 3
 --- !u!4 &1462900923
 Transform:
   m_ObjectHideFlags: 0
@@ -2596,7 +2596,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -12
   m_Sprite: {fileID: 21300000, guid: b0727517cdc6bda45b8dba790609de34, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

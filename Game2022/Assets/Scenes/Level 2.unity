@@ -2072,8 +2072,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   offset: {x: 6, y: 6}
-  columns: 8
-  rows: 8
+  isFull: 1
+  columns: 13
+  rows: 13
   startPos: 0
   room: {fileID: 1170906356432216999, guid: 2f9aca66389e2f44c902f7bd5134565a, type: 3}
   player: {fileID: 1668770886433599875, guid: 0bbe5fd1eb7cb7b45acba1b029d4dd01, type: 3}

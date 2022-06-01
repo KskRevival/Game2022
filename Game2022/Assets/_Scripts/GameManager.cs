@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     void InitGame()
     {
-        level = SceneManager.GetActiveScene().buildIndex - 1;
+        //level = SceneManager.GetActiveScene().buildIndex - 1;
         InitContainers();
         if (level != 3)
         {
