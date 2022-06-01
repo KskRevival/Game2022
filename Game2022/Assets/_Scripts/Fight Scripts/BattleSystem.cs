@@ -192,7 +192,6 @@ public class BattleSystem : MonoBehaviour
         if (state == Won || state == Left)
         {
             SceneManager.LoadScene(GameManager.Instance.level + 1);
-            FightPreparation.Camera.SetActive(true);
         }
         else
         {

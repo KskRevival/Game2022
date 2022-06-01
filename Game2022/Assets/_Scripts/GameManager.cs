@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
             dungeonGenerator = GetComponent<DungeonGenerator>();
             dungeonGenerator.Generate(data);
         }
-        SpawnCamera();
+
         SpawnPlayer();
         if (level == 1) LoadTutorial();
         if (level != 1) LoadPlayer();
@@ -158,15 +158,6 @@ public class GameManager : MonoBehaviour
     public static AudioClip AudioClipResources(string path)
     {
         return Resources.Load<AudioClip>(path);
-    }
-
-    public void SpawnCamera()
-    {
-        Instantiate(
-            GameObjectResources($"Cameras/Camera{Instance.level}"),
-            new Vector3(0, 0, -10),
-            Quaternion.identity,
-            transform);
     }
 }
 
