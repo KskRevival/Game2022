@@ -24,7 +24,7 @@ public class PlayerFOV : MonoBehaviour
 
     private void Update()
     {
-        var playerPos = GameManager.Instance.player.transform.position + Vector3.up * 0.8f;
+        var playerPos = GameManager.Instance.player.transform.position + Vector3.up * 0.7f;
 
         if (Input.GetMouseButtonDown(0))
         {
