@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8405933009741445580}
   - component: {fileID: 4954063775676556360}
   - component: {fileID: 1314892831134291053}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: egor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

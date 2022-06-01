@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2559232786664931759}
   - component: {fileID: 3215696234765388762}
   - component: {fileID: -674050684926191313}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: grenade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemInInventory: {fileID: 9083712708707920501, guid: 69c2327d14bc0564ebf06102eaa5196c, type: 3}
   itemData:
-    type: 0
-    itemSpawnIndex: 0
+    type: 4
+    itemSpawnIndex: 4
 --- !u!61 &-674050684926191313
 BoxCollider2D:
   m_ObjectHideFlags: 0
