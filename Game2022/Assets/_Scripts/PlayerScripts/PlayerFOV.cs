@@ -1,5 +1,7 @@
+using InventoryScripts;
 using System.Collections;
 using System.Collections.Generic;
+using UIScripts;
 using UnityEngine;
 
 public class PlayerFOV : MonoBehaviour
@@ -26,6 +28,8 @@ public class PlayerFOV : MonoBehaviour
 
     private void Update()
     {
+        if (PauseScript.IsPaused || InventoryHandler.IsInventoryActive || GameManager.Instance.state == GameState.Fight) return;
+
         var playerPos = GameManager.Instance.player.transform.position + Vector3.up * 0.7f;
 
         if (Input.GetMouseButtonDown(0))

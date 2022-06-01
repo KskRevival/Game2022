@@ -11,7 +11,7 @@ namespace InventoryScripts
     public class InventoryHandler : MonoBehaviour
     {
         public GameObject inventoryPanel;
-        private bool isInventoryActive;
+        public static bool IsInventoryActive;
 
         public GameObject DraggedItem;
         public bool IsDraggingEquippedItem;
@@ -25,7 +25,7 @@ namespace InventoryScripts
 
         void Awake()
         {
-            inventoryPanel.SetActive(isInventoryActive);
+            inventoryPanel.SetActive(IsInventoryActive);
             slots = inventorySlots.GetComponentsInChildren<Slot>(); //��������� ���� �����
             // player = GameManager.Instance.player;
         }
@@ -55,12 +55,12 @@ namespace InventoryScripts
 
         public void SwitchInventory()
         {
-            isInventoryActive = !isInventoryActive;
-            Time.timeScale = isInventoryActive ? 0f : 1f;
+            IsInventoryActive = !IsInventoryActive;
+            Time.timeScale = IsInventoryActive ? 0f : 1f;
 
-            if (!isInventoryActive && DraggedItem != null) ReturnDraggedItem();
+            if (!IsInventoryActive && DraggedItem != null) ReturnDraggedItem();
 
-            inventoryPanel.SetActive(isInventoryActive);
+            inventoryPanel.SetActive(IsInventoryActive);
         }
 
         void ReturnDraggedItem()

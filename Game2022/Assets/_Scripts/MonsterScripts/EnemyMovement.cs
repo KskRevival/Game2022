@@ -1,4 +1,6 @@
+using InventoryScripts;
 using LabyrinthScripts;
+using UIScripts;
 using UnityEngine;
 
 namespace MonsterScripts
@@ -26,7 +28,11 @@ namespace MonsterScripts
         // Update is called once per frame
         void FixedUpdate()
         {
-            if (GameManager.Instance.state == GameState.Fight) return;
+            if (GameManager.Instance.state == GameState.Fight
+                || PauseScript.IsPaused
+                || InventoryHandler.IsInventoryActive)
+                return;
+
             SetMovingSpeed();
 
             angle = Mathf.Atan2(enemyDirection.y, enemyDirection.x);
