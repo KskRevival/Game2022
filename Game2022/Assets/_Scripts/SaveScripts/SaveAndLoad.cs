@@ -17,7 +17,7 @@ namespace SaveScripts
                 bf.Serialize(fs, data);
             }
 
-            Debug.Log("Game data saved!");
+            // Debug.Log("Game data saved!");
             
         }
 
@@ -36,7 +36,7 @@ namespace SaveScripts
                 data = (SaveData) bf.Deserialize(file);
                 file.Close();
             }
-            Debug.Log("Game data loaded!");
+            // Debug.Log("Game data loaded!");
             return data;
         }
     }

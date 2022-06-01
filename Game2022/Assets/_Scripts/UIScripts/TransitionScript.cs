@@ -40,7 +40,6 @@ namespace UIScripts
     
         public static void Exit()
         {
-            Debug.Log("Exit");
             Application.Quit();
         }
     }
