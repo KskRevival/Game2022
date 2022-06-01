@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5105104691073383658}
   - component: {fileID: 5105104691073383659}
   - component: {fileID: 7959209663184290}
+  - component: {fileID: -3086289129318188148}
   m_Layer: 6
   m_Name: Entity10
   m_TagString: Untagged
@@ -261,6 +262,19 @@ MonoBehaviour:
   MonsterChase:
   - {fileID: 8300000, guid: 6cceb50587c394a48b86036f6ffc12fe, type: 3}
   - {fileID: 8300000, guid: e7ecfb6ea4eb8af4799f2e5f5878f31b, type: 3}
+--- !u!114 &-3086289129318188148
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5105104691073377053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc1b596acc824fd4af8d05b545d41ed8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
 --- !u!1 &5105104691461656587
 GameObject:
   m_ObjectHideFlags: 0

@@ -46,7 +46,8 @@ namespace RoomGeneration
 
         private static readonly int[] MonsterChances =
         {
-            50, 50
+            60,
+            40
         };
 
         private static GameObject[] Weapons =

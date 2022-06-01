@@ -5,6 +5,7 @@ using System.Xml.Serialization;
 using InventoryScripts;
 using InventoryScripts.Items;
 using LabyrinthScripts;
+using MonsterScripts;
 using PlayerScripts;
 using RoomGeneration;
 using UnityEngine;
@@ -82,13 +83,13 @@ namespace SaveScripts
 
         public MonsterData(GameObject obj)
         {
-            level = GameManager.Instance.level;
+            level = obj.GetComponent<MonsterTypeData>().type;
             position = GetObjectPosition(obj);
         }
 
         public MonsterData(Transform transform)
         {
-            level = GameManager.Instance.level;
+            level = transform.gameObject.GetComponent<MonsterTypeData>().type;
             position = GetTransformPosition(transform);
         }
 
