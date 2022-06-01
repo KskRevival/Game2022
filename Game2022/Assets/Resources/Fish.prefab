@@ -139,6 +139,7 @@ MonoBehaviour:
   PlayerPos: {x: 0, y: 0, z: 0}
   FishRb: {fileID: 0}
   DirectionToPlayer: {x: 0, y: 0, z: 0}
+  audioClip: {fileID: 8300000, guid: fcb07092eae38e040a2612b455e2a771, type: 3}
 --- !u!114 &1366725135652044241
 MonoBehaviour:
   m_ObjectHideFlags: 0
