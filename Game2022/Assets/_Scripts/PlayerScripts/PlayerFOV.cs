@@ -12,6 +12,7 @@ public class PlayerFOV : MonoBehaviour
     private float viewDistance;
     private float fov;
     private const int rayCount = 50;
+    private AudioSource audioSource;
 
     private void Start()
     {
@@ -20,6 +21,7 @@ public class PlayerFOV : MonoBehaviour
         origin = Vector3.zero;
         fov = 110f;
         viewDistance = 3f;
+        audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -28,6 +30,7 @@ public class PlayerFOV : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
+            audioSource.Play();
             SetFOV(fov == 110f ? 30f : 110f);
             SetViewDistance(viewDistance == 3f ? 7f : 3f);
         }
