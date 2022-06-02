@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Waypoint
   - Corners
+  - Pause
   layers:
   - Default
   - TransparentFX

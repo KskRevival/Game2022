@@ -30,7 +30,8 @@ namespace MonsterScripts
         {
             if (GameManager.Instance.state == GameState.Fight
                 || PauseScript.IsPaused
-                || InventoryHandler.IsInventoryActive)
+                || InventoryHandler.IsInventoryActive
+                || TutorialHandler.IsTutorialOpened)
                 return;
 
             SetMovingSpeed();

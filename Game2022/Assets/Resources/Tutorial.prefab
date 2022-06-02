@@ -1861,6 +1861,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30564d39ee65cd44bbe02571918a695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInventoryCanvas: 0
 --- !u!1 &3125832460181155768
 GameObject:
   m_ObjectHideFlags: 0
@@ -3753,7 +3754,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3125832460176754773}
         m_TargetAssemblyTypeName: CloseCanvas, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: OpenNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4936,6 +4937,7 @@ GameObject:
   - component: {fileID: 3125832461121160947}
   - component: {fileID: 3125832461121160940}
   - component: {fileID: 3125832461121160941}
+  - component: {fileID: 2947209647167977735}
   m_Layer: 5
   m_Name: Tutorial
   m_TagString: Untagged
@@ -5025,6 +5027,21 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &2947209647167977735
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3125832461121160942}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0dbafa1014496e43b1c32da0fba7824, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MT: {fileID: 3125832460176754770}
+  IT: {fileID: 3125832461324669633}
+  FT: {fileID: 0}
 --- !u!1 &3125832461161234686
 GameObject:
   m_ObjectHideFlags: 0
@@ -5712,6 +5729,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e30564d39ee65cd44bbe02571918a695, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInventoryCanvas: 1
 --- !u!1 &3125832461359344815
 GameObject:
   m_ObjectHideFlags: 0
