@@ -108,6 +108,7 @@ namespace UIScripts
 
         public void ToMenu()
         {
+            IsPaused = false;
             TransitionScript.ToMenu();
         }
 
