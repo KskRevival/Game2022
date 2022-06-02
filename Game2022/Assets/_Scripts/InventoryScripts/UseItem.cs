@@ -52,7 +52,7 @@ namespace InventoryScripts
                 GameManager.Instance.player.GetComponentInChildren<InventoryHandler>().RemoveFromInventory(slotIndex);
                 if (GameManager.Instance.state != GameState.Fight)
                 {
-                    //Time.timeScale = 1;
+                    Time.timeScale = 1;
                     player.health = 0;
                     GameManager.Instance.player.gameObject.GetComponentInChildren<InventoryHandler>().SwitchInventory();
                     SceneManager.LoadScene("DeathScene");

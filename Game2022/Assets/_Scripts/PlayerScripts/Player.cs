@@ -19,6 +19,8 @@ namespace PlayerScripts
 
         void Update()
         {
+            md.animator.SetFloat(Animator.StringToHash("Health"), health);
+
             if (GameManager.Instance.state == GameState.Fight 
                 || PauseScript.IsPaused 
                 || InventoryHandler.IsInventoryActive 

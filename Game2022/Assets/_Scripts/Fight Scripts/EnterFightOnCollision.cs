@@ -1,3 +1,4 @@
+using PlayerScripts;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -10,10 +11,15 @@ namespace Fight_Scripts
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
-            if (!collision.gameObject.CompareTag("Player")) return;
+            if (!collision.gameObject.CompareTag("Player") || GameManager.Instance.player.health <= 0) return;
 
             // Debug.Log("Fight is active");
             // SaveAndLoad.SaveGame();
+
+            GameManager.Instance.player.md.animator.SetFloat(MovementData.Horizontal, 0);
+            GameManager.Instance.player.md.animator.SetFloat(MovementData.Vertical, 0);
+            GameManager.Instance.player.md.animator.SetFloat(MovementData.Speed, 0);
+            GameManager.Instance.player.md.movement = Vector2.zero;
 
             FightPreparation.SetFightPrefab(fightPrefabIndex);
             GameManager.Instance.state = GameState.Fight;
