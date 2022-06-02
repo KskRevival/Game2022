@@ -10125,7 +10125,6 @@ MonoBehaviour:
   dampTime: 0.15
   target: {fileID: 0}
   camera: {fileID: 1813842544}
-  IsCameraLockedByX: 0
 --- !u!81 &1813842543
 AudioListener:
   m_ObjectHideFlags: 0
@@ -11491,7 +11490,7 @@ GameObject:
   - component: {fileID: 2125660807}
   m_Layer: 5
   m_Name: Pause
-  m_TagString: Untagged
+  m_TagString: Pause
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

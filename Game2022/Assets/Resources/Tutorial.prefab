@@ -3754,7 +3754,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 3125832460176754773}
         m_TargetAssemblyTypeName: CloseCanvas, Assembly-CSharp
-        m_MethodName: Close
+        m_MethodName: OpenNext
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5039,9 +5039,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0dbafa1014496e43b1c32da0fba7824, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MovementTutorial: {fileID: 3125832460176754770}
-  InventoryTutorial: {fileID: 3125832461324669633}
-  FlashlightTutorial: {fileID: 3125832460176754770}
+  MT: {fileID: 3125832460176754770}
+  IT: {fileID: 3125832461324669633}
+  FT: {fileID: 0}
 --- !u!1 &3125832461161234686
 GameObject:
   m_ObjectHideFlags: 0
