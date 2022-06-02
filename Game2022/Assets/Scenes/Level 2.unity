@@ -2073,7 +2073,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: 6, y: 6}
   isFull: 1
-  hasBigRooms: 0
+  hasBigRooms: 1
   columns: 15
   rows: 15
   startPos: 0
@@ -2504,7 +2504,6 @@ MonoBehaviour:
   dampTime: 0.15
   target: {fileID: 0}
   camera: {fileID: 400877549}
-  IsCameraLockedByX: 0
 --- !u!81 &400877548
 AudioListener:
   m_ObjectHideFlags: 0
