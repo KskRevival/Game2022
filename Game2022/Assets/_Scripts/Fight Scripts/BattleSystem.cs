@@ -66,14 +66,19 @@ public class BattleSystem : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         state = BattleState.PlayerTurn;
-        PlayerTurn();
+        StartCoroutine(PlayerTurn());
     }
 
-    void PlayerTurn()
+    IEnumerator PlayerTurn()
     {
         dialogText.text = "Choose an action";
         playerUnit.defence = Math.Max(playerUnit.minimalDefence, playerUnit.defence - 1);
         playerHUD.armorText.text = playerUnit.defence.ToString();
+        playerHUD.armorText.color = Color.red;
+        
+        yield return new WaitForSeconds(0.15f);
+        
+        playerHUD.armorText.color = Color.white;
     }
 
     public void OnAttackButton()
@@ -143,7 +148,7 @@ public class BattleSystem : MonoBehaviour
         else
         {
             state = BattleState.PlayerTurn;
-            PlayerTurn();
+            StartCoroutine(PlayerTurn());
         }
     }
 
