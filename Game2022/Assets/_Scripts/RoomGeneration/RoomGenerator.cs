@@ -65,6 +65,7 @@ namespace RoomGeneration
                     gen -= GenerationData.Chances[(int) spawnable][index++];
                 }
 
+                if (spawnable == Monster && GameManager.Instance.level == 1) index = 0;
                 //Debug.Log(index);
                 return index;
         }

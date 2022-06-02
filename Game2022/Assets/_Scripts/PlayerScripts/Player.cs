@@ -25,8 +25,6 @@ namespace PlayerScripts
                 || health <= 0) 
                 return;
 
-            Debug.Log(InventoryHandler.IsInventoryActive);
-
             var moveHorizontal = Input.GetAxisRaw("Horizontal");
             var moveVertical = Input.GetAxisRaw("Vertical");
 
