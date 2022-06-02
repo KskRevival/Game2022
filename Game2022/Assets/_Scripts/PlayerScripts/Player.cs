@@ -22,6 +22,7 @@ namespace PlayerScripts
             if (GameManager.Instance.state == GameState.Fight 
                 || PauseScript.IsPaused 
                 || InventoryHandler.IsInventoryActive 
+                || TutorialHandler.IsTutorialOpened
                 || health <= 0) 
                 return;
 
