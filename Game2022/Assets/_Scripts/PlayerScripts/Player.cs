@@ -117,7 +117,7 @@ namespace PlayerScripts
         {
             if (id.Weapon == null) return 0;
             if (AmmoCounter.AmmoCount == 0) return 1;
-            return id.Weapon.Item.GetComponent<WeaponScript>().damage;
+            return id?.Weapon?.Item.GetComponent<WeaponScript>().damage ?? 0;
         }
 
         public int GetArmor() => id.Armor?.Item.GetComponent<ArmorScript>().armor ?? 0;
