@@ -25,7 +25,7 @@ namespace SaveScripts
         {
             if (!File.Exists(Application.persistentDataPath + "/MySaveData.dat"))
             {
-                Debug.LogError("There is no save data!");
+                //Debug.LogError("There is no save data!");
                 return null;
             }
             
