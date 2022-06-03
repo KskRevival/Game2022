@@ -11,6 +11,7 @@ public class FishSpawner : MonoBehaviour
     public GameObject LastFishTraectory;
     public float DistanceFromPlayer;
     public float angle;
+    public static bool CanSpawn = true;
 
     private System.Random random = new System.Random();
 
@@ -19,6 +20,7 @@ public class FishSpawner : MonoBehaviour
     {
         // PlayerPos = GameManager.Instance.player.transform;
         Player = GameObject.FindGameObjectWithTag("Player");
+        CanSpawn = true;
         StartCoroutine(SpawnFish());
     }
 
@@ -26,6 +28,14 @@ public class FishSpawner : MonoBehaviour
     {
         while (true)
         {
+            if (!CanSpawn)
+            {
+                if (LastFish != null)
+                    DestroyLastFishGameObject();
+                yield return new WaitForSeconds(FishSpawnTime);
+                continue;
+            }
+
             yield return new WaitForSeconds(FishSpawnTime);
 
             angle = GetAngleInDegrees(GetRandomNumberInRange(-Mathf.PI, Mathf.PI));
@@ -35,20 +45,20 @@ public class FishSpawner : MonoBehaviour
                 GameManager.GameObjectResources("Fish"),
                 Player.transform.position + GetRotatedVector() * DistanceFromPlayer,
                 Quaternion.identity
-                );
+            );
 
             LastFishTraectory = Instantiate(
                 GameManager.GameObjectResources("FishTraectory"),
                 Player.transform.position,
                 Quaternion.identity
-                );
+            );
 
             RotateFishAndTraectory();
         }
     }
 
     private float GetRandomNumberInRange(float lowerBound, float upperBound) =>
-        (float)random.NextDouble() * (upperBound - lowerBound) + lowerBound;
+        (float) random.NextDouble() * (upperBound - lowerBound) + lowerBound;
 
     private float GetAngleInDegrees(float radians) => radians * 180 / Mathf.PI;
 

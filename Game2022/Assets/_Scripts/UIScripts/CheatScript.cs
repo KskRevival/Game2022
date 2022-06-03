@@ -11,6 +11,8 @@ namespace UIScripts
     {
         public GameObject cheatMenuUI;
 
+        public Button spawn;
+
         public static Spawnable type;
         public TMP_Dropdown typeDropdown;
 
@@ -20,10 +22,14 @@ namespace UIScripts
         {
         };
 
+        void Start()
+        {
+            if (GameManager.Instance.level == 3) spawn.interactable = false;
+        }
+
         void Update()
         {
             if (!Input.GetKeyDown(KeyCode.Backspace) && !Input.GetKeyDown(KeyCode.BackQuote)) return;
-            if (GameManager.Instance.level == 3) return;
             if (PauseScript.IsPaused) Resume();
             else Pause();
         }
@@ -44,11 +50,25 @@ namespace UIScripts
 
         public void DestroyMonsters()
         {
+            if (GameManager.Instance.level == 3)
+            {
+                FishSpawner.CanSpawn = false;
+                return;
+            }
             GameManager.Instance.DestroyMonsters();
         }
 
         public void TeleportToTheEnd()
         {
+            if (GameManager.Instance.level == 3)
+            {
+                GameManager.Instance.player.gameObject.transform.position =
+                    new Vector3(
+                        -2,
+                        -137,
+                        0);
+                return;
+            }
             var data = GameManager.Instance.data;
             GameManager.Instance.player.gameObject.transform.position =
                 new Vector3(
