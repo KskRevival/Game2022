@@ -17,6 +17,8 @@ namespace SaveScripts
     {
         public int level;
         public int ammo;
+        public float stamina;        
+        
         public PlayerData playerData;
         public MonsterData[] monsterData;
         public LootData[] lootData;
@@ -25,6 +27,7 @@ namespace SaveScripts
         {
             level = GameManager.Instance.level;
             ammo = AmmoCounter.AmmoCount;
+            stamina = Stamina.stamina;
             playerData = new PlayerData(GameManager.Instance.player);
             if (level == 3) return;
             monsterData = GetMonsterData();

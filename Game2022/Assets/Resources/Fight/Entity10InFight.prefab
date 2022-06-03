@@ -51,10 +51,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unitName: Entity 10
   unitLevel: 2
-  damage: 7
+  damage: 6
   defenceStack: 0
   minimalDefence: 1
-  defence: 0
+  defence: 1
   maxHealth: 30
   health: 30
 --- !u!1 &2562134794873241640

@@ -48,6 +48,7 @@ namespace UIScripts
             if (data == null || data.level != GameManager.Instance.level) return;
             
             AmmoCounter.AmmoCount = data.ammo;
+            Stamina.stamina = data.stamina;
             FishSpawner.CanSpawn = true;
 
             #region load player
