@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
     {
         //level = SceneManager.GetActiveScene().buildIndex - 1;
         InitContainers();
-        if (level != 3)
+        if (level != 3 && level != 4)
         {
             RoomGenerator.roomsCreated = 0;
             dungeonGenerator = GetComponent<DungeonGenerator>();
@@ -48,7 +48,7 @@ public class GameManager : MonoBehaviour
         SpawnPlayer();
         if (level == 1) LoadTutorial();
         if (level != 1) LoadPlayer();
-        if (level == 2 || level == 4) LoadFlashlight();
+        if (level == 2) LoadFlashlight();
         SaveAndLoad.SaveGame();
     }
 
@@ -123,14 +123,14 @@ public class GameManager : MonoBehaviour
 
     public void SpawnPlayer()
     {
-        if (level != 3)
+        if (level != 3 && level != 4)
         {
             player = dungeonGenerator.SpawnPlayer().GetComponent<Player>();
         }
         else
         {
             player = Instantiate(
-                GameManager.GameObjectResources("PP"),
+                GameManager.GameObjectResources(level == 3 ? "PP" : "Player"),
                 new Vector3(0, 0, 0),
                 Quaternion.identity,
                 parent: transform).GetComponent<Player>();
