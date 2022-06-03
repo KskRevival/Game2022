@@ -31,7 +31,8 @@ public class PlayerFOV : MonoBehaviour
         if (PauseScript.IsPaused 
             || InventoryHandler.IsInventoryActive 
             || GameManager.Instance.state == GameState.Fight 
-            || TutorialHandler.IsTutorialOpened) 
+            || TutorialHandler.IsTutorialOpened
+            || GameManager.Instance.player.health <= 0) 
             return;
 
         var playerPos = GameManager.Instance.player.transform.position + Vector3.up * 0.7f;
