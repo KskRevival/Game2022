@@ -3311,6 +3311,9 @@ MonoBehaviour:
   dampTime: 0.15
   target: {fileID: 0}
   camera: {fileID: 489066235}
+  maxY: -2.1
+  minY: -137.8
+  isCameraLocked: 1
 --- !u!81 &489066234
 AudioListener:
   m_ObjectHideFlags: 0

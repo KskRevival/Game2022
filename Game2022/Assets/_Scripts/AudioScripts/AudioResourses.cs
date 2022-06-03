@@ -7,6 +7,8 @@ public static class AudioResourses
     public static AudioClip[] PlayerFootsteps =
     {
         GameManager.AudioClipResources("Audio/Sounds/Level 0 Player Footsteps"),
+        GameManager.AudioClipResources("Audio/Sounds/Level 6 Player Footsteps"),
+        null,
         GameManager.AudioClipResources("Audio/Sounds/Level 6 Player Footsteps")
     };
 }

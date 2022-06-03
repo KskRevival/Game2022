@@ -10,6 +10,9 @@ public class SmoothCameraFollow : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     public Transform target;
     public Camera camera;
+    public float maxY;
+    public float minY;
+    public bool isCameraLocked;
 
     public void Start()
     {
@@ -21,14 +24,16 @@ public class SmoothCameraFollow : MonoBehaviour
     {
         if (!target) return;
 
+        // if (GameManager.Instance.level == 4) target.position = new Vector3(target.position.x, 0.9f, target.position.z);
+        var cameraYOffset = GameManager.Instance.level == 4 ? Vector3.up * target.position.y * 0.4f : Vector3.zero;
         Vector3 point = camera.WorldToViewportPoint(target.position);
-        Vector3 delta = target.position - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f + CameraYDelta, point.z)); //(new Vector3(0.5, 0.5, point.z));
+        Vector3 delta = target.position + cameraYOffset - camera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, point.z)); //(new Vector3(0.5, 0.5, point.z));
         Vector3 destination = transform.position + delta;
-        if (GameManager.Instance.level == 3)
+        if (isCameraLocked)
         {
-            destination.x = point.x + delta.x * 0.08f;
-            destination.y = Mathf.Min(-2.1f, destination.y);
-            destination.y = Mathf.Max(-137.8f, destination.y);
+            destination.x = GameManager.Instance.level == 4 ? 0 : point.x + delta.x * 0.08f;
+            destination.y = Mathf.Min(maxY, destination.y);
+            destination.y = Mathf.Max(minY, destination.y);
         }
         transform.position = Vector3.SmoothDamp(transform.position, destination, ref velocity, dampTime);
 
